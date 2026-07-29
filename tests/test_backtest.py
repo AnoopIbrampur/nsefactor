@@ -197,6 +197,88 @@ class TestCosts:
         assert dear["ledger"]["net_return"].sum() <= cheap["ledger"]["net_return"].sum()
 
 
+class TestBuffer:
+    """Rank buffering must cut turnover without silently changing the book."""
+
+    def _scores(self, order):
+        return pd.Series(np.linspace(1.0, 0.0, len(order)), index=order)
+
+    def test_unbuffered_takes_strict_top_n(self):
+        names = [f"S{i}" for i in range(10)]
+        w = backtest._weights_from_scores(self._scores(names), 3)
+        assert list(w.index) == ["S0", "S1", "S2"]
+        assert w.sum() == pytest.approx(1.0)
+
+    def test_buffer_retains_held_name_inside_band(self):
+        """A held name that slipped to rank 4 of a top-3 book is kept at 2x."""
+        names = [f"S{i}" for i in range(10)]
+        held = pd.Index(["S3"])
+        w = backtest._weights_from_scores(self._scores(names), 3, held=held, buffer_mult=2.0)
+        assert "S3" in w.index, "held name inside the buffer band should be retained"
+        assert len(w) == 3
+
+    def test_buffer_sells_name_outside_band(self):
+        """Slipping past the wider band forces the sale."""
+        names = [f"S{i}" for i in range(10)]
+        held = pd.Index(["S8"])  # rank 9, outside top 6
+        w = backtest._weights_from_scores(self._scores(names), 3, held=held, buffer_mult=2.0)
+        assert "S8" not in w.index
+        assert list(w.index) == ["S0", "S1", "S2"]
+
+    def test_buffer_never_exceeds_n_holdings(self):
+        names = [f"S{i}" for i in range(20)]
+        held = pd.Index(["S3", "S4", "S5"])
+        w = backtest._weights_from_scores(self._scores(names), 3, held=held, buffer_mult=3.0)
+        assert len(w) == 3
+        assert w.sum() == pytest.approx(1.0)
+
+    def test_buffer_reduces_turnover_on_real_run(self):
+        panel = with_adj(make_panel(n_days=600, isins=tuple(f"INE000A0100{i}" for i in range(9))))
+        days = pd.DatetimeIndex(sorted(panel["date"].unique()))
+        cfg = Config(**{**Config().__dict__, "n_holdings": 3})
+
+        rng = np.random.default_rng(0)
+        isins = sorted(panel["isin"].unique())
+
+        def noisy(p, as_of):
+            # Scores that jitter around a stable ordering: exactly the case
+            # buffering is meant to help.
+            base = np.linspace(1.0, 0.0, len(isins))
+            return pd.Series(base + rng.normal(0, 0.15, len(isins)), index=isins)
+
+        plain = backtest.run(panel, noisy, days, cfg, buffer_mult=1.0)["ledger"]
+        rng = np.random.default_rng(0)
+        buffed = backtest.run(panel, noisy, days, cfg, buffer_mult=2.0)["ledger"]
+
+        assert buffed["turnover"].mean() < plain["turnover"].mean()
+
+
+class TestFactorSelection:
+    def test_use_restricts_composite(self):
+        # zscore needs >=10 names in the cross-section, or every composite is
+        # NaN and the comparison passes vacuously.
+        panel = with_adj(make_panel(n_days=500, isins=tuple(f"INE000A010{i:02d}" for i in range(15))))
+        days = pd.DatetimeIndex(sorted(panel["date"].unique()))
+        as_of = days[400]
+
+        full = factors.compute_all(panel, as_of)
+        subset = factors.compute_all(panel, as_of, use=("mom_12_1", "vol_126"))
+
+        # All z-scores are still reported either way; only the blend changes.
+        assert "z_illiq_126" in subset.columns
+        assert not full["composite"].equals(subset["composite"])
+        expected = subset[["z_mom_12_1", "z_vol_126"]].mean(axis=1, skipna=True)
+        pd.testing.assert_series_equal(
+            subset["composite"].dropna(), expected.dropna(), check_names=False
+        )
+
+    def test_unknown_factor_raises(self):
+        panel = with_adj(make_panel(n_days=500))
+        days = pd.DatetimeIndex(sorted(panel["date"].unique()))
+        with pytest.raises(KeyError):
+            factors.compute_all(panel, days[400], use=("nonexistent",))
+
+
 class TestMetrics:
     def test_cagr_of_known_series(self):
         r = pd.Series([0.01] * 12)

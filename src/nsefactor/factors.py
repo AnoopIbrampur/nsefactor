@@ -124,6 +124,7 @@ def compute_all(
     panel: pd.DataFrame,
     as_of: pd.Timestamp,
     isins: pd.Index | None = None,
+    use: tuple[str, ...] | None = None,
 ) -> pd.DataFrame:
     """All factors for one formation date, raw values plus z-scores.
 
@@ -131,6 +132,11 @@ def compute_all(
     deliberate: z-scores must be computed *within* the universe the portfolio
     can actually buy, or the standardisation is set by micro-caps that will
     never be held.
+
+    ``use`` selects which factors enter the composite. All raw values and
+    z-scores are still returned, so a factor can be measured without being
+    traded -- which is how a factor gets dropped on training-period evidence
+    and then verified as still-dropped out of sample.
     """
     raw = {
         "mom_12_1": momentum(panel, as_of, YEAR - MONTH),
@@ -146,7 +152,12 @@ def compute_all(
     for name, sign in FACTOR_SIGNS.items():
         df[f"z_{name}"] = sign * zscore(df[name])
 
-    zcols = [f"z_{n}" for n in FACTOR_SIGNS]
+    selected = tuple(use) if use is not None else tuple(FACTOR_SIGNS)
+    unknown = set(selected) - set(FACTOR_SIGNS)
+    if unknown:
+        raise KeyError(f"unknown factors: {sorted(unknown)}")
+
+    zcols = [f"z_{n}" for n in selected]
     # Require at least half the factors present, so a name with one stray
     # value does not get ranked on almost nothing.
     enough = df[zcols].notna().sum(axis=1) >= len(zcols) / 2

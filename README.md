@@ -9,7 +9,64 @@ leaking future data. The question here is **which names in the investable
 Indian universe are likely to outperform the rest over the next few months** —
 a ranking problem, where errors common to the whole market cancel out.
 
-Status: **data layer complete and tested.** Factors and backtest are next.
+Status: **baseline complete and evaluated.** It does not beat an index fund.
+That result is reported below rather than tuned away.
+
+## Result
+
+Factors were selected on 2016–2020 and the table below is 2021–2026, which the
+selection never saw. Top 20 equal-weighted, monthly rebalance, entered one
+session after formation, 35bp per side.
+
+| | CAGR% | Vol% | Sharpe | MaxDD% |
+|---|---|---|---|---|
+| mechanical selection (`vol_126`) | 5.77 | 12.72 | 0.05 | −22.72 |
+| a priori (momentum + low-vol) | 12.83 | 21.99 | 0.39 | −31.60 |
+| all five factors | 10.39 | 23.32 | 0.29 | −35.30 |
+| equal-weight universe | 11.23 | 18.30 | 0.35 | −26.77 |
+| Nifty 50 (total-return approx) | 12.18 | 13.40 | 0.49 | −14.42 |
+| **Nifty 500 (total-return approx)** | **15.23** | **14.51** | **0.65** | **−17.61** |
+
+**A Nifty 500 index fund beat every variant, on both return and risk-adjusted
+return.** The best strategy variant roughly matches the Nifty 50 on CAGR while
+carrying 64% more volatility and more than twice the drawdown.
+
+The signal is not absent — it is just not enough. Composite IC over the full
+sample runs t = 4.01, and the decile spread is cleanly monotonic (D1 −1.18%/yr
+to D10 +17.85%/yr). What kills it is a combination of cost drag and the fact
+that a monotonic decile spread among 500 names does not survive being
+concentrated into 20 positions and charged 35bp a side.
+
+### Three things this run actually taught
+
+**A mechanical t-stat cutoff picked the worst variant.** Requiring train
+t ≥ 2.0 kept only `vol_126` (t = 3.72) and discarded `mom_12_1` at t = 1.98 and
+`mom_6_1` at t = 1.95 — coin-flip distinctions on 58 monthly observations. Out
+of sample the kept factor decayed to t = 1.70 while the discarded momentum
+factor *rose* to t = 2.31. The mechanically selected book returned 5.77%; the
+one picked from published literature instead returned 12.83%.
+
+**One factor's sign was simply wrong.** `illiq_126` was built on the Amihud
+illiquidity premium and scored t = −2.67 on training data. Within a universe
+already filtered to the 500 most liquid names, the illiquid tail is not a risk
+premium to harvest — it is the junk end of a liquid universe. `reversal_21`
+was indistinguishable from noise throughout (t = 0.39 train, 0.00 test).
+
+**Turnover control was worth as much as signal.** The a priori and all-five
+books earned almost identical gross returns (16.83% vs 16.97%) but differed by
+2.4 points net, purely because one turned over 41.9%/month and the other
+69.3%. Cost drag ran 1.82% to 5.82%/yr across variants.
+
+### Caveats on the comparison
+
+- NSE publishes only price indices here, so the benchmark total return accrues
+  the published dividend yield daily. Real dividends arrive lumpily on
+  ex-dates. Both bases are reported.
+- The index archive is missing 1.7% of sessions in the test window.
+- Strategy returns capture dividends only above the 2% corporate-action
+  detection threshold, so they sit slightly below a true total return.
+
+None of these are large enough to close a gap this size.
 
 ## The panel
 
@@ -152,19 +209,29 @@ tests/
 
 ## What comes next
 
-1. **Factor baseline, no ML.** 12-1 momentum, quality, low volatility, ranked
-   cross-sectionally, monthly rebalance, costs charged at 35bp per side
-   (brokerage + exchange fees + STT + impact). Benchmarked against Nifty 50 and
-   equal-weight.
-2. **A model, only if it earns it.** Gradient boosting on the cross-section —
-   not an LSTM; monthly cross-sections are a tabular problem, not a sequence
-   one. It ships only if it beats step 1 out-of-sample after costs.
-3. **Forward test.** Publish the monthly shortlist and paper-trade it, so the
+The baseline missed the bar, so the question is whether the gap is closeable or
+whether the honest answer is "buy the index."
+
+1. **Fundamentals.** The largest known limitation: with daily bars alone there
+   is no size, value, or quality factor, because the bhavcopy carries no share
+   count, book value, or earnings. Quality and value are the two factors most
+   associated with the long-horizon investing this is built for, and they are
+   entirely absent. This is the single highest-value thing to add, and it needs
+   a fundamentals source.
+2. **Risk-model neutralisation.** The book ran 22–23% volatility against the
+   index's 14.5%, most of it an uncontrolled small-cap tilt. Sector and size
+   neutralisation would test whether the ranking has any edge once that tilt is
+   removed, or whether it *was* the tilt.
+3. **A model, only if it earns it.** Gradient boosting on the cross-section —
+   not an LSTM, since monthly cross-sections are tabular, not sequential. It
+   ships only if it beats the baseline out of sample after costs, and the
+   baseline currently loses to an index fund, so the bar is the index.
+4. **Forward test.** Publish the monthly shortlist and paper-trade it, so the
    repo eventually reports real out-of-sample results rather than a backtest.
 
-The bar for step 1 is a single number: does it beat a Nifty 50 index fund after
-costs in a walk-forward test. Most such strategies don't, and reporting that
-honestly is the point.
+The bar was always a single number: does it beat a Nifty 500 index fund after
+costs in a walk-forward test. It does not. Most such strategies don't, and
+reporting that plainly is the point.
 
 ## Not investment advice
 

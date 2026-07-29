@@ -1,11 +1,13 @@
-"""Run the factor baseline against its benchmarks and print the verdict.
+"""Factor baseline, selected on a training period and reported out of sample.
 
 Usage:  python scripts/backtest.py
 
-Reports, in order:
-  1. Information coefficient per factor -- is there any signal at all?
-  2. Decile spread -- does the ranking separate winners from losers monotonically?
-  3. Portfolio results vs benchmarks, gross and net of costs.
+The split is the point of this script. Picking which factors to keep by
+looking at their full-sample information coefficient, and then reporting the
+performance of that selection on the same full sample, is in-sample
+selection dressed up as a result. Factors are chosen on 2016-2020 evidence
+alone; everything in the final table is 2021 onward, which the selection
+never saw.
 """
 
 from __future__ import annotations
@@ -19,140 +21,187 @@ from nsefactor import adjust, backtest, benchmark, factors, metrics, universe
 from nsefactor.config import DATA_DIR, DEFAULT_CONFIG
 
 logging.basicConfig(level=logging.WARNING, format="%(levelname)s %(message)s")
-log = logging.getLogger("backtest")
 
 CFG = DEFAULT_CONFIG
+TRAIN_END = pd.Timestamp("2020-12-31")
+# Keep a factor only if its training IC is directionally right and clearly
+# distinguishable from noise. 2.0 is the conventional bar.
+T_STAT_BAR = 2.0
+BUFFER_GRID = (1.0, 1.5, 2.0, 3.0)
 
 
 def section(title: str) -> None:
-    print(f"\n{'=' * 70}\n{title}\n{'=' * 70}")
+    print(f"\n{'=' * 72}\n{title}\n{'=' * 72}")
 
 
-def build_scores(panel: pd.DataFrame, cache: dict):
-    """Score function closing over a per-date factor cache."""
-
-    def score(p: pd.DataFrame, as_of: pd.Timestamp):
-        if as_of not in cache:
-            sel = universe.select(p, as_of, cfg=CFG)
-            if sel.empty:
-                cache[as_of] = None
-                return None
-            cache[as_of] = factors.compute_all(p, as_of, sel.index)
-        f = cache[as_of]
-        return None if f is None else f["composite"]
-
-    return score
+def ic_table(cache: dict, fwd: dict, names, period_mask=None) -> pd.DataFrame:
+    rows = []
+    for name in names:
+        col = f"z_{name}" if name != "composite" else "composite"
+        vals = []
+        for dt, ret in fwd.items():
+            if period_mask is not None and not period_mask(dt):
+                continue
+            f = cache.get(dt)
+            if f is None or col not in f:
+                continue
+            j = pd.DataFrame({"f": f[col], "r": ret}).dropna()
+            if len(j) < 30:
+                continue
+            vals.append(j["f"].corr(j["r"], method="spearman"))
+        s = pd.Series(vals).dropna()
+        if s.empty:
+            continue
+        t = s.mean() / s.std() * np.sqrt(len(s)) if s.std() > 0 else np.nan
+        rows.append(
+            {
+                "factor": name,
+                "mean_IC": round(s.mean(), 4),
+                "t_stat": round(t, 2),
+                "hit_rate": round((s > 0).mean(), 3),
+                "n": len(s),
+            }
+        )
+    return pd.DataFrame(rows).set_index("factor")
 
 
 def main() -> None:
     panel = pd.read_parquet(DATA_DIR / "bhavcopy.parquet")
-    print(f"panel: {len(panel):,} rows, {panel['date'].nunique():,} sessions")
-
-    print("adjusting for corporate actions...")
     panel = adjust.adjusted_close(panel)
     days = pd.DatetimeIndex(sorted(panel["date"].unique()))
 
     rebals = backtest.month_end_dates(days)
     rebals = rebals[rebals >= days[300]]
-    print(f"rebalance dates: {len(rebals)} ({rebals[0].date()} -> {rebals[-1].date()})")
+    print(f"panel {len(panel):,} rows | {len(rebals)} rebalances "
+          f"{rebals[0].date()} -> {rebals[-1].date()}")
+    print(f"train <= {TRAIN_END.date()} | test > {TRAIN_END.date()}")
 
-    # ---- Factor panel, computed once and reused -------------------------
-    print("computing factors (this takes a minute)...")
+    print("\ncomputing factors...")
     cache: dict = {}
-    rows = []
     for dt in rebals:
         sel = universe.select(panel, dt, cfg=CFG)
-        if sel.empty:
-            cache[dt] = None
-            continue
-        f = factors.compute_all(panel, dt, sel.index)
-        cache[dt] = f
-        rows.append(f.assign(isin=f.index))
-    fpanel = pd.concat(rows, ignore_index=True)
+        cache[dt] = None if sel.empty else factors.compute_all(panel, dt, sel.index)
 
-    # ---- Forward returns for IC ----------------------------------------
     day_pos = {d: i for i, d in enumerate(days)}
     fwd = {}
     for i, dt in enumerate(rebals[:-1]):
-        entry = days[day_pos[dt] + 1]
-        exit_ = rebals[i + 1]
         f = cache.get(dt)
         if f is None:
             continue
-        fwd[dt] = backtest.forward_returns(panel, entry, exit_, f.index)
+        fwd[dt] = backtest.forward_returns(panel, days[day_pos[dt] + 1], rebals[i + 1], f.index)
 
-    section("1. INFORMATION COEFFICIENT (rank correlation, factor vs next-month return)")
-    print("Spearman IC per rebalance, averaged. |IC| of 0.02-0.05 is a normal,")
-    print("useful equity factor. t-stat above ~2 means it is not just noise.\n")
+    all_names = list(factors.FACTOR_SIGNS)
 
-    ic_rows = []
-    for name in list(factors.FACTOR_SIGNS) + ["composite"]:
-        col = f"z_{name}" if name != "composite" else "composite"
-        series = []
-        for dt, ret in fwd.items():
-            f = cache[dt]
-            if col not in f:
-                continue
-            joined = pd.DataFrame({"f": f[col], "r": ret}).dropna()
-            if len(joined) < 30:
-                continue
-            series.append(joined["f"].corr(joined["r"], method="spearman"))
-        s = pd.Series(series).dropna()
-        if s.empty:
-            continue
-        tstat = s.mean() / s.std() * np.sqrt(len(s)) if s.std() > 0 else np.nan
-        ic_rows.append(
-            {
-                "factor": name,
-                "mean_IC": round(s.mean(), 4),
-                "IC_std": round(s.std(), 4),
-                "t_stat": round(tstat, 2),
-                "hit_rate": round((s > 0).mean(), 3),
-                "n": len(s),
-            }
-        )
-    print(pd.DataFrame(ic_rows).set_index("factor").to_string())
+    # ---- 1. Selection, on training data only ---------------------------
+    section("1. FACTOR SELECTION (training period only: 2016-2020)")
+    train_ic = ic_table(cache, fwd, all_names, lambda d: d <= TRAIN_END)
+    print(train_ic.to_string())
 
-    section("2. DECILE SPREAD (composite score)")
-    print("Average next-month return by composite decile. A working ranking is")
-    print("roughly monotonic; a strong D10 with a flat middle is usually noise.\n")
+    keep = tuple(train_ic.index[train_ic["t_stat"] >= T_STAT_BAR])
+    dropped = [n for n in all_names if n not in keep]
+    print(f"\nkeeping (train t >= {T_STAT_BAR}): {list(keep)}")
+    for n in dropped:
+        t = train_ic.loc[n, "t_stat"]
+        why = "wrong sign" if t <= -T_STAT_BAR else "indistinguishable from noise"
+        print(f"dropping {n:12} t={t:6.2f}  ({why})")
 
-    dec_rows = []
-    for dt, ret in fwd.items():
-        f = cache[dt]
-        j = pd.DataFrame({"s": f["composite"], "r": ret}).dropna()
-        if len(j) < 100:
-            continue
-        j["decile"] = pd.qcut(j["s"].rank(method="first"), 10, labels=range(1, 11))
-        dec_rows.append(j.groupby("decile", observed=True)["r"].mean())
-    dec = pd.DataFrame(dec_rows)
-    tbl = pd.DataFrame(
-        {
-            "mean_monthly_%": (dec.mean() * 100).round(3),
-            "annualised_%": ((1 + dec.mean()) ** 12 - 1).mul(100).round(2),
-        }
-    )
-    print(tbl.to_string())
-    spread = (dec[10].mean() - dec[1].mean()) * 100
-    print(f"\nD10 - D1 spread: {spread:.3f}%/month ({((1+spread/100)**12-1)*100:.2f}%/yr)")
-
-    section("3. PORTFOLIO BACKTEST")
-    print(f"top {CFG.n_holdings} by composite, equal weighted, monthly rebalance,")
-    print(f"entered one session after formation, {CFG.cost_bps_per_side:.0f}bp per side.\n")
-
-    result = backtest.run(panel, build_scores(panel, cache), days, CFG)
-    ledger = result["ledger"]
-    if ledger.empty:
-        print("no periods produced")
+    if not keep:
+        print("\nno factor cleared the bar on training data. Stopping.")
         return
 
-    exits = pd.DatetimeIndex(ledger["exit"])
-    rows = [
-        metrics.summary(ledger["net_return"], "factor top-20 (net)"),
-        metrics.summary(ledger["gross_return"], "factor top-20 (gross)"),
-    ]
+    # ---- 2. Does the selection hold out of sample? ----------------------
+    section("2. SAME FACTORS, TEST PERIOD (2021 onward) -- not used for selection")
+    test_ic = ic_table(cache, fwd, all_names, lambda d: d > TRAIN_END)
+    print(test_ic.to_string())
+    print("\nFactors kept above should still show t >= 2 here. Ones that do not")
+    print("were training-period artefacts, and that is worth knowing.")
 
-    eq = backtest.equal_weight_universe(panel, lambda p, d: universe.select(p, d, cfg=CFG), days, CFG)
+    # Rebuild composites from the kept factors only.
+    for dt, f in cache.items():
+        if f is None:
+            continue
+        zc = [f"z_{n}" for n in keep]
+        enough = f[zc].notna().sum(axis=1) >= len(zc) / 2
+        f["composite"] = f[zc].mean(axis=1, skipna=True).where(enough)
+
+    section("3. COMPOSITE IC, TRAIN vs TEST")
+    comp = pd.concat(
+        [
+            ic_table(cache, fwd, ["composite"], lambda d: d <= TRAIN_END).assign(period="train"),
+            ic_table(cache, fwd, ["composite"], lambda d: d > TRAIN_END).assign(period="test"),
+        ]
+    )
+    print(comp.set_index("period", append=True).to_string())
+
+    # ---- 3. Turnover buffer, tuned on train -----------------------------
+    def score_fn(p, as_of):
+        f = cache.get(as_of)
+        return None if f is None else f["composite"]
+
+    section("4. TURNOVER BUFFER (chosen on training period only)")
+    print("Unbuffered, the book turns over ~69%/month and costs ~5.8%/yr. A")
+    print("buffer holds a name until it leaves the top N x mult, so churn at")
+    print("the rank boundary stops being paid for.\n")
+
+    grid = []
+    for mult in BUFFER_GRID:
+        r = backtest.run(panel, score_fn, days, CFG, end=TRAIN_END, buffer_mult=mult)
+        led = r["ledger"]
+        if led.empty:
+            continue
+        grid.append(
+            {
+                "buffer": mult,
+                "turnover%": round(led["turnover"].mean() * 100, 1),
+                "cost_drag%": round(led["cost"].mean() * 12 * 100, 2),
+                "gross_CAGR%": round(metrics.cagr(led["gross_return"]) * 100, 2),
+                "net_CAGR%": round(metrics.cagr(led["net_return"]) * 100, 2),
+                "net_Sharpe": round(metrics.sharpe(led["net_return"]), 2),
+            }
+        )
+    gdf = pd.DataFrame(grid).set_index("buffer")
+    print(gdf.to_string())
+    best_buffer = float(gdf["net_Sharpe"].idxmax())
+    print(f"\nbest buffer on train by net Sharpe: {best_buffer}")
+
+    # ---- 4. The actual result -------------------------------------------
+    section(f"5. OUT-OF-SAMPLE RESULT (2021+, buffer {best_buffer} fixed on train)")
+    print("Three factor sets, all evaluated on the same untouched test period.")
+    print("A single t-stat cutoff is a coin flip for factors near the bar, so")
+    print("the sensitivity to that choice is reported rather than hidden:\n")
+    print("  mechanical  -- whatever cleared train t >= 2.0")
+    print("  a priori    -- momentum + low-vol, chosen from the published")
+    print("                 literature rather than from this sample at all")
+    print("  all five    -- no selection\n")
+
+    variants = {
+        f"mechanical {list(keep)}": keep,
+        "a priori (mom_12_1 + vol_126)": ("mom_12_1", "vol_126"),
+        "all five factors": tuple(all_names),
+    }
+
+    rows = []
+    ledgers = {}
+    for label, subset in variants.items():
+        for dt, f in cache.items():
+            if f is None:
+                continue
+            zc = [f"z_{n}" for n in subset]
+            enough = f[zc].notna().sum(axis=1) >= len(zc) / 2
+            f["composite"] = f[zc].mean(axis=1, skipna=True).where(enough)
+
+        r = backtest.run(panel, score_fn, days, CFG, start=TRAIN_END, buffer_mult=best_buffer)
+        if r["ledger"].empty:
+            continue
+        ledgers[label] = r["ledger"]
+        rows.append(metrics.summary(r["ledger"]["net_return"], f"{label} (net)"))
+
+    led = list(ledgers.values())[0]
+    exits = pd.DatetimeIndex(led["exit"])
+
+    eq = backtest.equal_weight_universe(
+        panel, lambda p, d: universe.select(p, d, cfg=CFG), days, CFG, start=TRAIN_END
+    )
     if not eq["ledger"].empty:
         rows.append(metrics.summary(eq["ledger"]["net_return"], "equal-weight universe (net)"))
 
@@ -163,25 +212,31 @@ def main() -> None:
                 s = benchmark.series(idx, name)
             except KeyError:
                 continue
-            price = metrics.align_monthly(s["ret"].dropna(), exits)
-            tr = metrics.align_monthly(benchmark.total_return_proxy(s).dropna(), exits)
-            rows.append(metrics.summary(price, f"{name} (price)"))
-            rows.append(metrics.summary(tr, f"{name} (total-return approx)"))
+            rows.append(metrics.summary(metrics.align_monthly(s["ret"].dropna(), exits), f"{name} (price)"))
+            rows.append(
+                metrics.summary(
+                    metrics.align_monthly(benchmark.total_return_proxy(s).dropna(), exits),
+                    f"{name} (total-return approx)",
+                )
+            )
     except FileNotFoundError:
-        print("(no indices.parquet -- run the index fetch for benchmarks)\n")
+        print("(indices.parquet missing -- no index benchmarks)\n")
 
     print(metrics.compare(rows).to_string())
 
-    section("COSTS AND TURNOVER")
-    print(f"mean monthly turnover : {ledger['turnover'].mean():.1%}")
-    print(f"mean monthly cost     : {ledger['cost'].mean() * 100:.3f}%")
-    print(f"annual cost drag      : {ledger['cost'].mean() * 12 * 100:.2f}%")
-    print(f"gross CAGR            : {metrics.cagr(ledger['gross_return']) * 100:.2f}%")
-    print(f"net CAGR              : {metrics.cagr(ledger['net_return']) * 100:.2f}%")
+    section("COSTS AND TURNOVER, BY VARIANT")
+    for label, l in ledgers.items():
+        print(
+            f"{label:34} turnover {l['turnover'].mean():5.1%}/mo  "
+            f"drag {l['cost'].mean() * 12 * 100:4.2f}%/yr  "
+            f"gross {metrics.cagr(l['gross_return']) * 100:5.2f}%  "
+            f"net {metrics.cagr(l['net_return']) * 100:5.2f}%"
+        )
 
-    DATA_DIR.parent.joinpath("reports").mkdir(parents=True, exist_ok=True)
-    ledger.to_csv(DATA_DIR.parent / "reports" / "ledger.csv", index=False)
-    print(f"\nledger written to artifacts/reports/ledger.csv")
+    out = DATA_DIR.parent / "reports"
+    out.mkdir(parents=True, exist_ok=True)
+    led.to_csv(out / "ledger_oos.csv", index=False)
+    print(f"\nledger -> artifacts/reports/ledger_oos.csv")
 
 
 if __name__ == "__main__":

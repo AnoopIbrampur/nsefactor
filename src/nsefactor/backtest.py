@@ -67,12 +67,43 @@ def forward_returns(
     return out.reindex(isins)
 
 
-def _weights_from_scores(scores: pd.Series, n_holdings: int) -> pd.Series:
-    """Equal weight across the top ``n_holdings`` names by score."""
-    top = scores.dropna().nlargest(n_holdings)
-    if top.empty:
+def _weights_from_scores(
+    scores: pd.Series,
+    n_holdings: int,
+    held: pd.Index | None = None,
+    buffer_mult: float = 1.0,
+) -> pd.Series:
+    """Equal weight across the top ``n_holdings`` names by score.
+
+    With ``buffer_mult`` above 1.0, a name already held is retained while it
+    stays inside the top ``n_holdings * buffer_mult``, and is only sold once
+    it falls outside that wider band. New names are drawn from the strict
+    top-N to fill whatever room is left.
+
+    This exists because the unbuffered strategy turns over ~69% of the book
+    every month, and at 35bp a side that costs ~5.8%/yr -- more than half the
+    gross alpha. Most of that churn is names oscillating around the rank-N
+    boundary, where the score difference between keeping and swapping is
+    negligible but the cost of acting on it is not.
+    """
+    ranked = scores.dropna().sort_values(ascending=False)
+    if ranked.empty:
         return pd.Series(dtype=float)
-    return pd.Series(1.0 / len(top), index=top.index)
+
+    if held is None or buffer_mult <= 1.0:
+        chosen = list(ranked.index[:n_holdings])
+    else:
+        band = set(ranked.index[: int(n_holdings * buffer_mult)])
+        keep = [i for i in ranked.index if i in band and i in set(held)]
+        keep = keep[:n_holdings]
+        room = n_holdings - len(keep)
+        keep_set = set(keep)
+        fill = [i for i in ranked.index[:n_holdings] if i not in keep_set][:room]
+        chosen = keep + fill
+
+    if not chosen:
+        return pd.Series(dtype=float)
+    return pd.Series(1.0 / len(chosen), index=pd.Index(chosen))
 
 
 def run(
@@ -81,7 +112,9 @@ def run(
     trading_days: pd.DatetimeIndex,
     cfg: Config = DEFAULT_CONFIG,
     start: str | pd.Timestamp | None = None,
+    end: str | pd.Timestamp | None = None,
     warmup_days: int = 300,
+    buffer_mult: float = 1.0,
 ) -> dict:
     """Execute the walk-forward backtest.
 
@@ -99,6 +132,8 @@ def run(
         rebals = rebals[rebals >= earliest]
     if start is not None:
         rebals = rebals[rebals >= pd.Timestamp(start)]
+    if end is not None:
+        rebals = rebals[rebals <= pd.Timestamp(end)]
 
     day_pos = {d: i for i, d in enumerate(trading_days)}
     periods = []
@@ -119,7 +154,12 @@ def run(
             log.debug("no scores at %s", form_date.date())
             continue
 
-        weights = _weights_from_scores(scores, cfg.n_holdings)
+        weights = _weights_from_scores(
+            scores,
+            cfg.n_holdings,
+            held=prev_weights.index if len(prev_weights) else None,
+            buffer_mult=buffer_mult,
+        )
         if weights.empty:
             continue
 
