@@ -126,6 +126,8 @@ def compute_all(
     isins: pd.Index | None = None,
     use: tuple[str, ...] | None = None,
     require_all: bool = True,
+    extra: pd.DataFrame | None = None,
+    extra_signs: dict[str, int] | None = None,
 ) -> pd.DataFrame:
     """All factors for one formation date, raw values plus z-scores.
 
@@ -150,11 +152,31 @@ def compute_all(
     if isins is not None:
         df = df.reindex(isins)
 
-    for name, sign in FACTOR_SIGNS.items():
-        df[f"z_{name}"] = sign * zscore(df[name])
+    # Fundamental factors arrive pre-computed (they need a filing panel and a
+    # broadcast-date join, which does not belong here) but are z-scored in this
+    # function so that price and fundamental factors are standardised over the
+    # same cross-section. Standardising them separately would let a factor's
+    # weight in the composite depend on how many names happened to have
+    # fundamentals that month.
+    signs = dict(FACTOR_SIGNS)
+    if extra is not None and len(extra.columns):
+        if extra_signs is None:
+            raise ValueError("extra_signs is required when passing extra factors")
+        clash = set(extra.columns) & set(df.columns)
+        if clash:
+            raise KeyError(f"extra factors collide with price factors: {sorted(clash)}")
+        aligned = extra.reindex(df.index)
+        for col in extra.columns:
+            if col in extra_signs:
+                df[col] = aligned[col]
+                signs[col] = extra_signs[col]
 
-    selected = tuple(use) if use is not None else tuple(FACTOR_SIGNS)
-    unknown = set(selected) - set(FACTOR_SIGNS)
+    for name, sign in signs.items():
+        if name in df.columns:
+            df[f"z_{name}"] = sign * zscore(df[name])
+
+    selected = tuple(use) if use is not None else tuple(signs)
+    unknown = set(selected) - set(signs)
     if unknown:
         raise KeyError(f"unknown factors: {sorted(unknown)}")
 
