@@ -106,17 +106,29 @@ def main() -> None:
     wanted = idx[idx["isin"].isin(keep)].copy()
     print(f"filings for those ISINs           : {len(wanted):,}")
 
-    # Keep the first broadcast per (ISIN, period). Later filings for the same
-    # quarter are revisions or the standalone/consolidated counterpart; the
-    # first publication is what a person actually knew at the time, and taking
-    # only it roughly halves the download without weakening point-in-time
-    # discipline. Revisions are a refinement we can add later if it matters.
-    before_dedupe = len(wanted)
-    wanted = (wanted.sort_values(["isin", "period_end", "broadcast_date"])
-                    .groupby(["isin", "period_end"], as_index=False).head(1))
-    print(f"after first-broadcast dedupe      : {len(wanted):,} "
-          f"(dropped {before_dedupe - len(wanted):,} revisions/duplicates)")
-    print(f"  of which consolidated           : {int(wanted['consolidated'].sum()):,}")
+    # Deliberately NOT deduped to one filing per (ISIN, quarter).
+    #
+    # Keeping only the first broadcast would cut the download roughly in half,
+    # but of those first broadcasts only ~12% are consolidated: most Indian
+    # companies file standalone quarterly and consolidated annually, and the
+    # standalone filing usually goes out first. Standalone accounts cover the
+    # parent alone, which materially understates a conglomerate, so a panel
+    # built from whichever arrived first would mix two different accounting
+    # scopes across the cross-section -- making a standalone filer look smaller
+    # and less profitable than the same company reporting consolidated.
+    #
+    # Fetching everything lets the panel prefer consolidated per (ISIN, quarter)
+    # where it exists and fall back to standalone otherwise, and keeps the
+    # revision history for point-in-time work later.
+    dedup_count = len(
+        wanted.sort_values(["isin", "period_end", "broadcast_date"])
+        .groupby(["isin", "period_end"], as_index=False)
+        .head(1)
+    )
+    print(f"  consolidated                    : {int(wanted['consolidated'].sum()):,} "
+          f"({wanted['consolidated'].mean():.1%})")
+    print(f"  distinct (ISIN, quarter) pairs   : {dedup_count:,}")
+    print("  fetching all filings so consolidated can be preferred per quarter")
 
     already = sum(1 for _ in F.XBRL_DIR.rglob("*.xml")) if F.XBRL_DIR.exists() else 0
     print(f"XBRL already cached               : {already:,}")

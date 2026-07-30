@@ -291,3 +291,52 @@ class TestFundamentalFactors:
         s = FF._earnings_stability(fund, when)
         assert "INE000A01001" in s.index
         assert s["INE000A01001"] == pytest.approx(1.0 / FF.CV_FLOOR)
+
+
+class TestScopePreference:
+    """Standalone and consolidated accounts must not be mixed arbitrarily."""
+
+    def _both_scopes(self):
+        """Same quarter filed standalone first, then consolidated."""
+        q = pd.Timestamp("2021-03-31")
+        base = {
+            "isin": "INE000A01001", "symbol": "X", "period_end": q,
+            "period_start": q - pd.Timedelta(days=89),
+            "net_worth": 1000.0, "total_debt": 500.0,
+            "shares_outstanding": 1e6, "revenue": 1000.0, "audited": False,
+        }
+        standalone = {**base, "consolidated": False, "pat": 100.0,
+                      "broadcast_date": q + pd.Timedelta(days=45)}
+        consolidated = {**base, "consolidated": True, "pat": 175.0,
+                        "broadcast_date": q + pd.Timedelta(days=55)}
+        return pd.DataFrame([standalone, consolidated]), q
+
+    def test_consolidated_preferred_once_visible(self):
+        fund, q = self._both_scopes()
+        got = F.as_of(fund, q + pd.Timedelta(days=60))
+        assert got.loc["INE000A01001", "pat"] == 175.0, "should prefer consolidated"
+        assert bool(got.loc["INE000A01001", "consolidated"]) is True
+
+    def test_standalone_used_while_it_is_the_only_thing_filed(self):
+        """Preference must not reach forward to a filing not yet broadcast."""
+        fund, q = self._both_scopes()
+        got = F.as_of(fund, q + pd.Timedelta(days=50))
+        assert got.loc["INE000A01001", "pat"] == 100.0
+        assert bool(got.loc["INE000A01001", "consolidated"]) is False
+
+    def test_scopes_not_summed_in_trailing_year(self):
+        """Both scopes for one quarter must count once, not twice."""
+        rows = []
+        for i, q in enumerate(pd.date_range("2020-03-31", periods=4, freq="QE")):
+            for cons, pat in ((False, 100.0), (True, 175.0)):
+                rows.append({
+                    "isin": "INE000A01001", "symbol": "X", "period_end": q,
+                    "broadcast_date": q + pd.Timedelta(days=45 + (10 if cons else 0)),
+                    "pat": pat, "revenue": 1000.0, "net_worth": 1000.0,
+                    "total_debt": 500.0, "shares_outstanding": 1e6,
+                    "consolidated": cons, "audited": False,
+                })
+        fund = pd.DataFrame(rows)
+        when = fund["broadcast_date"].max() + pd.Timedelta(days=1)
+        ttm = F.trailing_four_quarters(fund, when, "pat")
+        assert ttm["INE000A01001"] == pytest.approx(4 * 175.0), "scopes were summed"

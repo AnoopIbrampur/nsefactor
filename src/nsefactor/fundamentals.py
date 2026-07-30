@@ -373,6 +373,29 @@ def parse_xbrl(blob: bytes) -> dict | None:
 # ---------------------------------------------------------------------------
 
 
+def _pick_per_period(visible: pd.DataFrame) -> pd.DataFrame:
+    """One filing per (ISIN, period), preferring consolidated accounts.
+
+    A company often files the same quarter twice: standalone first, then
+    consolidated. Standalone covers the parent alone, so for a group it
+    understates the business a shareholder actually owns. Preferring
+    consolidated keeps the cross-section on one accounting scope wherever the
+    choice exists.
+
+    Preference applies only among filings already visible at the query date, so
+    a consolidated filing that arrives later does not retroactively replace the
+    standalone figures that were the only ones available at the time.
+    """
+    if visible.empty:
+        return visible
+    cols = ["isin", "period_end"]
+    if "consolidated" in visible.columns:
+        ordered = visible.sort_values(cols + ["consolidated", "broadcast_date"])
+    else:
+        ordered = visible.sort_values(cols + ["broadcast_date"])
+    return ordered.groupby(cols, as_index=False).tail(1)
+
+
 def as_of(panel: pd.DataFrame, when: pd.Timestamp, max_age_days: int = 400) -> pd.DataFrame:
     """The latest filing per ISIN that was public on ``when``.
 
@@ -394,7 +417,11 @@ def as_of(panel: pd.DataFrame, when: pd.Timestamp, max_age_days: int = 400) -> p
     if fresh.empty:
         return fresh
 
-    ordered = fresh.sort_values(["isin", "broadcast_date", "period_end"])
+    # Resolve scope and revisions within each period first, then take the most
+    # recent period. Doing it the other way round could return a stale
+    # standalone filing simply because it was broadcast after a newer quarter.
+    best = _pick_per_period(fresh)
+    ordered = best.sort_values(["isin", "period_end", "broadcast_date"])
     return ordered.groupby("isin", as_index=False).tail(1).set_index("isin")
 
 
@@ -412,8 +439,7 @@ def trailing_four_quarters(
     if visible.empty:
         return pd.Series(dtype=float)
 
-    ordered = visible.sort_values(["isin", "period_end", "broadcast_date"])
-    latest = ordered.groupby(["isin", "period_end"], as_index=False).tail(1)
+    latest = _pick_per_period(visible)
 
     out = {}
     for isin, grp in latest.groupby("isin", sort=False):
