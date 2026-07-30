@@ -92,11 +92,18 @@ def build_dataset(
     panel: pd.DataFrame,
     horizon: int = 21,
     universe_isins: pd.Index | None = None,
+    require_target: bool = True,
 ) -> pd.DataFrame:
     """Long-format feature/target table for volatility forecasting.
 
     One row per (date, isin). Features are all trailing; ``target_log_ratio``
     is ``log(forward_vol / ewma_anchor)`` and is the quantity models predict.
+
+    With ``require_target=False``, rows whose forward window extends past the
+    end of the data are kept, with a null target. Those rows are exactly the
+    most recent dates -- including today -- which is when a forecast is
+    actually wanted. Dropping them silently leaves the live shortlist with no
+    risk estimate at all.
     """
     if universe_isins is not None:
         panel = panel[panel["isin"].isin(universe_isins)]
@@ -152,16 +159,16 @@ def build_dataset(
     if "date" not in df.columns:
         df = df.rename(columns={df.columns[0]: "date", df.columns[1]: "isin"})
 
-    # The anchor must be usable as a denominator, and both it and the target
-    # must be strictly positive for the log ratio to exist.
-    ok = (
-        df["anchor"].notna()
-        & (df["anchor"] > 1e-6)
-        & df["forward_vol"].notna()
-        & (df["forward_vol"] > 1e-6)
-    )
+    # The anchor must be usable as a denominator. Without it there is nothing
+    # to scale a forecast against, so those rows go regardless.
+    ok = df["anchor"].notna() & (df["anchor"] > 1e-6)
+    if require_target:
+        ok &= df["forward_vol"].notna() & (df["forward_vol"] > 1e-6)
     df = df[ok].copy()
-    df["target_log_ratio"] = np.log(df["forward_vol"] / df["anchor"])
+
+    with np.errstate(divide="ignore", invalid="ignore"):
+        ratio = df["forward_vol"] / df["anchor"]
+        df["target_log_ratio"] = np.log(ratio.where(ratio > 0))
     return df
 
 

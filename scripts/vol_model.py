@@ -86,6 +86,9 @@ def main() -> None:
 
     cfg = DEFAULT_CONFIG
     panel = pd.read_parquet(DATA_DIR / "bhavcopy.parquet")
+    # Bridge ISIN changes before adjusting: a company that switched ISIN
+    # otherwise carries a truncated history and looks newly listed.
+    panel = adjust.apply_isin_links(panel)
     panel = adjust.adjusted_close(panel)
     print(f"panel: {len(panel):,} rows, {panel['date'].nunique():,} sessions")
 

@@ -232,3 +232,50 @@ class TestUniverseFilters:
 
         sel = universe.select(panel, as_of)
         assert "INE000A01001" not in set(sel.index)
+
+
+class TestIsinLinking:
+    """A company that changes ISIN must not look like a fresh listing."""
+
+    def _panel_with_isin_change(self, gap_sessions: int = 0):
+        """SYM0 hands over from one ISIN to another, optionally with a gap."""
+        panel = make_panel(n_days=300)
+        dates = pd.DatetimeIndex(sorted(panel["date"].unique()))
+        switch = dates[200]
+
+        out = panel.copy()
+        late = (out["symbol"] == "SYM0") & (out["date"] >= switch)
+        out.loc[late, "isin"] = "INE000A01001NEW"
+
+        if gap_sessions:
+            drop = set(dates[200 : 200 + gap_sessions])
+            out = out[~((out["symbol"] == "SYM0") & (out["date"].isin(drop)))]
+        return out, switch
+
+    def test_adjacent_handover_is_linked(self):
+        panel, _ = self._panel_with_isin_change()
+        mapping = adjust.link_isin_changes(panel)
+        assert mapping["INE000A01001"] == "INE000A01001NEW"
+
+    def test_linking_merges_the_history(self):
+        panel, _ = self._panel_with_isin_change()
+        merged = adjust.apply_isin_links(panel)
+        one = merged[merged["symbol"] == "SYM0"]
+        assert one["isin"].nunique() == 1
+        assert len(one) == 300, "full history should survive under one identity"
+
+    def test_gap_prevents_linking(self):
+        """A recycled ticker reappears after a gap and must stay separate."""
+        panel, _ = self._panel_with_isin_change(gap_sessions=20)
+        mapping = adjust.link_isin_changes(panel)
+        assert mapping["INE000A01001"] == "INE000A01001", "gapped ISINs must not link"
+
+    def test_unrelated_isins_untouched(self):
+        panel = make_panel(n_days=200)
+        mapping = adjust.link_isin_changes(panel)
+        assert (mapping.index == mapping.to_numpy()).all()
+
+    def test_original_isin_is_preserved(self):
+        panel, _ = self._panel_with_isin_change()
+        merged = adjust.apply_isin_links(panel)
+        assert set(merged["original_isin"].unique()) >= {"INE000A01001", "INE000A01001NEW"}

@@ -31,6 +31,82 @@ from .config import DEFAULT_CONFIG, Config
 log = logging.getLogger(__name__)
 
 
+def link_isin_changes(panel: pd.DataFrame) -> pd.Series:
+    """Map ISINs to a canonical identity, bridging ISIN changes.
+
+    Keying the panel on ISIN prevents a recycled ticker from stitching two
+    unrelated companies into one series. It creates the opposite problem: a
+    company that *changes* ISIN -- on a face-value split, a restructuring, a
+    scheme of arrangement -- has its history cut in two, and the new half
+    looks like a fresh listing.
+
+    That is not hypothetical. KOTAKBANK moved from INE237A01028 to
+    INE237A01036 on 2026-01-14. With 11 years of trading behind it, the new
+    ISIN carried 130 sessions of history, so 12-month momentum was null and
+    the stock was ranked on volatility alone.
+
+    A change is recognised only when the same symbol hands over on adjacent
+    trading sessions: the old ISIN's last bar is the session immediately
+    before the new ISIN's first. Requiring adjacency is what keeps this from
+    re-introducing the ticker-reuse problem, since a recycled symbol
+    reappears only after a gap.
+
+    Returns a Series mapping every ISIN to its canonical (most recent) ISIN.
+    """
+    days = pd.DatetimeIndex(sorted(panel["date"].unique()))
+    pos = {d: i for i, d in enumerate(days)}
+
+    spans = (
+        panel.groupby(["symbol", "isin"])["date"]
+        .agg(["min", "max"])
+        .reset_index()
+        .sort_values(["symbol", "min"])
+    )
+
+    parent: dict[str, str] = {}
+
+    def find(x: str) -> str:
+        while parent.get(x, x) != x:
+            x = parent[x]
+        return x
+
+    for symbol, grp in spans.groupby("symbol"):
+        if len(grp) < 2:
+            continue
+        rows = grp.to_dict("records")
+        for prev, cur in zip(rows[:-1], rows[1:]):
+            end, start = pos.get(prev["max"]), pos.get(cur["min"])
+            if end is None or start is None:
+                continue
+            if start == end + 1:
+                # Old ISIN retires, new one takes over the next session.
+                parent[prev["isin"]] = cur["isin"]
+            else:
+                log.debug(
+                    "%s: gap of %d sessions between %s and %s, not linked",
+                    symbol,
+                    start - end,
+                    prev["isin"],
+                    cur["isin"],
+                )
+
+    all_isins = panel["isin"].unique()
+    mapping = pd.Series({i: find(i) for i in all_isins}, name="canonical_isin")
+    n_linked = int((mapping.index != mapping.to_numpy()).sum())
+    if n_linked:
+        log.info("bridged %d ISIN changes into successor identities", n_linked)
+    return mapping
+
+
+def apply_isin_links(panel: pd.DataFrame) -> pd.DataFrame:
+    """Rewrite ``isin`` to its canonical identity, merging split histories."""
+    mapping = link_isin_changes(panel)
+    out = panel.copy()
+    out["original_isin"] = out["isin"]
+    out["isin"] = out["isin"].map(mapping).fillna(out["isin"])
+    return out
+
+
 def detect_factors(panel: pd.DataFrame, cfg: Config = DEFAULT_CONFIG) -> pd.DataFrame:
     """Return per-(isin, date) adjustment factors where an action is implied.
 

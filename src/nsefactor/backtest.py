@@ -115,6 +115,7 @@ def run(
     end: str | pd.Timestamp | None = None,
     warmup_days: int = 300,
     buffer_mult: float = 1.0,
+    weight_fn=None,
 ) -> dict:
     """Execute the walk-forward backtest.
 
@@ -154,13 +155,17 @@ def run(
             log.debug("no scores at %s", form_date.date())
             continue
 
-        weights = _weights_from_scores(
-            scores,
-            cfg.n_holdings,
-            held=prev_weights.index if len(prev_weights) else None,
-            buffer_mult=buffer_mult,
-        )
-        if weights.empty:
+        held = prev_weights.index if len(prev_weights) else None
+        if weight_fn is not None:
+            # ``weight_fn(scores, as_of, held) -> Series`` owns both selection
+            # and sizing, so risk-based construction shares this engine's
+            # timing and cost accounting rather than reimplementing them.
+            weights = weight_fn(scores, form_date, held)
+        else:
+            weights = _weights_from_scores(
+                scores, cfg.n_holdings, held=held, buffer_mult=buffer_mult
+            )
+        if weights is None or len(weights) == 0 or weights.empty:
             continue
 
         rets = forward_returns(panel, entry, exit_, weights.index)

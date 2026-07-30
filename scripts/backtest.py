@@ -67,6 +67,9 @@ def ic_table(cache: dict, fwd: dict, names, period_mask=None) -> pd.DataFrame:
 
 def main() -> None:
     panel = pd.read_parquet(DATA_DIR / "bhavcopy.parquet")
+    # Bridge ISIN changes before adjusting: a company that switched ISIN
+    # otherwise carries a truncated history and looks newly listed.
+    panel = adjust.apply_isin_links(panel)
     panel = adjust.adjusted_close(panel)
     days = pd.DatetimeIndex(sorted(panel["date"].unique()))
 

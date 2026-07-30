@@ -175,6 +175,31 @@ class TestDataset:
             f"of its vol level, got {ratio_spread.abs().max():.3f}"
         )
 
+    def test_require_target_false_keeps_the_most_recent_dates(self):
+        """Today has no realised forward vol, and today is what we forecast for.
+
+        With require_target=True those rows vanish, which silently leaves a
+        live shortlist with no risk estimate.
+        """
+        panel = noisy_panel(n_days=500, n_isins=6)
+        last_day = panel["date"].max()
+
+        strict = vol.build_dataset(panel, horizon=21, require_target=True)
+        loose = vol.build_dataset(panel, horizon=21, require_target=False)
+
+        assert strict["date"].max() < last_day, "fixture should lose recent dates"
+        assert loose["date"].max() == last_day, "recent dates must be retained"
+        assert len(loose) > len(strict)
+
+    def test_require_target_false_leaves_features_usable(self):
+        panel = noisy_panel(n_days=500, n_isins=6)
+        loose = vol.build_dataset(panel, horizon=21, require_target=False)
+        recent = loose[loose["date"] == loose["date"].max()]
+
+        assert recent[vol.FEATURE_COLUMNS].notna().all().all()
+        assert recent["anchor"].gt(0).all()
+        assert recent["target_log_ratio"].isna().all(), "target is unknowable today"
+
     def test_universe_filter_restricts_rows(self):
         panel = noisy_panel(n_days=400, n_isins=6)
         keep = pd.Index(["INE000A01000", "INE000A01001"])

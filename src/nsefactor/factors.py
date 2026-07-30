@@ -125,6 +125,7 @@ def compute_all(
     as_of: pd.Timestamp,
     isins: pd.Index | None = None,
     use: tuple[str, ...] | None = None,
+    require_all: bool = True,
 ) -> pd.DataFrame:
     """All factors for one formation date, raw values plus z-scores.
 
@@ -158,9 +159,14 @@ def compute_all(
         raise KeyError(f"unknown factors: {sorted(unknown)}")
 
     zcols = [f"z_{n}" for n in selected]
-    # Require at least half the factors present, so a name with one stray
-    # value does not get ranked on almost nothing.
-    enough = df[zcols].notna().sum(axis=1) >= len(zcols) / 2
+    if require_all:
+        # With a small factor set, "at least half" means a stock missing
+        # momentum can still be ranked on volatility alone -- which is how a
+        # company listed six months ago ends up scored as though it had a
+        # momentum history. Demand every selected factor.
+        enough = df[zcols].notna().all(axis=1)
+    else:
+        enough = df[zcols].notna().sum(axis=1) >= len(zcols) / 2
     df["composite"] = df[zcols].mean(axis=1, skipna=True).where(enough)
     df["date"] = as_of
     return df
