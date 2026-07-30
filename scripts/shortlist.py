@@ -239,11 +239,38 @@ def main() -> None:
     except KeyError:
         r = pd.Series(dtype=float)
 
-    weights = portfolio.build(f["composite"], r if len(r) else None,
-                              n_holdings=args.n, buffer_mult=1.0, max_weight=0.08)
+    # Sector labels from the published index list. Only current labels are
+    # available, which is why the cap is applied to the live shortlist and not
+    # to the backtest -- using today's sectors historically would be a mild
+    # lookahead, and industry classification is not in the bhavcopy at all.
+    sectors = None
+    try:
+        idx_list = universe.fetch_current_index()
+        by_isin = idx_list.set_index(idx_list["isin"].str.strip())["Industry"]
+        sectors = pd.Series(sel.index.map(by_isin), index=sel.index)
+        # Our universe is a liquidity-ranked top 500, which overlaps the
+        # published Nifty 500 by ~81%, so some names carry no industry label.
+        # Pooling them under one "Unknown" bucket would cap a handful of
+        # unrelated companies as though they were a sector. Each unlabelled
+        # name becomes its own group so the cap simply does not bind on it.
+        missing = sectors.isna()
+        sectors[missing] = ["unclassified:" + str(i) for i in sectors.index[missing]]
+    except Exception as exc:
+        print(f"(could not fetch sector labels: {exc}; sector cap skipped)")
+
+    weights = portfolio.build(
+        f["composite"],
+        r if len(r) else None,
+        n_holdings=args.n,
+        buffer_mult=1.0,
+        max_weight=0.08,
+        groups=sectors,
+        max_group=0.25,
+    )
 
     out = pd.DataFrame({
         "symbol": sel["symbol"].reindex(weights.index),
+        "sector": (sectors.reindex(weights.index) if sectors is not None else "n/a"),
         "weight%": (weights * 100).round(2),
         "price": sel["last_close"].reindex(weights.index).round(2),
         "fcast_vol%": (r.reindex(weights.index) * 100).round(1),
@@ -255,6 +282,11 @@ def main() -> None:
     print(f"as of {as_of.date()}  |  {len(out)} names  |  "
           f"universe {len(sel)}  |  weights sum {weights.sum():.3f}\n")
     print(out.to_string(index=False))
+
+    if sectors is not None:
+        print("\nsector exposure (capped at 25%):")
+        exposure = (weights.groupby(sectors.reindex(weights.index)).sum() * 100).round(2)
+        print(exposure.sort_values(ascending=False).to_string())
 
     print("\nColumns: weight% is the suggested position size (inverse forecast")
     print("volatility, capped at 8%). mom_12_1% is the 12-month return excluding")
