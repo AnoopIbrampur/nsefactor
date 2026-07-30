@@ -18,6 +18,19 @@ noise while *risk* is forecastable. The same thing was true of hourly crypto,
 where this repo's author found the price task a three-way tie with persistence
 and the volatility task an 8–14% win.
 
+> **Numbers below predate the ISIN-bridging fix.** 368 companies had their
+> price history split in two by an ISIN change (usually a face-value split), so
+> momentum was null or truncated for those names. The tables in both result
+> sections were produced before that was found and are not yet regenerated.
+>
+> This matters, and not hypothetically: on the buggy data, risk-weighted
+> 60-name construction appeared to beat the equal-weighted 20-name book on
+> Sharpe (0.47 vs 0.39). After the fix it is the reverse — 0.28 vs 0.43. The
+> headline conclusions are unchanged (volatility is forecastable, the factor
+> ranking loses to a Nifty 500 index fund), but the individual figures will
+> move. Regenerate with `python scripts/vol_model.py` and
+> `python scripts/backtest.py`.
+
 ---
 
 ## Result 1: volatility forecasting (works)
