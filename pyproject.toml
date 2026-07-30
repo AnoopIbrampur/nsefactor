@@ -15,11 +15,12 @@ dependencies = [
     "pyarrow>=15.0",
     "matplotlib>=3.8",
     "scikit-learn>=1.4",
+    "scipy>=1.11",
 ]
 
 [project.optional-dependencies]
-# LightGBM needs libomp on macOS:  brew install libomp
-model = ["lightgbm>=4.3"]
+# GARCH(1,1) baseline. Only needed to reproduce the vol comparison table.
+garch = ["arch>=7.0"]
 dev = ["pytest>=8.0"]
 
 [project.scripts]

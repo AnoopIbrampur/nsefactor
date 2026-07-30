@@ -1,18 +1,85 @@
 # nsefactor
 
-Cross-sectional factor ranking for NSE equities, built for a swing/long-term
-horizon, with an evaluation designed to be hard on itself.
+Two forecasting questions on 11 years of NSE equity data, and two different
+answers.
 
-The question is not "what will RELIANCE cost in March." At a monthly horizon
-that forecast is close to noise, and a model that claims otherwise is usually
-leaking future data. The question here is **which names in the investable
-Indian universe are likely to outperform the rest over the next few months** —
-a ranking problem, where errors common to the whole market cancel out.
+**Which stocks will outperform?** Attempted first, as a cross-sectional factor
+ranking. The answer, out of sample, is that a Nifty 500 index fund beats it.
+Reported in full below rather than tuned away.
 
-Status: **baseline complete and evaluated.** It does not beat an index fund.
-That result is reported below rather than tuned away.
+**How volatile will each stock be next month?** This one works. Gradient
+boosting on a log-volatility-ratio target beats RiskMetrics EWMA by 11.3% on
+RMSE and naive persistence by 18.2%, significant when clustered by date
+(15/19 months, p = 0.0004). But the edge is entirely mean reversion — it
+predicts elevated volatility subsiding, not volatility spiking.
 
-## Result
+The through-line is the useful part: at these horizons *returns* are close to
+noise while *risk* is forecastable. The same thing was true of hourly crypto,
+where this repo's author found the price task a three-way tie with persistence
+and the volatility task an 8–14% win.
+
+---
+
+## Result 1: volatility forecasting (works)
+
+21-day-ahead realised volatility, chronological 70/15/15 split, evaluated on
+**non-overlapping** forward windows in 2024-12 → 2026-07.
+
+| | RMSE | MAE | corr | bias |
+|---|---|---|---|---|
+| persistence (trailing 21d vol) | 0.16162 | 0.11209 | 0.448 | +0.003 |
+| EWMA (RiskMetrics, λ=0.94) | 0.14898 | 0.10347 | 0.486 | +0.008 |
+| **gradient boosting** | **0.13215** | **0.09227** | **0.526** | −0.022 |
+
+**+18.2% vs persistence, +11.3% vs EWMA.**
+
+Significance is computed per date, not per row. 9,531 stock-months is not 9,531
+independent observations — stocks move together, so the effective sample is
+closer to the 19 evaluation dates:
+
+- beats EWMA on **15 of 19** months
+- sign test p = 0.0096, paired t-test t = −4.30, p = **0.00043**
+- mean per-date improvement 13.1%, worst month −13.0%, best +30.2%
+
+### The honest limitation
+
+The edge is mean reversion, and it is concentrated where it is least needed:
+
+| | months | mean improvement |
+|---|---|---|
+| volatility **fell** month-over-month | 13 | **+18.3%** |
+| volatility **rose** month-over-month | 6 | **+1.8%** |
+
+Correlation between month-over-month vol change and model improvement is
+**−0.63 (p = 0.004)**. The model is good at knowing when elevated volatility
+will subside and adds almost nothing when volatility jumps — which is exactly
+when a risk forecast matters most.
+
+So this is a **position-sizing tool, not a crash warning system.** Worth being
+blunt about, because the failure mode of a risk model that quietly stops
+working during turbulence is much worse than one that never worked.
+
+### Two design choices that carried the result
+
+**Predict a ratio, not a level.** The target is
+`log(forward_vol / ewma_anchor)`. A single model trained across 1,352 stocks
+whose baseline volatilities span an order of magnitude cannot share an
+intercept — it learns a compromise level that biases every name. Predicting
+change relative to a per-stock anchor removes that entirely. This is the same
+bug, and the same fix, as the per-coin scaling bias in the crypto version.
+
+**Anchor on EWMA, not trailing realised vol.** Trailing realised vol is noisy,
+and a noisy denominator amplifies error straight into the target. EWMA is
+smoother and makes the better anchor.
+
+Permutation importance puts `ewma` far ahead of everything else (+1.28), then
+`parkinson_21` (+0.39) and `rv_ratio_21_126` (+0.13). The anchor mattering most
+is the mean-reversion effect showing up directly: the level tells the model how
+much reversion to expect.
+
+---
+
+## Result 2: factor ranking (does not work)
 
 Factors were selected on 2016–2020 and the table below is 2021–2026, which the
 selection never saw. Top 20 equal-weighted, monthly rebalance, entered one
@@ -185,53 +252,65 @@ panel with no network at all.
 ## Usage
 
 ```bash
-pip install -e ".[dev]"
+pip install -e ".[dev,garch]"
 python scripts/fetch.py 2015-01-01     # ~2,900 sessions, cached to disk
 python scripts/validate.py             # data-quality report
-pytest -q
+python scripts/vol_model.py            # volatility forecast vs baselines
+python scripts/backtest.py             # factor ranking vs index
+pytest -q                              # 62 tests
 ```
 
 ## Layout
 
 ```
 src/nsefactor/
-  config.py     paths, universe filters, cost assumptions
-  bhavcopy.py   download + normalise both archive formats
-  adjust.py     corporate-action factors recovered from prevclose
-  universe.py   point-in-time liquidity-ranked universe
-  cli.py        nsefactor fetch | validate | universe
+  config.py       paths, universe filters, cost assumptions
+  bhavcopy.py     download + normalise both archive formats
+  adjust.py       corporate-action factors recovered from prevclose
+  universe.py     point-in-time liquidity-ranked universe
+  benchmark.py    NSE index levels + total-return approximation
+  volatility.py   vol estimators, features, log-ratio target, baselines
+  factors.py      cross-sectional price factors
+  backtest.py     walk-forward engine with costs and rank buffering
+  metrics.py      CAGR, Sharpe, drawdown, monthly alignment
+  cli.py          nsefactor fetch | validate | universe
 scripts/
-  fetch.py      build the panel
-  validate.py   coverage, corporate actions, universe churn
+  fetch.py        build the panel
+  validate.py     coverage, corporate actions, universe churn
+  vol_model.py    volatility forecast vs persistence / EWMA / GARCH
+  backtest.py     factor ranking vs index, train/test split
 tests/
-  test_data.py  causality, adjustment, calendar invariants
+  test_data.py        causality, adjustment, calendar invariants
+  test_backtest.py    factor causality, timing, cost accounting
+  test_volatility.py  forward-target isolation, feature causality
 ```
 
 ## What comes next
 
-The baseline missed the bar, so the question is whether the gap is closeable or
-whether the honest answer is "buy the index."
+The volatility model works and the factor model does not, so the roadmap
+follows the volatility result.
 
-1. **Fundamentals.** The largest known limitation: with daily bars alone there
-   is no size, value, or quality factor, because the bhavcopy carries no share
-   count, book value, or earnings. Quality and value are the two factors most
-   associated with the long-horizon investing this is built for, and they are
-   entirely absent. This is the single highest-value thing to add, and it needs
-   a fundamentals source.
-2. **Risk-model neutralisation.** The book ran 22–23% volatility against the
-   index's 14.5%, most of it an uncontrolled small-cap tilt. Sector and size
-   neutralisation would test whether the ranking has any edge once that tilt is
-   removed, or whether it *was* the tilt.
-3. **A model, only if it earns it.** Gradient boosting on the cross-section —
-   not an LSTM, since monthly cross-sections are tabular, not sequential. It
-   ships only if it beats the baseline out of sample after costs, and the
-   baseline currently loses to an index fund, so the bar is the index.
-4. **Forward test.** Publish the monthly shortlist and paper-trade it, so the
-   repo eventually reports real out-of-sample results rather than a backtest.
+1. **Spike detection is the real gap.** The model's edge vanishes when
+   volatility rises (+1.8% vs +18.3%), and that is the regime a risk tool is
+   for. Jump-robust estimators (bipower variation), implied volatility from the
+   NIFTY options chain, and asymmetric targets that separate upside from
+   downside realised vol are the candidates. Whether any of them help is an
+   open question — vol jumps are hard for a reason.
+2. **Position sizing, end to end.** Turn the forecast into what it is actually
+   for: inverse-volatility weights on a paper portfolio, benchmarked against
+   equal weighting. This is where the forecast either earns its keep or does
+   not, and it is a fairer test than RMSE.
+3. **Forward test.** Publish the monthly forecast and score it as the months
+   arrive, so the repo eventually reports genuine out-of-sample results rather
+   than a held-out split.
 
-The bar was always a single number: does it beat a Nifty 500 index fund after
-costs in a walk-forward test. It does not. Most such strategies don't, and
-reporting that plainly is the point.
+For the factor side, the known gap is **fundamentals**. With daily bars alone
+there is no size, value, or quality factor, because the bhavcopy carries no
+share count, book value, or earnings — and value and quality are the two
+factors most associated with the long-horizon investing this was built for.
+Separately, the book ran 22–23% volatility against the index's 14.5%, mostly an
+uncontrolled small-cap tilt; sector and size neutralisation would show whether
+the ranking has an edge once that tilt is removed, or whether it *was* the tilt.
 
 ## Not investment advice
 
