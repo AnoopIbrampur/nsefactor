@@ -1,4 +1,4 @@
 model,n,RMSE,MAE,corr,bias
 persistence (trailing rv_21),9531,0.16162,0.11209,0.4481,0.00322
 EWMA (RiskMetrics),9531,0.14898,0.10347,0.4859,0.00797
-gradient boosting,9531,0.13215,0.09227,0.5257,-0.02169
+gradient boosting,9531,0.13184,0.09211,0.5279,-0.02107

@@ -8,10 +8,10 @@ ranking. The answer, out of sample, is that a Nifty 500 index fund beats it.
 Reported in full below rather than tuned away.
 
 **How volatile will each stock be next month?** This one works. Gradient
-boosting on a log-volatility-ratio target beats RiskMetrics EWMA by 11.3% on
-RMSE and naive persistence by 18.2%, significant when clustered by date
-(15/19 months, p = 0.0004). But the edge is entirely mean reversion — it
-predicts elevated volatility subsiding, not volatility spiking.
+boosting on a log-volatility-ratio target beats RiskMetrics EWMA by 11.5% on
+RMSE, naive persistence by 18.4%, and GARCH(1,1) by 27.3% — significant when
+clustered by date (16/19 months, p = 0.0003). But the edge is entirely mean
+reversion: it predicts elevated volatility subsiding, not volatility spiking.
 
 The through-line is the useful part: at these horizons *returns* are close to
 noise while *risk* is forecastable. The same thing was true of hourly crypto,
@@ -29,17 +29,36 @@ and the volatility task an 8–14% win.
 |---|---|---|---|---|
 | persistence (trailing 21d vol) | 0.16162 | 0.11209 | 0.448 | +0.003 |
 | EWMA (RiskMetrics, λ=0.94) | 0.14898 | 0.10347 | 0.486 | +0.008 |
-| **gradient boosting** | **0.13215** | **0.09227** | **0.526** | −0.022 |
+| **gradient boosting** | **0.13184** | **0.09211** | **0.528** | −0.021 |
 
-**+18.2% vs persistence, +11.3% vs EWMA.**
+**+18.4% vs persistence, +11.5% vs EWMA.**
 
 Significance is computed per date, not per row. 9,531 stock-months is not 9,531
 independent observations — stocks move together, so the effective sample is
 closer to the 19 evaluation dates:
 
-- beats EWMA on **15 of 19** months
-- sign test p = 0.0096, paired t-test t = −4.30, p = **0.00043**
-- mean per-date improvement 13.1%, worst month −13.0%, best +30.2%
+- beats EWMA on **16 of 19** months
+- sign test p = 0.0022, paired t-test t = −4.45, p = **0.00031**
+- mean per-date improvement 13.3%, worst month −13.9%, best +30.6%
+
+### Against GARCH(1,1)
+
+GARCH needs a refit per stock per date, so it runs on a 25-stock subsample. It
+converged on 192 of 292 rows; **all methods are scored on those 192 rows only**,
+since comparing GARCH on its own successful fits against other methods on every
+row would hand it a self-selected easier sample.
+
+| | RMSE | MAE | corr | bias |
+|---|---|---|---|---|
+| persistence | 0.14504 | 0.10434 | 0.403 | −0.001 |
+| EWMA | 0.13806 | 0.09871 | 0.406 | +0.009 |
+| GARCH(1,1) | 0.16659 | 0.12886 | 0.295 | **+0.082** |
+| **gradient boosting** | **0.12105** | **0.08905** | **0.467** | −0.014 |
+
+GARCH lands worse than naive persistence here, and the +0.082 bias says why: a
+21-day-ahead GARCH forecast reverts toward the unconditional variance, which
+sits well above realised volatility for most names in this universe. Worth
+reporting rather than quietly dropping the baseline that lost.
 
 ### The honest limitation
 
@@ -48,7 +67,7 @@ The edge is mean reversion, and it is concentrated where it is least needed:
 | | months | mean improvement |
 |---|---|---|
 | volatility **fell** month-over-month | 13 | **+18.3%** |
-| volatility **rose** month-over-month | 6 | **+1.8%** |
+| volatility **rose** month-over-month | 6 | **+2.3%** |
 
 Correlation between month-over-month vol change and model improvement is
 **−0.63 (p = 0.004)**. The model is good at knowing when elevated volatility
@@ -72,10 +91,16 @@ bug, and the same fix, as the per-coin scaling bias in the crypto version.
 and a noisy denominator amplifies error straight into the target. EWMA is
 smoother and makes the better anchor.
 
-Permutation importance puts `ewma` far ahead of everything else (+1.28), then
-`parkinson_21` (+0.39) and `rv_ratio_21_126` (+0.13). The anchor mattering most
-is the mean-reversion effect showing up directly: the level tells the model how
-much reversion to expect.
+Permutation importance, measured on the test slice the model never trained on,
+puts `ewma` far ahead of everything else (+1.00), then `parkinson_21` (+0.44)
+and `rv_ratio_21_126` (+0.04). The anchor mattering most *is* the mean-reversion
+effect showing up directly: the level tells the model how much reversion to
+expect. `parkinson_21` earning second place is the intraday high-low range
+carrying information the close-to-close series throws away.
+
+Two features score slightly negative and are doing nothing: `market_rv_21`
+(−0.014) and `rv_21` (−0.0002). The cross-sectional market regime is already
+implied by each stock's own EWMA, so it adds no independent signal here.
 
 ---
 
