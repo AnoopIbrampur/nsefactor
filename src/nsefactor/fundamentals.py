@@ -52,6 +52,7 @@ import xml.etree.ElementTree as ET
 from collections import defaultdict
 from dataclasses import dataclass
 
+import numpy as np
 import pandas as pd
 import requests
 
@@ -190,14 +191,24 @@ def _parse_day(value: str | None) -> pd.Timestamp | None:
         return None
 
 
+def _is_xbrl_url(url: str) -> bool:
+    """Whether the metadata points at an actual XBRL document."""
+    return url.lower().endswith(".xml") and "/xbrl/" in url.lower()
+
+
 def index_to_filings(records: list[dict]) -> list[Filing]:
     """Convert raw API records into :class:`Filing` objects, dropping unusable ones."""
     out = []
     for r in records:
         isin = (r.get("isin") or "").strip()
-        url = r.get("xbrl") or ""
+        url = (r.get("xbrl") or "").strip()
         bc = _parse_broadcast(r.get("broadCastDate", ""))
-        if not isin or not url or bc is None:
+        # NSE returns "-" in the xbrl field when no XBRL document exists, which
+        # is every filing before XBRL was mandated (nothing in 2015-2017, and
+        # only ~55% of 2018). A truthiness check passes "-" straight through and
+        # turns 36,000 non-existent documents into 404s, which then look like a
+        # download failure rate rather than an absence of data.
+        if not isin or bc is None or not _is_xbrl_url(url):
             continue
         out.append(
             Filing(
@@ -396,7 +407,13 @@ def _pick_per_period(visible: pd.DataFrame) -> pd.DataFrame:
     return ordered.groupby(cols, as_index=False).tail(1)
 
 
-def as_of(panel: pd.DataFrame, when: pd.Timestamp, max_age_days: int = 400) -> pd.DataFrame:
+def as_of(
+    panel: pd.DataFrame,
+    when: pd.Timestamp,
+    max_age_days: int = 400,
+    carry_balance_sheet: bool = True,
+    balance_sheet_max_age_days: int = 550,
+) -> pd.DataFrame:
     """The latest filing per ISIN that was public on ``when``.
 
     Three rules, each of which matters:
@@ -422,7 +439,74 @@ def as_of(panel: pd.DataFrame, when: pd.Timestamp, max_age_days: int = 400) -> p
     # standalone filing simply because it was broadcast after a newer quarter.
     best = _pick_per_period(fresh)
     ordered = best.sort_values(["isin", "period_end", "broadcast_date"])
-    return ordered.groupby("isin", as_index=False).tail(1).set_index("isin")
+    latest = ordered.groupby("isin", as_index=False).tail(1).set_index("isin")
+
+    if carry_balance_sheet:
+        latest = _carry_balance_sheet(latest, visible, when, balance_sheet_max_age_days)
+    return latest
+
+
+# Balance-sheet items, reported at an instant rather than over a period.
+BALANCE_SHEET_COLUMNS = (
+    "net_worth",
+    "total_debt",
+    "share_capital",
+    "other_equity",
+    "borrowings_noncurrent",
+    "borrowings_current",
+    "balance_sheet_date",
+)
+
+
+def _carry_balance_sheet(
+    latest: pd.DataFrame,
+    visible: pd.DataFrame,
+    when: pd.Timestamp,
+    max_age_days: int,
+) -> pd.DataFrame:
+    """Fill missing balance-sheet items from the most recent filing that had them.
+
+    SEBI requires a balance sheet only half-yearly, so a typical quarterly
+    filing reports the P&L and nothing else. Taking balance-sheet figures from
+    the latest filing alone therefore loses net worth and debt for roughly four
+    fifths of the panel -- which silently guts book-to-price, ROE and
+    debt-to-equity, the very factors this data was gathered for.
+
+    Carrying the last reported balance sheet forward is what an analyst does,
+    and it stays point-in-time as long as the source filing was itself already
+    broadcast. ``balance_sheet_age_days`` records how stale the carried figures
+    are so a caller can judge them.
+    """
+    if latest.empty or "net_worth" not in visible.columns:
+        return latest
+
+    have_bs = visible[visible["net_worth"].notna()]
+    if have_bs.empty:
+        latest["balance_sheet_age_days"] = np.nan
+        return latest
+
+    fresh_bs = have_bs[(when - have_bs["period_end"]).dt.days <= max_age_days]
+    if fresh_bs.empty:
+        latest["balance_sheet_age_days"] = np.nan
+        return latest
+
+    picked = _pick_per_period(fresh_bs)
+    source = (
+        picked.sort_values(["isin", "period_end", "broadcast_date"])
+        .groupby("isin", as_index=False)
+        .tail(1)
+        .set_index("isin")
+    )
+
+    out = latest.copy()
+    for col in BALANCE_SHEET_COLUMNS:
+        if col in source.columns:
+            filler = source[col].reindex(out.index)
+            out[col] = out[col].fillna(filler) if col in out.columns else filler
+
+    age = (when - source["period_end"].reindex(out.index)).dt.days
+    out["balance_sheet_age_days"] = age
+    return out
 
 
 def trailing_four_quarters(

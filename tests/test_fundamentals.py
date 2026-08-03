@@ -340,3 +340,81 @@ class TestScopePreference:
         when = fund["broadcast_date"].max() + pd.Timedelta(days=1)
         ttm = F.trailing_four_quarters(fund, when, "pat")
         assert ttm["INE000A01001"] == pytest.approx(4 * 175.0), "scopes were summed"
+
+
+class TestPlaceholderUrls:
+    """NSE returns "-" when no XBRL document exists."""
+
+    def _rec(self, url):
+        return {"isin": "INE000A01001", "symbol": "X", "xbrl": url,
+                "broadCastDate": "15-May-2024 14:41:28", "fromDate": "01-Jan-2024",
+                "toDate": "31-Mar-2024", "consolidated": "Consolidated",
+                "audited": "Audited", "seqNumber": "1"}
+
+    def test_placeholder_dash_is_rejected(self):
+        assert F.index_to_filings([self._rec("-")]) == []
+
+    def test_empty_url_is_rejected(self):
+        assert F.index_to_filings([self._rec("")]) == []
+
+    def test_non_xml_url_is_rejected(self):
+        assert F.index_to_filings([self._rec("https://x.com/corporate/xbrl/thing.pdf")]) == []
+
+    def test_real_url_is_kept(self):
+        url = "https://nsearchives.nseindia.com/corporate/xbrl/INDAS_1_2_3.xml"
+        got = F.index_to_filings([self._rec(url)])
+        assert len(got) == 1 and got[0].xbrl_url == url
+
+
+class TestBalanceSheetCarryForward:
+    """SEBI mandates a balance sheet only half-yearly."""
+
+    def _panel(self):
+        """Four quarters where only the half-yearly filings carry a balance sheet."""
+        rows = []
+        for i, q in enumerate(pd.date_range("2023-03-31", periods=4, freq="QE")):
+            has_bs = i % 2 == 0  # alternate quarters report a balance sheet
+            rows.append({
+                "isin": "INE000A01001", "symbol": "X", "period_end": q,
+                "broadcast_date": q + pd.Timedelta(days=45),
+                "pat": 100.0, "revenue": 1000.0, "shares_outstanding": 1e6,
+                "net_worth": 5000.0 if has_bs else np.nan,
+                "total_debt": 2000.0 if has_bs else np.nan,
+                "consolidated": True, "audited": False,
+            })
+        return pd.DataFrame(rows)
+
+    def test_missing_balance_sheet_is_carried_forward(self):
+        fund = self._panel()
+        # Stand just after a quarter that reported no balance sheet.
+        when = pd.Timestamp("2023-06-30") + pd.Timedelta(days=50)
+        got = F.as_of(fund, when)
+        assert got.loc["INE000A01001", "net_worth"] == 5000.0, "balance sheet not carried"
+        assert got.loc["INE000A01001", "total_debt"] == 2000.0
+
+    def test_carried_figures_report_their_age(self):
+        fund = self._panel()
+        when = pd.Timestamp("2023-06-30") + pd.Timedelta(days=50)
+        got = F.as_of(fund, when)
+        age = got.loc["INE000A01001", "balance_sheet_age_days"]
+        assert age > 90, "carried balance sheet should be flagged as older than the quarter"
+
+    def test_carry_forward_respects_broadcast_visibility(self):
+        """A balance sheet not yet broadcast cannot be carried forward."""
+        fund = self._panel()
+        early = pd.Timestamp("2023-03-31") + pd.Timedelta(days=10)
+        got = F.as_of(fund, early)
+        assert got.empty or got["net_worth"].isna().all()
+
+    def test_own_balance_sheet_wins_over_carried(self):
+        fund = self._panel()
+        fund.loc[fund["period_end"] == pd.Timestamp("2023-09-30"), "net_worth"] = 7777.0
+        when = pd.Timestamp("2023-09-30") + pd.Timedelta(days=50)
+        got = F.as_of(fund, when)
+        assert got.loc["INE000A01001", "net_worth"] == 7777.0
+
+    def test_carry_forward_can_be_disabled(self):
+        fund = self._panel()
+        when = pd.Timestamp("2023-06-30") + pd.Timedelta(days=50)
+        got = F.as_of(fund, when, carry_balance_sheet=False)
+        assert np.isnan(got.loc["INE000A01001", "net_worth"])
