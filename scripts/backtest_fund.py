@@ -11,7 +11,7 @@ this sample at all, let alone evaluated on it. Their first out-of-sample
 reading is genuinely fresh evidence.
 
 To keep that distinction intact this script does not tune anything on the test
-period. Factor selection is made on 2016-2020 evidence and on published priors,
+period. Factor selection is made on training-period evidence and published priors,
 the construction settings are inherited unchanged from the price-only work, and
 the test period is read exactly once per configuration.
 """
@@ -39,11 +39,23 @@ logging.basicConfig(level=logging.WARNING, format="%(levelname)s %(message)s")
 log = logging.getLogger("backtest_fund")
 
 CFG = DEFAULT_CONFIG
-TRAIN_END = pd.Timestamp("2020-12-31")
+# XBRL only becomes near-complete in 2020 (0% before 2018, 54.5% in 2018,
+# 84.7% in 2019), and a trailing-four-quarter factor needs a year behind it.
+# The usable window therefore starts in 2019, not 2015, and the split moves
+# accordingly -- 2020-12-31 would leave barely a year of training data.
+EVAL_START = pd.Timestamp("2019-07-01")
+TRAIN_END = pd.Timestamp("2021-12-31")
 
 PRICE_FACTORS = ("mom_12_1", "vol_126")
-VALUE_FACTORS = ("earnings_yield", "book_to_price")
-QUALITY_FACTORS = ("roe", "gross_margin", "debt_to_equity", "earnings_stability")
+
+# Tier 1: computable from the P&L alone, so available across the whole window.
+TIER1_FACTORS = ("earnings_yield", "gross_margin", "earnings_stability")
+
+# Tier 2: every one of these needs net worth, and balance-sheet items only
+# entered the XBRL taxonomy around 2022. Roughly three years of history is not
+# enough to split into train and test and claim anything out of sample, so
+# these are reported descriptively and never traded in the headline comparison.
+TIER2_FACTORS = ("book_to_price", "roe", "debt_to_equity", "asset_growth")
 
 
 def section(title: str) -> None:
@@ -96,6 +108,7 @@ def main() -> None:
     days = pd.DatetimeIndex(sorted(panel["date"].unique()))
     rebals = backtest.month_end_dates(days)
     rebals = rebals[rebals >= days[300]]
+    rebals = rebals[rebals >= EVAL_START]
     # Fundamentals coverage ends when NSE migrated its filing system, so the
     # evaluation stops there rather than silently ranking on stale accounts.
     fund_end = fund["broadcast_date"].max()
@@ -106,7 +119,7 @@ def main() -> None:
     print(f"rebalances {len(rebals)}  {rebals[0].date()} -> {rebals[-1].date()}")
     print(f"train <= {TRAIN_END.date()} | test > {TRAIN_END.date()}")
 
-    all_names = list(factors.FACTOR_SIGNS) + list(FF.FUND_FACTOR_SIGNS)
+    all_names = list(factors.FACTOR_SIGNS) + list(TIER1_FACTORS) + list(TIER2_FACTORS)
 
     print("\ncomputing price and fundamental factors...")
     cache: dict = {}
@@ -147,28 +160,30 @@ def main() -> None:
     print(pd.DataFrame(cov_rows).set_index("factor").to_string())
 
     # ---- IC, train then test --------------------------------------------
-    section("2. INFORMATION COEFFICIENT, TRAINING PERIOD (2016-2020)")
+    section(f"2. INFORMATION COEFFICIENT, TRAINING PERIOD (to {TRAIN_END.date()})")
     train_ic = ic_table(cache, fwd, all_names, lambda d: d <= TRAIN_END)
     print(train_ic.to_string())
 
-    section("3. INFORMATION COEFFICIENT, TEST PERIOD (2021+)")
+    section(f"3. INFORMATION COEFFICIENT, TEST PERIOD (after {TRAIN_END.date()})")
     print("First reading for every fundamental factor. The price factors have")
-    print("been examined here before, so treat only the new rows as fresh.\n")
+    print("been examined on overlapping data before, so treat only the")
+    print("fundamental rows as fresh evidence.")
+    print("Tier 2 rows (book_to_price, roe, debt_to_equity, asset_growth) rest on")
+    print("balance-sheet data that only exists from 2022, so they are descriptive")
+    print("only -- there is not enough history to split them honestly.\n")
     test_ic = ic_table(cache, fwd, all_names, lambda d: d > TRAIN_END)
     print(test_ic.to_string())
 
     # ---- Composites, chosen a priori ------------------------------------
-    section("4. COMPOSITE PORTFOLIOS (2021+)")
+    section(f"4. COMPOSITE PORTFOLIOS (after {TRAIN_END.date()})")
     print("Factor groups fixed in advance from the literature, not screened here.")
     print("Construction settings inherited from the price-only work: 20 names,")
     print("equal weighted, monthly, entered t+1, 35bp/side.\n")
 
     combos = {
         "price only (mom + low-vol)": PRICE_FACTORS,
-        "value only": VALUE_FACTORS,
-        "quality only": QUALITY_FACTORS,
-        "value + quality": VALUE_FACTORS + QUALITY_FACTORS,
-        "price + value + quality": PRICE_FACTORS + VALUE_FACTORS + QUALITY_FACTORS,
+        "fundamentals only (tier 1)": TIER1_FACTORS,
+        "price + fundamentals": PRICE_FACTORS + TIER1_FACTORS,
     }
 
     def score_fn(p, as_of):

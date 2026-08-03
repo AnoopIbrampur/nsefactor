@@ -117,7 +117,62 @@ implied by each stock's own EWMA, so it adds no independent signal here.
 
 ---
 
-## Result 2: factor ranking (does not work)
+## Result 2: fundamentals (do not close the gap)
+
+The price-only ranking lost to an index fund, and the obvious explanation was
+the missing half of the toolkit: with daily bars alone there is no value or
+quality factor, and those are the two families most associated with
+long-horizon investing. So they were built properly, from NSE's XBRL filings,
+with every figure stamped by the date it was actually broadcast.
+
+They did not help.
+
+Test period 2022-01 to 2025-02, 39 months, factors and construction fixed in
+advance:
+
+| | CAGR% | Vol% | Sharpe | MaxDD% |
+|---|---|---|---|---|
+| price only (momentum + low-vol) | 8.45 | 24.82 | 0.22 | −34.04 |
+| fundamentals only | 7.40 | 19.77 | 0.16 | −23.52 |
+| price + fundamentals | 3.73 | 18.38 | −0.03 | −24.64 |
+| equal-weight universe | 6.13 | 18.93 | 0.10 | −27.64 |
+| Nifty 50 (total-return approx) | 11.49 | 13.37 | 0.44 | −13.82 |
+| **Nifty 500 (total-return approx)** | **13.28** | 14.89 | **0.52** | −17.61 |
+
+Combining price and fundamental factors was *worse than either alone*.
+
+No fundamental factor cleared t = 2 on a meaningful sample. Earnings yield came
+closest at t = 1.88 over 37 months, having scored a training IC of exactly zero.
+`asset_growth` shows t = 2.95 with a perfect hit rate on **four observations**,
+which is noise, not a result — it is in the table only because hiding it would
+be worse.
+
+The one thing fundamentals did deliver is stability: turnover fell from 42.6% to
+12.8% a month and cost drag from 3.58% to 1.08% a year, with lower volatility
+and a shallower drawdown. Steadier signals, not more profitable ones.
+
+### What limits this conclusion
+
+Three constraints, and they are properties of the data rather than fixable:
+
+* **XBRL does not exist before 2018** — 0% coverage 2015–2017, 54.5% in 2018,
+  ~99% from 2020. The study is six years, not eleven.
+* **Balance-sheet items only entered the taxonomy around 2022**, so
+  book-to-price, ROE, leverage and asset growth have roughly three years of
+  history. That cannot be split into train and test honestly, so they are
+  reported descriptively and never traded here. The two most interesting value
+  and quality factors are effectively untestable on this source.
+* **Coverage tops out near 57%** of the investable universe even for the
+  P&L-only factors, because just 813 of 1,236 universe ISINs have XBRL filings
+  at all.
+
+And the window matters: 2022–2025 in India was a strong momentum and small-cap
+market, a regime in which value and quality have historically lagged. This is
+one regime's evidence, not a verdict on the factors in general.
+
+---
+
+## Result 3: factor ranking (does not work)
 
 Factors were selected on 2016–2020 and the table below is 2021–2026, which the
 selection never saw. Top 20 equal-weighted, monthly rebalance, entered one
