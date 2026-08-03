@@ -1,0 +1,75 @@
+name: Daily volatility refresh
+
+on:
+  schedule:
+    # 13:30 UTC = 19:00 IST, comfortably after NSE publishes the day's
+    # bhavcopy (~18:00 IST). Weekdays only; a holiday simply adds no session
+    # and the job exits early rather than failing.
+    - cron: "30 13 * * 1-5"
+  workflow_dispatch:
+
+concurrency:
+  group: daily-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Can this runner reach NSE at all?
+        id: reachability
+        run: |
+          # NSE is known to treat datacenter IP ranges more harshly than
+          # residential ones. Probe first so a block is diagnosed here rather
+          # than surfacing as a confusing failure three steps later.
+          code=$(curl -s -o /dev/null -w '%{http_code}' \
+            -A "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/120.0 Safari/537.36" \
+            --max-time 30 \
+            "https://nsearchives.nseindia.com/content/indices/ind_nifty500list.csv")
+          echo "status=$code" >> "$GITHUB_OUTPUT"
+          echo "NSE archive responded $code"
+          if [ "$code" != "200" ]; then
+            echo "::error::NSE archive returned $code from this runner." \
+                 "GitHub's IP ranges are likely blocked; run the refresh from a" \
+                 "residential connection instead (see docs/automation.md)."
+            exit 1
+          fi
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+
+      - run: pip install -e ".[dev]" joblib
+
+      - name: Restore market data cache
+        uses: actions/cache@v4
+        with:
+          # ~400MB of bhavcopy zips and the derived panel. Re-downloading
+          # 2,900 sessions on every run would get the runner IP-banned within
+          # a day, so the cache is load-bearing, not an optimisation.
+          path: |
+            artifacts/raw
+            artifacts/data
+            artifacts/models
+          key: nse-panel-${{ github.run_id }}
+          restore-keys: |
+            nse-panel-
+
+      - name: Refresh
+        run: python scripts/daily_update.py
+
+      - name: Publish page
+        uses: actions/upload-artifact@v4
+        with:
+          name: volatility-demo
+          path: artifacts/demo/index.html
+          retention-days: 30
+
+      - name: Report
+        if: always()
+        run: |
+          python scripts/daily_update.py --check-only || true

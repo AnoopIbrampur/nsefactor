@@ -9,3 +9,11 @@ __pycache__/
 # and ~1GB of NSE's data does not belong in git.
 artifacts/raw/
 artifacts/data/
+
+# Download caches. All regenerable from the fetch scripts, and together they
+# are ~1.2GB across 33k files, which makes the repo hostile to clone and slow
+# for CI. The derived parquet files below them are kept: they are small, and
+# they are what makes the dataset reproducible without re-crawling NSE.
+artifacts/fundamentals/xbrl/
+artifacts/fundamentals/index/
+artifacts/indices/
