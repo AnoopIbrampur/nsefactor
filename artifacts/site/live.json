@@ -1,0 +1,235 @@
+{
+  "as_of": "2026-08-06T09:42:11.950382+05:30",
+  "last_bar": "2026-08-06 09:40:00+05:30",
+  "market_open": true,
+  "available": true,
+  "scored": 150,
+  "hot": 2,
+  "rows": [
+    {
+      "symbol": "HAL",
+      "price": 4858.0,
+      "prev_close": 4645.0,
+      "move": 4.59,
+      "forecast": 23.9,
+      "expected_move": 1.2,
+      "surprise": 3.82
+    },
+    {
+      "symbol": "POWERGRID",
+      "price": 274.0,
+      "prev_close": 281.75,
+      "move": -2.75,
+      "forecast": 19.9,
+      "expected_move": 1.0,
+      "surprise": 2.75
+    },
+    {
+      "symbol": "MARICO",
+      "price": 853.35,
+      "prev_close": 875.0,
+      "move": -2.47,
+      "forecast": 20.0,
+      "expected_move": 1.01,
+      "surprise": 2.46
+    },
+    {
+      "symbol": "CASTROLIND",
+      "price": 193.8,
+      "prev_close": 191.54,
+      "move": 1.18,
+      "forecast": 9.8,
+      "expected_move": 0.49,
+      "surprise": 2.4
+    },
+    {
+      "symbol": "LGEINDIA",
+      "price": 1586.2,
+      "prev_close": 1542.5,
+      "move": 2.83,
+      "forecast": 25.1,
+      "expected_move": 1.26,
+      "surprise": 2.25
+    },
+    {
+      "symbol": "GRASIM",
+      "price": 3219.5,
+      "prev_close": 3138.0,
+      "move": 2.6,
+      "forecast": 23.4,
+      "expected_move": 1.18,
+      "surprise": 2.21
+    },
+    {
+      "symbol": "BOSCHLTD",
+      "price": 42260.0,
+      "prev_close": 41200.0,
+      "move": 2.57,
+      "forecast": 26.8,
+      "expected_move": 1.35,
+      "surprise": 1.91
+    },
+    {
+      "symbol": "HINDALCO",
+      "price": 1016.3,
+      "prev_close": 1040.0,
+      "move": -2.28,
+      "forecast": 24.2,
+      "expected_move": 1.22,
+      "surprise": 1.87
+    },
+    {
+      "symbol": "AWL",
+      "price": 198.34,
+      "prev_close": 193.54,
+      "move": 2.48,
+      "forecast": 28.0,
+      "expected_move": 1.41,
+      "surprise": 1.76
+    },
+    {
+      "symbol": "VOLTAS",
+      "price": 1298.4,
+      "prev_close": 1327.7,
+      "move": -2.21,
+      "forecast": 28.4,
+      "expected_move": 1.43,
+      "surprise": 1.55
+    },
+    {
+      "symbol": "RELIANCE",
+      "price": 1300.0,
+      "prev_close": 1280.0,
+      "move": 1.56,
+      "forecast": 20.2,
+      "expected_move": 1.02,
+      "surprise": 1.54
+    },
+    {
+      "symbol": "CHAMBLFERT",
+      "price": 463.6,
+      "prev_close": 454.6,
+      "move": 1.98,
+      "forecast": 26.2,
+      "expected_move": 1.32,
+      "surprise": 1.5
+    },
+    {
+      "symbol": "TRENT",
+      "price": 3064.0,
+      "prev_close": 3129.0,
+      "move": -2.08,
+      "forecast": 27.7,
+      "expected_move": 1.39,
+      "surprise": 1.49
+    },
+    {
+      "symbol": "TITAN",
+      "price": 4993.1,
+      "prev_close": 4912.4,
+      "move": 1.64,
+      "forecast": 22.7,
+      "expected_move": 1.14,
+      "surprise": 1.44
+    },
+    {
+      "symbol": "WHIRLPOOL",
+      "price": 792.55,
+      "prev_close": 808.3,
+      "move": -1.95,
+      "forecast": 28.5,
+      "expected_move": 1.43,
+      "surprise": 1.36
+    },
+    {
+      "symbol": "SHYAMMETL",
+      "price": 1038.8,
+      "prev_close": 1019.8,
+      "move": 1.86,
+      "forecast": 27.7,
+      "expected_move": 1.39,
+      "surprise": 1.34
+    },
+    {
+      "symbol": "CIPLA",
+      "price": 1478.9,
+      "prev_close": 1458.8,
+      "move": 1.38,
+      "forecast": 23.5,
+      "expected_move": 1.18,
+      "surprise": 1.17
+    },
+    {
+      "symbol": "LUPIN",
+      "price": 2417.9,
+      "prev_close": 2388.0,
+      "move": 1.25,
+      "forecast": 22.0,
+      "expected_move": 1.11,
+      "surprise": 1.13
+    },
+    {
+      "symbol": "BAJAJ-AUTO",
+      "price": 11762.0,
+      "prev_close": 11600.0,
+      "move": 1.4,
+      "forecast": 26.1,
+      "expected_move": 1.31,
+      "surprise": 1.06
+    },
+    {
+      "symbol": "HAVELLS",
+      "price": 1278.0,
+      "prev_close": 1295.0,
+      "move": -1.31,
+      "forecast": 25.1,
+      "expected_move": 1.26,
+      "surprise": 1.04
+    },
+    {
+      "symbol": "AUROPHARMA",
+      "price": 1591.7,
+      "prev_close": 1613.4,
+      "move": -1.34,
+      "forecast": 26.0,
+      "expected_move": 1.31,
+      "surprise": 1.03
+    },
+    {
+      "symbol": "GODREJCP",
+      "price": 1082.5,
+      "prev_close": 1069.0,
+      "move": 1.26,
+      "forecast": 25.0,
+      "expected_move": 1.26,
+      "surprise": 1.01
+    },
+    {
+      "symbol": "NTPC",
+      "price": 346.4,
+      "prev_close": 349.9,
+      "move": -1.0,
+      "forecast": 19.9,
+      "expected_move": 1.0,
+      "surprise": 1.0
+    },
+    {
+      "symbol": "SHREECEM",
+      "price": 26565.0,
+      "prev_close": 26900.0,
+      "move": -1.25,
+      "forecast": 24.7,
+      "expected_move": 1.24,
+      "surprise": 1.0
+    },
+    {
+      "symbol": "OBEROIRLTY",
+      "price": 1782.2,
+      "prev_close": 1806.5,
+      "move": -1.35,
+      "forecast": 26.7,
+      "expected_move": 1.34,
+      "surprise": 1.0
+    }
+  ]
+}

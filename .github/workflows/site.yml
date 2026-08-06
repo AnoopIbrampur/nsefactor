@@ -1,0 +1,53 @@
+name: Publish site
+
+on:
+  # Every 15 minutes across the NSE session. GitHub's scheduler is best-effort
+  # and drops or delays ticks under load, so treat this as "roughly every 15
+  # minutes" rather than a guarantee -- the page always stamps the time its
+  # data actually came from, so a skipped tick is visible rather than silent.
+  schedule:
+    - cron: "*/15 3-10 * * 1-5"
+  workflow_dispatch:
+
+# Never let two deploys race; a later run supersedes one still in flight.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+
+      - run: pip install -e ".[dev,live]"
+
+      - name: Refresh the live panel
+        # Quotes come from Yahoo, not NSE, so this is unaffected by the NSE
+        # datacenter-IP question that governs the daily bhavcopy job. The
+        # script no-ops when the market is closed and writes an explicit gap
+        # marker if the feed returns nothing, so a failure here never
+        # silently publishes an empty table that reads as a calm market.
+        run: python scripts/intraday_update.py
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: artifacts/site
+      - id: deployment
+        uses: actions/deploy-pages@v4
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}

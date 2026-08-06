@@ -21,7 +21,10 @@ dependencies = [
 [project.optional-dependencies]
 # GARCH(1,1) baseline. Only needed to reproduce the vol comparison table.
 garch = ["arch>=7.0"]
-dev = ["pytest>=8.0"]
+# Intraday quotes for the live surprise panel. Yahoo rather than NSE, which
+# also means the live view is unaffected by NSE's datacenter-IP throttling.
+live = ["yfinance>=0.2"]
+dev = ["pytest>=8.0", "joblib>=1.3"]
 
 [project.scripts]
 nsefactor = "nsefactor.cli:main"

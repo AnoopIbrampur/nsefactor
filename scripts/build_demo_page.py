@@ -274,6 +274,43 @@ HTML = """<title>Volatility Forecasting for NSE Equities</title>
     </div>
   </section>
 
+  <section id="live-section" hidden>
+    <span class="eyebrow" style="color:var(--warn)">Live &middot; updates every 15 minutes</span>
+    <h2>Is today behaving the way the forecast said?</h2>
+    <div class="prose">
+      <p>
+        The forecast itself does not move intraday &mdash; it covers the next 21
+        trading days. What moves is whether today is tracking it.
+        <strong>Surprise</strong> is today&rsquo;s move divided by the move this
+        stock&rsquo;s own forecast implies, so 1.0 is a textbook-typical session
+        and above 2.5 is worth a look.
+      </p>
+      <p>
+        This is the model&rsquo;s weakness turned into a use: it cannot
+        <em>predict</em> a volatility spike, but it gives a baseline precise
+        enough to <em>detect</em> one while it is happening.
+      </p>
+    </div>
+    <div class="panel">
+      <div class="panel-head">
+        <h3>Today against forecast</h3>
+        <span id="live-meta" class="num" style="color:var(--ink-faint);font-size:.82rem"></span>
+      </div>
+      <div class="scroller">
+        <table>
+          <thead>
+            <tr>
+              <th>Symbol</th><th>Price</th><th>Move today</th>
+              <th>Typical move</th><th>Forecast vol</th><th>Surprise</th>
+            </tr>
+          </thead>
+          <tbody id="livebody"></tbody>
+        </table>
+      </div>
+      <div class="legend"><span id="live-note"></span></div>
+    </div>
+  </section>
+
   <section>
     <span class="eyebrow">Live output</span>
     <h2>What the model says today</h2>
@@ -288,7 +325,7 @@ HTML = """<title>Volatility Forecasting for NSE Equities</title>
       <div class="panel-head">
         <h3>Forecasts as of <span class="num">__AS_OF__</span></h3>
         <div class="controls">
-          <input type="search" id="q" placeholder="Filter by symbol…" aria-label="Filter by symbol">
+          <input type="search" id="q" placeholder="Filter by symbol&hellip;" aria-label="Filter by symbol">
           <select id="sort" aria-label="Sort order">
             <option value="calm">Calmest first</option>
             <option value="wild">Most volatile first</option>
@@ -398,6 +435,54 @@ HTML = """<title>Volatility Forecasting for NSE Equities</title>
   q.addEventListener('input', render);
   sortSel.addEventListener('change', render);
   render();
+
+  // ---- Live panel -------------------------------------------------------
+  // Fetched from this page's own origin, so there is no CORS negotiation and
+  // no external request. When the file is absent -- opened straight from disk,
+  // or published somewhere without the intraday job -- the section simply
+  // stays hidden rather than showing an empty table that could be mistaken
+  // for a calm market.
+  const liveSection = document.getElementById('live-section');
+  const liveBody = document.getElementById('livebody');
+  const liveMeta = document.getElementById('live-meta');
+  const liveNote = document.getElementById('live-note');
+
+  function renderLive(d) {
+    if (!d || !d.available || !d.rows || !d.rows.length) return;
+    liveSection.hidden = false;
+
+    const stamp = (d.as_of || '').slice(0, 16).replace('T', ' ');
+    // \\u00B7 rather than a literal middot: this file is also served as a plain
+    // static asset, where a missing charset header makes the browser read UTF-8
+    // bytes as latin-1 and render mojibake.
+    const dot = '\\u00B7';
+    liveMeta.textContent = `market ${d.market_open ? 'open' : 'closed'} ${dot} ${stamp} IST`;
+
+    liveBody.innerHTML = d.rows.map(r => {
+      const hot = r.surprise >= 2.5;
+      const moveCol = r.move >= 0 ? 'var(--accent)' : 'var(--warn)';
+      const sign = r.move > 0 ? '+' : '';
+      return `<tr${hot ? ' class="win"' : ''}>
+        <td><strong>${r.symbol}</strong></td>
+        <td class="num">${r.price.toLocaleString('en-IN')}</td>
+        <td class="num" style="color:${moveCol}">${sign}${r.move.toFixed(2)}%</td>
+        <td class="num" style="color:var(--ink-faint)">${r.expected_move.toFixed(2)}%</td>
+        <td class="num" style="color:var(--ink-faint)">${r.forecast.toFixed(1)}%</td>
+        <td class="num" style="font-weight:600;color:${hot ? 'var(--warn)' : 'var(--ink)'}">
+          ${r.surprise.toFixed(2)}&times;</td>
+      </tr>`;
+    }).join('');
+
+    const hotCount = d.hot || 0;
+    liveNote.textContent = hotCount
+      ? `${hotCount} of ${d.scored} stocks running at 2.5x their typical move or more.`
+      : `Nothing above 2.5x across ${d.scored} stocks \\u2014 an ordinary session so far.`;
+  }
+
+  fetch('live.json', {cache: 'no-store'})
+    .then(r => r.ok ? r.json() : null)
+    .then(renderLive)
+    .catch(() => { /* no live feed here; the static page stands on its own */ });
 </script>
 """
 
@@ -515,6 +600,14 @@ def main() -> None:
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(html)
     print(f"wrote {OUT} ({len(html):,} bytes)")
+
+    # The site copy is byte-identical. The only difference is that a live.json
+    # sits next to it there, which the page picks up from its own origin; the
+    # standalone copy simply never finds one and hides the live section.
+    site = DATA_DIR.parent / "site" / "index.html"
+    site.parent.mkdir(parents=True, exist_ok=True)
+    site.write_text(html)
+    print(f"wrote {site}")
 
 
 if __name__ == "__main__":
