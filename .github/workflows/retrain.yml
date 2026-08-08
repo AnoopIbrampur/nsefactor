@@ -26,6 +26,26 @@ jobs:
             artifacts/models
           key: nse-panel-${{ github.run_id }}
           restore-keys: nse-panel-
+      - name: Seed the panel on a cold start
+        # An empty cache would otherwise send append_new_sessions all the way
+        # back to 2015 and make ~2,900 requests to NSE in one run -- slow
+        # enough to hit the job timeout and rude enough to risk the IP ban this
+        # project has already earned once. The release asset is the same file
+        # the cache would have held.
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ -f artifacts/data/bhavcopy.parquet ]; then
+            echo "Panel restored from cache."
+          else
+            echo "Cold start: seeding the panel from the data-snapshot release."
+            mkdir -p artifacts/data
+            gh release download data-snapshot \
+              --repo "$GITHUB_REPOSITORY" \
+              --pattern 'bhavcopy.parquet' \
+              --dir artifacts/data
+          fi
+
       - name: Refit and rebuild
         run: python scripts/daily_update.py --retrain
       - uses: actions/upload-artifact@v4
