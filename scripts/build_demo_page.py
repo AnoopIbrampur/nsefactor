@@ -152,60 +152,76 @@ HTML = """<title>Volatility Forecasting for NSE Equities</title>
 
 <div class="wrap">
   <header class="masthead">
-    <span class="eyebrow">NSE equities &middot; 21-day realised volatility</span>
-    <h1>Predicting how bumpy a stock will be &mdash; not which way it goes</h1>
+    <span class="eyebrow">Indian stock market &middot; 500 companies</span>
+    <h1>Guessing how bumpy a stock will be &mdash; not whether it goes up</h1>
     <p class="lede">
-      Monthly returns in this universe were close enough to noise that a
-      stock-ranking model lost to an index fund. Volatility is different: it
-      clusters, so it can be forecast. This is what that model does, how well it
-      works, and exactly where it stops working.
+      Nobody can reliably say which stocks will rise. We tried, and lost to
+      simply buying the whole market. So we changed the question to one that
+      does have an answer: <strong>how much will this stock move around?</strong>
+      Calm months tend to follow calm months. That pattern is real, and it is
+      what this predicts.
     </p>
     <div class="meta">
       <span>As of <strong class="num">__AS_OF__</strong></span>
       <span><strong class="num">__STOCKS__</strong> stocks</span>
-      <span><strong class="num">__SESSIONS__</strong> trading sessions</span>
-      <span><strong class="num">__TRAINROWS__</strong> training rows</span>
+      <span><strong class="num">__SESSIONS__</strong> days of market history</span>
+      <span>Rebuilt from official NSE records</span>
     </div>
   </header>
 
   <section>
-    <span class="eyebrow">Headline</span>
+    <span class="eyebrow">Step 1 &middot; The short version</span>
+    <h2>How much better is it than the usual methods?</h2>
+    <div class="prose">
+      <p>
+        There are standard ways professionals estimate this. We beat all of
+        them. The numbers below are measured on months the model had never
+        seen &mdash; not on the data it learned from, which is the easy way to
+        look good and the reason most such claims are worthless.
+      </p>
+    </div>
     <div class="tiles">
       <div class="tile hero">
         <span class="v num">+__IMPR_EWMA__%</span>
-        <span class="k">Lower error than RiskMetrics EWMA, the industry standard</span>
+        <span class="k">More accurate than the formula the industry actually uses</span>
       </div>
       <div class="tile hero">
         <span class="v num">+__IMPR_PERS__%</span>
-        <span class="k">Lower error than assuming next month repeats last month</span>
+        <span class="k">More accurate than assuming next month looks like last month</span>
       </div>
       <div class="tile">
         <span class="v num">__WINS__/__MONTHS__</span>
-        <span class="k">Test months where it beat EWMA</span>
+        <span class="k">Months out of 20 where it beat the standard method</span>
       </div>
       <div class="tile">
         <span class="v num">__TP__</span>
-        <span class="k">Paired t-test p-value across months</span>
+        <span class="k">Odds this was luck (smaller means less likely)</span>
       </div>
     </div>
   </section>
 
   <section>
-    <span class="eyebrow">Accuracy against real baselines</span>
-    <h2>Every method scored on the same non-overlapping months</h2>
+    <span class="eyebrow">Step 2 &middot; The competition</span>
+    <h2>Three standard methods, same test, same months</h2>
     <div class="prose">
       <p>
-        Error is root-mean-square error against realised volatility, so lower is
-        better. Consecutive 21-day windows share 20 of their 21 days, so the test
-        months are spaced out rather than overlapping &mdash; overlapping windows
-        would inflate the apparent sample several times over.
+        Every method was asked the same question on the same months, then
+        marked against what actually happened. <strong>&ldquo;Typical
+        miss&rdquo; is how far off it was on average, so lower is
+        better.</strong> &ldquo;Tracks reality&rdquo; is how closely its
+        guesses rose and fell alongside the real thing &mdash; higher is better.
+      </p>
+      <p>
+        The three it is up against are: assuming next month simply repeats last
+        month, the formula banks and funds actually use day to day, and a
+        classic model from the textbooks.
       </p>
     </div>
     <div class="panel">
       <div class="scroller">
         <table>
           <thead>
-            <tr><th>Method</th><th>Error (RMSE)</th><th>Correlation with reality</th></tr>
+            <tr><th>Method</th><th>Typical miss</th><th>Tracks reality</th></tr>
           </thead>
           <tbody>__METRIC_ROWS__</tbody>
         </table>
@@ -214,60 +230,68 @@ HTML = """<title>Volatility Forecasting for NSE Equities</title>
   </section>
 
   <section>
-    <span class="eyebrow">Month by month</span>
-    <h2>Where the edge comes from &mdash; and where it doesn&rsquo;t</h2>
+    <span class="eyebrow">Step 3 &middot; Month by month</span>
+    <h2>It wins most months &mdash; but look at which ones it loses</h2>
     <div class="prose">
       <p>
-        Each bar is one test month: how much lower the model&rsquo;s error was than
-        EWMA&rsquo;s. Bars are coloured by what volatility actually did that month.
-        <strong>The pattern is the point.</strong> The model does well when
-        volatility was falling and barely helps when it rose.
+        Each bar is one month. Above the line means the model beat the standard
+        method that month; below means it lost. It wins nearly every time.
+      </p>
+      <p>
+        <strong>Now look at the colours.</strong> Teal months are ones where
+        the market got calmer. Amber months are ones where it got choppier. The
+        losses are amber. That is the whole story of what this tool is and
+        isn&rsquo;t, in one picture.
       </p>
     </div>
     <div class="panel">
       <div class="panel-head">
-        <h3>Improvement over EWMA, by month</h3>
+        <h3>How much better than the standard method, each month</h3>
         <span class="num" style="color:var(--ink-faint);font-size:.82rem">
           mean +__MEAN_IMPR__%
         </span>
       </div>
       <div class="scroller">__CHART__</div>
       <div class="legend">
-        <span><span class="swatch" style="background:var(--accent)"></span>Volatility fell that month</span>
-        <span><span class="swatch" style="background:var(--warn)"></span>Volatility rose that month</span>
+        <span><span class="swatch" style="background:var(--accent)"></span>Market got calmer this month</span>
+        <span><span class="swatch" style="background:var(--warn)"></span>Market got choppier this month</span>
       </div>
     </div>
   </section>
 
   <section>
     <div class="caution">
-      <span class="eyebrow" style="color:var(--warn)">The limitation, stated plainly</span>
-      <h2>It is a position-sizing tool, not a crash warning</h2>
+      <span class="eyebrow" style="color:var(--warn)">Step 4 &middot; What it cannot do</span>
+      <h2>It tells you when things will settle down. It will not warn you about a crash.</h2>
       <div class="prose">
         <p>
-          The model&rsquo;s edge is mean reversion &mdash; it is good at knowing when
-          elevated volatility will settle back down. It adds very little when
-          volatility jumps, which is exactly when a risk forecast would matter most.
+          This is the honest catch, and it belongs here rather than in small
+          print at the bottom.
         </p>
         <p>
-          The correlation between how volatility moved and how much the model helped
-          is <strong class="num">__REGIME_CORR__</strong>
-          (p = <strong class="num">__REGIME_P__</strong>). A risk tool that quietly
-          stops working during turbulence is worse than one that never worked, so
-          this sits here rather than in a footnote.
+          The model is good at spotting when a jumpy stock is about to calm
+          down. It is close to useless at spotting when a calm stock is about to
+          blow up &mdash; which is, annoyingly, the thing you would most want
+          warning about.
+        </p>
+        <p>
+          <strong>So treat it as a &ldquo;how big a bet should I make on this
+          one?&rdquo; tool, not a &ldquo;get out now&rdquo; tool.</strong> A risk
+          tool that quietly stops working during a panic is worse than one that
+          never worked at all, so it is better to know this up front.
         </p>
       </div>
       <div class="split">
         <div class="stat-inline">
           <div class="v num" style="color:var(--accent)">+__FELL_IMPR__%</div>
           <div class="k eyebrow" style="letter-spacing:.06em">
-            when volatility fell &middot; __FELL_N__ months
+            better, in the __FELL_N__ months things calmed down
           </div>
         </div>
         <div class="stat-inline">
           <div class="v num" style="color:var(--warn)">+__ROSE_IMPR__%</div>
           <div class="k eyebrow" style="letter-spacing:.06em">
-            when volatility rose &middot; __ROSE_N__ months
+            better, in the __ROSE_N__ months things got worse
           </div>
         </div>
       </div>
@@ -275,33 +299,32 @@ HTML = """<title>Volatility Forecasting for NSE Equities</title>
   </section>
 
   <section id="live-section" hidden>
-    <span class="eyebrow" style="color:var(--warn)">Live &middot; updates every 15 minutes</span>
-    <h2>Is today behaving the way the forecast said?</h2>
+    <span class="eyebrow" style="color:var(--warn)">Live &middot; refreshes every 15 minutes</span>
+    <h2>Which stocks are moving more than they should today?</h2>
     <div class="prose">
       <p>
-        The forecast itself does not move intraday &mdash; it covers the next 21
-        trading days. What moves is whether today is tracking it.
-        <strong>Surprise</strong> is today&rsquo;s move divided by the move this
-        stock&rsquo;s own forecast implies, so 1.0 is a textbook-typical session
-        and above 2.5 is worth a look.
+        For each stock we know roughly how much it moves on an ordinary day.
+        This compares that against what it is actually doing.
+        <strong>&ldquo;2.0x&rdquo; means it has moved twice as much as a normal
+        day for that stock.</strong> Anything past about 2.5x is unusual.
       </p>
       <p>
-        This is the model&rsquo;s weakness turned into a use: it cannot
-        <em>predict</em> a volatility spike, but it gives a baseline precise
-        enough to <em>detect</em> one while it is happening.
+        Note it is measured against each stock&rsquo;s own habits, not the
+        market&rsquo;s. A quiet stock moving 1% can be a bigger deal than a wild
+        one moving 3%.
       </p>
     </div>
     <div class="panel">
       <div class="panel-head">
-        <h3>Today against forecast</h3>
+        <h3>Moving more than usual</h3>
         <span id="live-meta" class="num" style="color:var(--ink-faint);font-size:.82rem"></span>
       </div>
       <div class="scroller">
         <table>
           <thead>
             <tr>
-              <th>Symbol</th><th>Price</th><th>Move today</th>
-              <th>Typical move</th><th>Forecast vol</th><th>Surprise</th>
+              <th>Stock</th><th>Price</th><th>Moved today</th>
+              <th>Normal day</th><th>Expected swing</th><th>How unusual</th>
             </tr>
           </thead>
           <tbody id="livebody"></tbody>
@@ -312,13 +335,19 @@ HTML = """<title>Volatility Forecasting for NSE Equities</title>
   </section>
 
   <section>
-    <span class="eyebrow">Live output</span>
-    <h2>What the model says today</h2>
+    <span class="eyebrow">Step 5 &middot; What it says right now</span>
+    <h2>Every stock, ranked calmest to jumpiest</h2>
     <div class="prose">
       <p>
-        Forecast annualised volatility for the next month, for every stock in the
-        liquid universe. <strong>Change</strong> is the forecast against the EWMA
-        estimate &mdash; negative means the model expects things to calm down.
+        <strong>Forecast</strong> is how much this stock is expected to swing
+        over the next month, expressed as a yearly percentage &mdash; the way
+        the industry quotes it. A stock at 15% is steady; one at 50% moves
+        around a lot.
+      </p>
+      <p>
+        <strong>Change</strong> compares that to where the stock has been.
+        Negative means the model expects it to settle down from here; positive
+        means it expects more movement than usual.
       </p>
     </div>
     <div class="panel">
@@ -338,8 +367,8 @@ HTML = """<title>Volatility Forecasting for NSE Equities</title>
         <table>
           <thead>
             <tr>
-              <th>Symbol</th><th>Price</th><th>Trailing 21d</th>
-              <th>EWMA</th><th>Forecast</th><th>Change</th>
+              <th>Stock</th><th>Price</th><th>Last month</th>
+              <th>Recent average</th><th>Forecast</th><th>Change</th>
             </tr>
           </thead>
           <tbody id="fbody"></tbody>
@@ -350,21 +379,27 @@ HTML = """<title>Volatility Forecasting for NSE Equities</title>
   </section>
 
   <section>
-    <span class="eyebrow">Why it matters</span>
-    <h2>The forecast turns into position sizes</h2>
+    <span class="eyebrow">Step 6 &middot; What you would actually do with it</span>
+    <h2>Buy less of the jumpy ones</h2>
     <div class="prose">
       <p>
-        Equal weighting gives every holding the same rupees, which hands most of a
-        portfolio&rsquo;s actual risk to its jumpiest few names. Sizing by
-        <strong>1 / forecast volatility</strong> equalises risk contribution instead.
-        A calm stock earns a bigger position; a jumpy one earns a smaller one.
+        Most people split money evenly &mdash; the same rupees into every stock
+        they buy. The problem is that a wild stock and a steady stock then carry
+        wildly different amounts of risk, and a handful of jumpy names quietly
+        end up driving the whole portfolio.
+      </p>
+      <p>
+        <strong>Putting less money into the jumpy ones evens that out.</strong>
+        Below, the same twelve stocks sized both ways. The calm names get more,
+        the jumpy names get less, and the portfolio stops depending on a few
+        volatile bets.
       </p>
     </div>
     <div class="panel">
       <div class="scroller">
         <table>
           <thead>
-            <tr><th>Symbol</th><th>Forecast vol</th><th>Equal weight</th><th>Risk-weighted</th></tr>
+            <tr><th>Stock</th><th>Expected swing</th><th>Splitting evenly</th><th>Adjusted for risk</th></tr>
           </thead>
           <tbody>__SIZING_ROWS__</tbody>
         </table>
@@ -374,22 +409,25 @@ HTML = """<title>Volatility Forecasting for NSE Equities</title>
 
   <footer>
     <p>
-      <strong>Method.</strong> Gradient boosting on
-      <span class="num">log(forward volatility / EWMA anchor)</span> rather than the
-      volatility level &mdash; stocks here span an order of magnitude in baseline
-      volatility and cannot share an intercept. Chronological
-      70/15/15 split with a 33-day purge at each boundary so no target straddles it.
-      Iteration count (__ITERS__) chosen on the validation slice, never on test.
+      <strong>How the numbers were kept honest.</strong> The model was tested
+      only on months it had never seen while learning. That sounds obvious and
+      is the step most people skip &mdash; testing on data you trained on is how
+      you get an impressive result that falls apart with real money.
     </p>
     <p>
-      <strong>Data.</strong> __SESSIONS__ NSE sessions rebuilt from daily bhavcopy
-      archives, survivorship-free universe reconstructed point-in-time, corporate
-      actions recovered from NSE&rsquo;s own prevclose convention, 368 ISIN changes
-      bridged.
+      <strong>Where the data comes from.</strong> __SESSIONS__ days of official
+      NSE closing prices, rebuilt from scratch. Three things were fixed that
+      quietly ruin most such projects: companies that went bust are still
+      included (using only today&rsquo;s surviving companies makes any strategy
+      look better than it was); share splits are corrected, so a stock splitting
+      1-for-10 is not recorded as a 90% crash; and 368 companies whose
+      identifier changed had their history stitched back together.
     </p>
     <p>
-      Research tool for a paper-trading account. Not investment advice, and not
-      produced by a registered adviser.
+      <strong>Not investment advice.</strong> This is a research tool built for
+      a practice account, and the author is not a registered financial adviser.
+      An earlier attempt at picking which stocks would rise lost to simply
+      buying an index fund, and that result is published too rather than hidden.
     </p>
   </footer>
 </div>
@@ -485,6 +523,23 @@ HTML = """<title>Volatility Forecasting for NSE Equities</title>
     .catch(() => { /* no live feed here; the static page stands on its own */ });
 </script>
 """
+
+
+def _plain_odds(p: float) -> str:
+    """A p-value as words, for a reader who has never met one.
+
+    "1e-06" is precise and communicates nothing outside a stats course. The
+    page is meant to be explained out loud, so the tile says how unlikely the
+    result would be if the model had no skill at all.
+    """
+    if p <= 0 or p < 1e-6:
+        return "&lt;1 in a million"
+    odds = round(1 / p)
+    if odds >= 1_000_000:
+        return "&lt;1 in a million"
+    if odds >= 1000:
+        return f"1 in {odds // 1000:,}k"
+    return f"1 in {odds:,}"
 
 
 def chart_svg(per_date: list[dict]) -> str:
@@ -583,7 +638,7 @@ def main() -> None:
             .replace("__IMPR_PERS__", str(d["improvement"]["vs_persistence"]))
             .replace("__WINS__", str(sig["wins"]))
             .replace("__MONTHS__", str(sig["months"]))
-            .replace("__TP__", f'{sig["t_p"]:.0e}'.replace("e-0", "e−"))
+            .replace("__TP__", _plain_odds(sig["t_p"]))
             .replace("__MEAN_IMPR__", f'{sig["mean_impr"]:.1f}')
             .replace("__REGIME_CORR__", f'{reg["corr"]:.2f}')
             .replace("__REGIME_P__", f'{reg["corr_p"]:.4f}')
