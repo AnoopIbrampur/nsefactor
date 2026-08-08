@@ -12,6 +12,9 @@ concurrency:
   group: daily-refresh
   cancel-in-progress: false
 
+permissions:
+  contents: write
+
 jobs:
   refresh:
     runs-on: ubuntu-latest
@@ -82,12 +85,23 @@ jobs:
       - name: Refresh
         run: python scripts/daily_update.py
 
-      - name: Publish page
-        uses: actions/upload-artifact@v4
-        with:
-          name: volatility-demo
-          path: artifacts/demo/index.html
-          retention-days: 30
+      - name: Commit the refreshed page
+        # The deploy job builds from a clean checkout, so a page that only
+        # exists in this runner's workspace never reaches the site. Uploading it
+        # as a workflow artifact -- which is what this step used to do -- puts it
+        # in a zip in the Actions UI that nobody looks at, while the published
+        # page silently keeps serving whatever was last committed.
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add artifacts/site/index.html artifacts/demo/index.html \
+                  artifacts/reports/vol_demo.json
+          if git diff --cached --quiet; then
+            echo "Page unchanged; nothing to commit."
+          else
+            git commit -m "Daily refresh: forecasts through $(date -u +%Y-%m-%d)"
+            git push
+          fi
 
       - name: Report
         if: always()

@@ -7,6 +7,12 @@ on:
   # data actually came from, so a skipped tick is visible rather than silent.
   schedule:
     - cron: "*/15 3-10 * * 1-5"
+  # The daily forecast refresh finishes at 13:30 UTC, outside the window above,
+  # so without this the evening's new forecast would sit unpublished until the
+  # next morning's first tick.
+  workflow_run:
+    workflows: ["Daily volatility refresh"]
+    types: [completed]
   workflow_dispatch:
 
 # Never let two deploys race; a later run supersedes one still in flight.
