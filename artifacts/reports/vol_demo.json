@@ -1,4254 +1,4254 @@
 {
-  "as_of": "2026-08-26",
-  "panel_rows": 4519787,
-  "sessions": 2887,
+  "as_of": "2026-08-27",
+  "panel_rows": 4522062,
+  "sessions": 2888,
   "stocks_modelled": 500,
   "train_rows": 1666818,
   "best_iter": 243,
   "split": {
-    "train_end": "2023-03-15",
-    "val_end": "2024-11-28",
-    "test_end": "2026-08-12"
+    "train_end": "2023-03-16",
+    "val_end": "2024-11-29",
+    "test_end": "2026-08-13"
   },
   "metrics": [
     {
       "model": "persistence",
-      "rmse": 0.18705,
-      "corr": 0.38
+      "rmse": 0.18626,
+      "corr": 0.381
     },
     {
       "model": "EWMA (RiskMetrics)",
-      "rmse": 0.17185,
-      "corr": 0.428
+      "rmse": 0.17109,
+      "corr": 0.429
     },
     {
       "model": "gradient boosting",
-      "rmse": 0.14839,
-      "corr": 0.498
+      "rmse": 0.14907,
+      "corr": 0.486
     }
   ],
   "improvement": {
-    "vs_persistence": 20.7,
-    "vs_ewma": 13.7
+    "vs_persistence": 20.0,
+    "vs_ewma": 12.9
   },
   "significance": {
     "wins": 20,
     "months": 21,
     "sign_p": 1e-05,
-    "t_stat": -9.22,
+    "t_stat": -7.38,
     "t_p": 0.0,
-    "mean_impr": 14.77
+    "mean_impr": 13.99
   },
   "regime": {
-    "corr": -0.646,
-    "corr_p": 0.0016,
-    "fell_n": 16,
-    "fell_impr": 16.59,
-    "rose_n": 5,
-    "rose_impr": 8.95
+    "corr": -0.716,
+    "corr_p": 0.0003,
+    "fell_n": 15,
+    "fell_impr": 17.22,
+    "rose_n": 6,
+    "rose_impr": 5.93
   },
   "per_date": [
     {
-      "date": "2024-11-29",
-      "impr": 26.28,
-      "vol_change": -18.1,
-      "realized": 30.8
+      "date": "2024-12-02",
+      "impr": 27.59,
+      "vol_change": -17.2,
+      "realized": 30.9
     },
     {
-      "date": "2024-12-31",
-      "impr": 4.65,
-      "vol_change": 28.5,
+      "date": "2025-01-01",
+      "impr": 2.43,
+      "vol_change": 29.3,
+      "realized": 43.3
+    },
+    {
+      "date": "2025-01-30",
+      "impr": 8.97,
+      "vol_change": 1.9,
+      "realized": 42.9
+    },
+    {
+      "date": "2025-02-28",
+      "impr": 10.1,
+      "vol_change": -7.1,
+      "realized": 41.4
+    },
+    {
+      "date": "2025-04-02",
+      "impr": 3.39,
+      "vol_change": 2.7,
       "realized": 43.5
     },
     {
-      "date": "2025-01-29",
-      "impr": 8.05,
-      "vol_change": -2.3,
-      "realized": 41.6
-    },
-    {
-      "date": "2025-02-27",
-      "impr": 18.67,
-      "vol_change": -0.4,
-      "realized": 43.0
-    },
-    {
-      "date": "2025-04-01",
-      "impr": 14.62,
-      "vol_change": 1.3,
-      "realized": 43.7
-    },
-    {
-      "date": "2025-05-06",
-      "impr": 18.33,
+      "date": "2025-05-07",
+      "impr": 18.1,
       "vol_change": -16.0,
-      "realized": 35.9
+      "realized": 35.3
     },
     {
-      "date": "2025-06-04",
-      "impr": 22.86,
-      "vol_change": -21.5,
+      "date": "2025-06-05",
+      "impr": 21.38,
+      "vol_change": -21.8,
+      "realized": 28.9
+    },
+    {
+      "date": "2025-07-04",
+      "impr": 12.94,
+      "vol_change": -11.7,
+      "realized": 28.2
+    },
+    {
+      "date": "2025-08-04",
+      "impr": 13.44,
+      "vol_change": -4.0,
       "realized": 29.4
     },
     {
-      "date": "2025-07-03",
-      "impr": 8.1,
-      "vol_change": -14.4,
+      "date": "2025-09-04",
+      "impr": 14.16,
+      "vol_change": -14.0,
+      "realized": 26.0
+    },
+    {
+      "date": "2025-10-06",
+      "impr": 11.82,
+      "vol_change": -8.6,
+      "realized": 25.9
+    },
+    {
+      "date": "2025-11-06",
+      "impr": 15.6,
+      "vol_change": -7.2,
+      "realized": 25.9
+    },
+    {
+      "date": "2025-12-05",
+      "impr": 14.83,
+      "vol_change": 1.2,
       "realized": 27.6
     },
     {
-      "date": "2025-08-01",
-      "impr": 13.13,
-      "vol_change": -1.8,
-      "realized": 30.1
+      "date": "2026-01-06",
+      "impr": 11.27,
+      "vol_change": 41.1,
+      "realized": 39.3
     },
     {
-      "date": "2025-09-03",
-      "impr": 16.24,
-      "vol_change": -14.9,
-      "realized": 25.8
-    },
-    {
-      "date": "2025-10-03",
-      "impr": 7.66,
-      "vol_change": -10.2,
-      "realized": 25.5
-    },
-    {
-      "date": "2025-11-04",
-      "impr": 15.05,
-      "vol_change": -1.3,
-      "realized": 26.8
-    },
-    {
-      "date": "2025-12-04",
-      "impr": 15.27,
-      "vol_change": 0.0,
-      "realized": 27.6
-    },
-    {
-      "date": "2026-01-05",
-      "impr": 10.59,
-      "vol_change": 39.3,
-      "realized": 39.0
-    },
-    {
-      "date": "2026-02-04",
-      "impr": 25.51,
-      "vol_change": -13.0,
-      "realized": 33.2
-    },
-    {
-      "date": "2026-03-06",
-      "impr": -0.39,
-      "vol_change": 46.5,
-      "realized": 52.8
-    },
-    {
-      "date": "2026-04-09",
-      "impr": 22.14,
-      "vol_change": -22.2,
-      "realized": 38.4
-    },
-    {
-      "date": "2026-05-12",
-      "impr": 15.74,
-      "vol_change": -21.1,
+      "date": "2026-02-05",
+      "impr": 23.07,
+      "vol_change": -10.7,
       "realized": 33.9
     },
     {
-      "date": "2026-06-11",
-      "impr": 23.66,
-      "vol_change": -10.8,
-      "realized": 33.2
+      "date": "2026-03-09",
+      "impr": -5.28,
+      "vol_change": 40.4,
+      "realized": 52.1
     },
     {
-      "date": "2026-07-13",
-      "impr": 13.88,
-      "vol_change": -12.1,
-      "realized": 30.7
+      "date": "2026-04-10",
+      "impr": 24.42,
+      "vol_change": -21.8,
+      "realized": 38.3
     },
     {
-      "date": "2026-08-11",
-      "impr": 10.17,
-      "vol_change": -18.1,
-      "realized": 26.3
+      "date": "2026-05-13",
+      "impr": 12.41,
+      "vol_change": -15.9,
+      "realized": 35.7
+    },
+    {
+      "date": "2026-06-12",
+      "impr": 26.49,
+      "vol_change": -18.3,
+      "realized": 31.6
+    },
+    {
+      "date": "2026-07-14",
+      "impr": 15.87,
+      "vol_change": -11.8,
+      "realized": 30.6
+    },
+    {
+      "date": "2026-08-12",
+      "impr": 10.87,
+      "vol_change": -20.0,
+      "realized": 25.8
     }
   ],
   "forecasts": [
     {
       "symbol": "CASTROLIND",
-      "price": 186.75,
-      "trailing": 17.6,
+      "price": 185.27,
+      "trailing": 17.7,
       "ewma": 13.8,
-      "forecast": 12.1,
-      "change": -12.9
+      "forecast": 13.1,
+      "change": -4.7
     },
     {
       "symbol": "NTPCGREEN",
-      "price": 91.27,
-      "trailing": 8.8,
-      "ewma": 17.6,
+      "price": 90.99,
+      "trailing": 8.4,
+      "ewma": 17.1,
       "forecast": 14.9,
-      "change": -15.4
-    },
-    {
-      "symbol": "SJVN",
-      "price": 65.85,
-      "trailing": 11.3,
-      "ewma": 12.4,
-      "forecast": 16.7,
-      "change": 34.9
-    },
-    {
-      "symbol": "ITC",
-      "price": 270.25,
-      "trailing": 16.6,
-      "ewma": 15.8,
-      "forecast": 17.2,
-      "change": 9.2
+      "change": -13.3
     },
     {
       "symbol": "SRF",
-      "price": 2583.0,
-      "trailing": 12.3,
-      "ewma": 23.3,
-      "forecast": 17.4,
-      "change": -25.2
+      "price": 2605.0,
+      "trailing": 12.6,
+      "ewma": 22.9,
+      "forecast": 18.1,
+      "change": -20.8
+    },
+    {
+      "symbol": "ITC",
+      "price": 269.0,
+      "trailing": 16.4,
+      "ewma": 15.4,
+      "forecast": 18.1,
+      "change": 17.4
     },
     {
       "symbol": "ANURAS",
-      "price": 1267.6,
-      "trailing": 9.5,
-      "ewma": 12.4,
-      "forecast": 17.8,
-      "change": 43.2
+      "price": 1259.8,
+      "trailing": 9.8,
+      "ewma": 12.3,
+      "forecast": 18.5,
+      "change": 50.6
     },
     {
       "symbol": "NTPC",
-      "price": 334.6,
-      "trailing": 15.7,
-      "ewma": 15.8,
-      "forecast": 18.3,
-      "change": 15.9
+      "price": 330.9,
+      "trailing": 16.1,
+      "ewma": 15.9,
+      "forecast": 18.6,
+      "change": 17.1
     },
     {
       "symbol": "YESBANK",
-      "price": 22.38,
-      "trailing": 14.3,
-      "ewma": 17.4,
-      "forecast": 18.3,
-      "change": 5.3
-    },
-    {
-      "symbol": "ICICIBANK",
-      "price": 1430.0,
-      "trailing": 14.3,
-      "ewma": 14.4,
-      "forecast": 18.7,
-      "change": 30.5
-    },
-    {
-      "symbol": "HDFCBANK",
-      "price": 727.2,
-      "trailing": 11.2,
-      "ewma": 15.7,
+      "price": 22.26,
+      "trailing": 14.4,
+      "ewma": 17.0,
       "forecast": 18.8,
-      "change": 19.6
-    },
-    {
-      "symbol": "APOLLOHOSP",
-      "price": 8766.5,
-      "trailing": 22.9,
-      "ewma": 20.3,
-      "forecast": 19.1,
-      "change": -5.9
-    },
-    {
-      "symbol": "ANANDRATHI",
-      "price": 2179.4,
-      "trailing": 15.1,
-      "ewma": 35.2,
-      "forecast": 19.2,
-      "change": -45.6
-    },
-    {
-      "symbol": "MARICO",
-      "price": 833.0,
-      "trailing": 17.4,
-      "ewma": 17.6,
-      "forecast": 19.2,
-      "change": 8.9
-    },
-    {
-      "symbol": "RELIANCE",
-      "price": 1298.0,
-      "trailing": 18.6,
-      "ewma": 17.1,
-      "forecast": 19.3,
-      "change": 12.9
-    },
-    {
-      "symbol": "BAJAJHFL",
-      "price": 84.07,
-      "trailing": 12.9,
-      "ewma": 14.0,
-      "forecast": 19.3,
-      "change": 38.0
-    },
-    {
-      "symbol": "TATAPOWER",
-      "price": 364.0,
-      "trailing": 12.8,
-      "ewma": 14.2,
-      "forecast": 19.7,
-      "change": 38.6
+      "change": 10.6
     },
     {
       "symbol": "POWERGRID",
-      "price": 265.2,
-      "trailing": 21.5,
-      "ewma": 20.6,
-      "forecast": 19.8,
-      "change": -4.3
+      "price": 264.9,
+      "trailing": 21.4,
+      "ewma": 20.0,
+      "forecast": 19.3,
+      "change": -3.4
     },
     {
-      "symbol": "AXISBANK",
-      "price": 1255.0,
-      "trailing": 18.4,
-      "ewma": 19.4,
-      "forecast": 19.8,
-      "change": 2.1
+      "symbol": "MARICO",
+      "price": 833.5,
+      "trailing": 17.4,
+      "ewma": 17.1,
+      "forecast": 19.4,
+      "change": 13.3
     },
     {
-      "symbol": "NHPC",
-      "price": 76.24,
-      "trailing": 13.6,
-      "ewma": 15.1,
-      "forecast": 20.1,
-      "change": 32.8
-    },
-    {
-      "symbol": "DABUR",
-      "price": 392.2,
-      "trailing": 19.1,
-      "ewma": 17.8,
-      "forecast": 20.1,
-      "change": 13.0
-    },
-    {
-      "symbol": "EICHERMOT",
-      "price": 8035.0,
-      "trailing": 14.8,
-      "ewma": 16.0,
-      "forecast": 20.2,
-      "change": 25.7
-    },
-    {
-      "symbol": "SUNPHARMA",
-      "price": 1899.5,
-      "trailing": 13.5,
+      "symbol": "ICICIBANK",
+      "price": 1443.0,
+      "trailing": 14.6,
       "ewma": 14.4,
-      "forecast": 20.2,
-      "change": 40.1
+      "forecast": 19.4,
+      "change": 34.9
     },
     {
-      "symbol": "COALINDIA",
-      "price": 403.5,
-      "trailing": 12.0,
-      "ewma": 14.6,
-      "forecast": 20.2,
-      "change": 38.3
+      "symbol": "APOLLOHOSP",
+      "price": 8800.0,
+      "trailing": 22.9,
+      "ewma": 19.8,
+      "forecast": 19.4,
+      "change": -1.8
     },
     {
-      "symbol": "CENTRALBK",
-      "price": 30.83,
-      "trailing": 11.7,
-      "ewma": 17.8,
-      "forecast": 20.3,
-      "change": 13.7
-    },
-    {
-      "symbol": "IRCTC",
-      "price": 491.75,
-      "trailing": 24.4,
-      "ewma": 20.1,
-      "forecast": 20.4,
-      "change": 1.7
-    },
-    {
-      "symbol": "BANKBARODA",
-      "price": 242.5,
-      "trailing": 18.8,
-      "ewma": 21.6,
-      "forecast": 20.4,
-      "change": -5.2
-    },
-    {
-      "symbol": "ABBOTINDIA",
-      "price": 26555.0,
-      "trailing": 14.7,
-      "ewma": 16.5,
-      "forecast": 20.5,
-      "change": 24.2
-    },
-    {
-      "symbol": "MRF",
-      "price": 133520.0,
-      "trailing": 16.0,
-      "ewma": 18.1,
-      "forecast": 20.5,
-      "change": 13.0
-    },
-    {
-      "symbol": "BRITANNIA",
-      "price": 5310.0,
-      "trailing": 22.6,
-      "ewma": 21.8,
-      "forecast": 20.5,
-      "change": -6.0
-    },
-    {
-      "symbol": "IOC",
-      "price": 139.48,
-      "trailing": 17.6,
-      "ewma": 18.8,
-      "forecast": 20.6,
-      "change": 9.8
-    },
-    {
-      "symbol": "INDHOTEL",
-      "price": 721.0,
-      "trailing": 14.3,
-      "ewma": 15.8,
-      "forecast": 20.7,
-      "change": 31.1
-    },
-    {
-      "symbol": "BHARTIARTL",
-      "price": 1902.1,
-      "trailing": 20.9,
-      "ewma": 20.1,
-      "forecast": 20.7,
-      "change": 3.0
-    },
-    {
-      "symbol": "CIPLA",
-      "price": 1402.7,
-      "trailing": 13.7,
-      "ewma": 15.8,
-      "forecast": 20.8,
-      "change": 31.7
-    },
-    {
-      "symbol": "LICI",
-      "price": 415.3,
-      "trailing": 37.2,
-      "ewma": 28.9,
-      "forecast": 20.8,
-      "change": -28.0
-    },
-    {
-      "symbol": "LT",
-      "price": 4038.1,
-      "trailing": 17.3,
-      "ewma": 16.9,
-      "forecast": 20.9,
-      "change": 24.0
-    },
-    {
-      "symbol": "IRFC",
-      "price": 85.7,
-      "trailing": 14.0,
-      "ewma": 15.5,
-      "forecast": 20.9,
-      "change": 34.6
-    },
-    {
-      "symbol": "PIDILITIND",
-      "price": 1650.0,
-      "trailing": 18.7,
-      "ewma": 18.2,
-      "forecast": 21.0,
-      "change": 15.6
-    },
-    {
-      "symbol": "BEL",
-      "price": 406.9,
-      "trailing": 14.4,
-      "ewma": 18.1,
-      "forecast": 21.1,
-      "change": 16.5
+      "symbol": "RELIANCE",
+      "price": 1282.2,
+      "trailing": 19.1,
+      "ewma": 17.2,
+      "forecast": 19.7,
+      "change": 14.4
     },
     {
       "symbol": "HINDUNILVR",
-      "price": 2021.0,
-      "trailing": 21.8,
-      "ewma": 22.6,
-      "forecast": 21.1,
-      "change": -6.7
+      "price": 2009.0,
+      "trailing": 13.6,
+      "ewma": 22.0,
+      "forecast": 20.3,
+      "change": -7.6
+    },
+    {
+      "symbol": "ANANDRATHI",
+      "price": 2182.9,
+      "trailing": 15.0,
+      "ewma": 34.1,
+      "forecast": 20.4,
+      "change": -40.4
+    },
+    {
+      "symbol": "AXISBANK",
+      "price": 1256.0,
+      "trailing": 18.1,
+      "ewma": 18.8,
+      "forecast": 20.5,
+      "change": 9.0
+    },
+    {
+      "symbol": "COALINDIA",
+      "price": 400.0,
+      "trailing": 12.3,
+      "ewma": 14.6,
+      "forecast": 20.5,
+      "change": 41.0
+    },
+    {
+      "symbol": "LT",
+      "price": 4027.0,
+      "trailing": 15.1,
+      "ewma": 16.4,
+      "forecast": 20.6,
+      "change": 25.5
+    },
+    {
+      "symbol": "MRF",
+      "price": 133600.0,
+      "trailing": 15.7,
+      "ewma": 17.6,
+      "forecast": 20.6,
+      "change": 17.1
+    },
+    {
+      "symbol": "CENTRALBK",
+      "price": 30.65,
+      "trailing": 11.3,
+      "ewma": 17.4,
+      "forecast": 20.6,
+      "change": 18.4
     },
     {
       "symbol": "ASIANPAINT",
-      "price": 2626.5,
-      "trailing": 15.4,
-      "ewma": 16.0,
-      "forecast": 21.1,
-      "change": 32.0
+      "price": 2631.0,
+      "trailing": 15.0,
+      "ewma": 15.5,
+      "forecast": 20.7,
+      "change": 33.3
     },
     {
-      "symbol": "ONGC",
-      "price": 232.21,
+      "symbol": "NHPC",
+      "price": 76.55,
+      "trailing": 13.7,
+      "ewma": 14.8,
+      "forecast": 20.7,
+      "change": 40.1
+    },
+    {
+      "symbol": "BAJAJHFL",
+      "price": 85.29,
       "trailing": 11.2,
-      "ewma": 15.7,
+      "ewma": 14.7,
+      "forecast": 20.7,
+      "change": 40.8
+    },
+    {
+      "symbol": "SUNPHARMA",
+      "price": 1913.3,
+      "trailing": 13.6,
+      "ewma": 14.3,
+      "forecast": 20.7,
+      "change": 45.3
+    },
+    {
+      "symbol": "BRITANNIA",
+      "price": 5298.0,
+      "trailing": 22.3,
+      "ewma": 21.2,
+      "forecast": 20.8,
+      "change": -2.0
+    },
+    {
+      "symbol": "IRCTC",
+      "price": 487.55,
+      "trailing": 23.4,
+      "ewma": 19.7,
+      "forecast": 20.8,
+      "change": 5.6
+    },
+    {
+      "symbol": "ABBOTINDIA",
+      "price": 26350.0,
+      "trailing": 14.7,
+      "ewma": 16.3,
+      "forecast": 20.9,
+      "change": 28.8
+    },
+    {
+      "symbol": "IOC",
+      "price": 137.57,
+      "trailing": 18.0,
+      "ewma": 19.0,
+      "forecast": 20.9,
+      "change": 10.4
+    },
+    {
+      "symbol": "PIDILITIND",
+      "price": 1656.0,
+      "trailing": 18.6,
+      "ewma": 17.7,
       "forecast": 21.1,
-      "change": 35.0
+      "change": 19.2
     },
     {
-      "symbol": "TITAN",
-      "price": 5100.0,
-      "trailing": 17.3,
-      "ewma": 17.1,
-      "forecast": 21.2,
-      "change": 24.2
+      "symbol": "EICHERMOT",
+      "price": 8100.0,
+      "trailing": 14.6,
+      "ewma": 15.9,
+      "forecast": 21.1,
+      "change": 32.8
     },
     {
-      "symbol": "HAVELLS",
-      "price": 1258.7,
-      "trailing": 15.1,
-      "ewma": 15.8,
-      "forecast": 21.2,
-      "change": 34.2
-    },
-    {
-      "symbol": "SBILIFE",
-      "price": 1768.2,
-      "trailing": 12.5,
-      "ewma": 15.8,
-      "forecast": 21.5,
-      "change": 36.4
-    },
-    {
-      "symbol": "SBIN",
-      "price": 1052.0,
-      "trailing": 18.5,
-      "ewma": 17.6,
-      "forecast": 21.6,
-      "change": 22.7
-    },
-    {
-      "symbol": "BAJAJFINSV",
-      "price": 2010.0,
-      "trailing": 29.6,
-      "ewma": 23.4,
-      "forecast": 21.6,
-      "change": -7.4
-    },
-    {
-      "symbol": "WIPRO",
-      "price": 177.35,
-      "trailing": 18.7,
+      "symbol": "TATAPOWER",
+      "price": 352.0,
+      "trailing": 15.6,
       "ewma": 18.8,
-      "forecast": 21.6,
-      "change": 15.2
+      "forecast": 21.1,
+      "change": 12.1
+    },
+    {
+      "symbol": "IRFC",
+      "price": 84.65,
+      "trailing": 11.6,
+      "ewma": 15.8,
+      "forecast": 21.2,
+      "change": 33.9
     },
     {
       "symbol": "ULTRACEMCO",
       "price": 11717.0,
-      "trailing": 16.4,
-      "ewma": 17.3,
-      "forecast": 21.7,
-      "change": 25.3
+      "trailing": 16.3,
+      "ewma": 16.8,
+      "forecast": 21.2,
+      "change": 26.4
+    },
+    {
+      "symbol": "BAJAJFINSV",
+      "price": 2011.0,
+      "trailing": 29.6,
+      "ewma": 22.6,
+      "forecast": 21.4,
+      "change": -5.3
+    },
+    {
+      "symbol": "CIPLA",
+      "price": 1420.0,
+      "trailing": 12.3,
+      "ewma": 16.0,
+      "forecast": 21.5,
+      "change": 33.7
+    },
+    {
+      "symbol": "BEL",
+      "price": 411.0,
+      "trailing": 14.5,
+      "ewma": 18.0,
+      "forecast": 21.5,
+      "change": 19.6
+    },
+    {
+      "symbol": "ONGC",
+      "price": 232.0,
+      "trailing": 11.2,
+      "ewma": 15.2,
+      "forecast": 21.6,
+      "change": 42.2
     },
     {
       "symbol": "ALKEM",
-      "price": 5303.5,
+      "price": 5320.0,
       "trailing": 19.2,
-      "ewma": 18.2,
-      "forecast": 21.8,
-      "change": 20.0
+      "ewma": 17.7,
+      "forecast": 21.6,
+      "change": 22.3
     },
     {
-      "symbol": "MARUTI",
-      "price": 13520.0,
-      "trailing": 12.8,
-      "ewma": 17.1,
-      "forecast": 21.9,
-      "change": 27.8
-    },
-    {
-      "symbol": "GRASIM",
-      "price": 3299.9,
-      "trailing": 29.1,
-      "ewma": 22.6,
-      "forecast": 21.9,
-      "change": -3.0
-    },
-    {
-      "symbol": "DRREDDY",
-      "price": 1182.0,
-      "trailing": 20.0,
-      "ewma": 20.6,
-      "forecast": 22.0,
-      "change": 6.9
-    },
-    {
-      "symbol": "HDFCLIFE",
-      "price": 553.0,
-      "trailing": 19.8,
-      "ewma": 19.8,
-      "forecast": 22.0,
-      "change": 11.1
-    },
-    {
-      "symbol": "UNITDSPR",
-      "price": 1538.5,
-      "trailing": 15.8,
-      "ewma": 18.3,
-      "forecast": 22.1,
-      "change": 20.8
-    },
-    {
-      "symbol": "TATACONSUM",
-      "price": 1047.1,
-      "trailing": 23.3,
-      "ewma": 22.3,
-      "forecast": 22.1,
-      "change": -0.9
-    },
-    {
-      "symbol": "TATASTEEL",
-      "price": 188.01,
-      "trailing": 18.2,
-      "ewma": 16.8,
-      "forecast": 22.2,
-      "change": 32.0
-    },
-    {
-      "symbol": "ACC",
-      "price": 1331.7,
-      "trailing": 19.1,
-      "ewma": 18.9,
-      "forecast": 22.3,
-      "change": 18.1
-    },
-    {
-      "symbol": "BAJAJ-AUTO",
-      "price": 11724.0,
-      "trailing": 18.6,
-      "ewma": 21.3,
-      "forecast": 22.4,
-      "change": 5.5
-    },
-    {
-      "symbol": "JSWSTEEL",
-      "price": 1341.0,
-      "trailing": 20.3,
-      "ewma": 19.6,
-      "forecast": 22.6,
-      "change": 15.1
-    },
-    {
-      "symbol": "STARHEALTH",
-      "price": 583.75,
-      "trailing": 19.8,
-      "ewma": 19.4,
-      "forecast": 22.7,
-      "change": 17.3
-    },
-    {
-      "symbol": "KOTAKBANK",
-      "price": 416.7,
-      "trailing": 18.9,
-      "ewma": 22.6,
-      "forecast": 22.8,
-      "change": 0.6
-    },
-    {
-      "symbol": "GAIL",
-      "price": 174.49,
-      "trailing": 25.9,
-      "ewma": 21.2,
-      "forecast": 22.9,
-      "change": 8.0
-    },
-    {
-      "symbol": "PNB",
-      "price": 116.7,
-      "trailing": 18.8,
-      "ewma": 20.7,
-      "forecast": 22.9,
-      "change": 10.7
-    },
-    {
-      "symbol": "LUPIN",
-      "price": 2185.0,
-      "trailing": 15.8,
-      "ewma": 18.4,
-      "forecast": 23.0,
-      "change": 24.7
-    },
-    {
-      "symbol": "IDFCFIRSTB",
-      "price": 84.4,
-      "trailing": 14.3,
-      "ewma": 19.4,
-      "forecast": 23.0,
-      "change": 18.3
-    },
-    {
-      "symbol": "TORNTPHARM",
-      "price": 4890.0,
-      "trailing": 23.8,
-      "ewma": 23.4,
-      "forecast": 23.0,
-      "change": -1.7
-    },
-    {
-      "symbol": "LEMONTREE",
-      "price": 108.75,
-      "trailing": 20.7,
-      "ewma": 20.2,
-      "forecast": 23.1,
-      "change": 14.6
-    },
-    {
-      "symbol": "BIOCON",
-      "price": 417.5,
-      "trailing": 19.6,
-      "ewma": 22.1,
-      "forecast": 23.2,
-      "change": 5.1
-    },
-    {
-      "symbol": "JSWENERGY",
-      "price": 543.5,
-      "trailing": 19.4,
-      "ewma": 20.5,
-      "forecast": 23.2,
-      "change": 13.2
+      "symbol": "INDHOTEL",
+      "price": 718.5,
+      "trailing": 14.2,
+      "ewma": 15.3,
+      "forecast": 21.6,
+      "change": 41.0
     },
     {
       "symbol": "HINDPETRO",
-      "price": 375.5,
-      "trailing": 22.8,
-      "ewma": 26.7,
-      "forecast": 23.2,
-      "change": -13.0
+      "price": 371.0,
+      "trailing": 22.3,
+      "ewma": 26.3,
+      "forecast": 21.8,
+      "change": -17.3
     },
     {
-      "symbol": "NESTLEIND",
-      "price": 1451.5,
-      "trailing": 16.8,
-      "ewma": 19.4,
-      "forecast": 23.3,
-      "change": 19.9
+      "symbol": "SBIN",
+      "price": 1042.9,
+      "trailing": 18.9,
+      "ewma": 17.4,
+      "forecast": 21.8,
+      "change": 25.3
+    },
+    {
+      "symbol": "LICI",
+      "price": 413.95,
+      "trailing": 37.1,
+      "ewma": 28.1,
+      "forecast": 21.8,
+      "change": -22.4
+    },
+    {
+      "symbol": "BHARTIARTL",
+      "price": 1878.3,
+      "trailing": 19.2,
+      "ewma": 20.1,
+      "forecast": 21.9,
+      "change": 9.2
+    },
+    {
+      "symbol": "DRREDDY",
+      "price": 1177.0,
+      "trailing": 20.1,
+      "ewma": 20.1,
+      "forecast": 22.0,
+      "change": 9.6
+    },
+    {
+      "symbol": "SBILIFE",
+      "price": 1773.2,
+      "trailing": 12.5,
+      "ewma": 15.3,
+      "forecast": 22.0,
+      "change": 43.6
+    },
+    {
+      "symbol": "HDFCBANK",
+      "price": 711.0,
+      "trailing": 11.6,
+      "ewma": 17.5,
+      "forecast": 22.1,
+      "change": 26.0
+    },
+    {
+      "symbol": "HAVELLS",
+      "price": 1241.0,
+      "trailing": 15.7,
+      "ewma": 16.3,
+      "forecast": 22.1,
+      "change": 35.7
+    },
+    {
+      "symbol": "MARUTI",
+      "price": 13440.0,
+      "trailing": 12.1,
+      "ewma": 16.8,
+      "forecast": 22.1,
+      "change": 32.0
+    },
+    {
+      "symbol": "HDFCLIFE",
+      "price": 548.0,
+      "trailing": 20.0,
+      "ewma": 19.5,
+      "forecast": 22.2,
+      "change": 13.7
+    },
+    {
+      "symbol": "GRASIM",
+      "price": 3258.0,
+      "trailing": 29.6,
+      "ewma": 22.5,
+      "forecast": 22.3,
+      "change": -0.8
+    },
+    {
+      "symbol": "TATACONSUM",
+      "price": 1042.0,
+      "trailing": 22.7,
+      "ewma": 21.7,
+      "forecast": 22.3,
+      "change": 3.0
+    },
+    {
+      "symbol": "KOTAKBANK",
+      "price": 424.2,
+      "trailing": 19.3,
+      "ewma": 23.0,
+      "forecast": 22.3,
+      "change": -3.0
+    },
+    {
+      "symbol": "ACC",
+      "price": 1310.6,
+      "trailing": 18.1,
+      "ewma": 19.3,
+      "forecast": 22.4,
+      "change": 15.9
+    },
+    {
+      "symbol": "BANKBARODA",
+      "price": 241.0,
+      "trailing": 17.9,
+      "ewma": 21.0,
+      "forecast": 22.4,
+      "change": 6.4
+    },
+    {
+      "symbol": "TITAN",
+      "price": 5139.3,
+      "trailing": 17.4,
+      "ewma": 16.8,
+      "forecast": 22.4,
+      "change": 33.5
+    },
+    {
+      "symbol": "UNITDSPR",
+      "price": 1522.0,
+      "trailing": 16.3,
+      "ewma": 18.2,
+      "forecast": 22.4,
+      "change": 23.3
+    },
+    {
+      "symbol": "TATASTEEL",
+      "price": 186.8,
+      "trailing": 16.1,
+      "ewma": 16.5,
+      "forecast": 22.5,
+      "change": 36.5
+    },
+    {
+      "symbol": "WIPRO",
+      "price": 176.4,
+      "trailing": 18.0,
+      "ewma": 18.3,
+      "forecast": 22.5,
+      "change": 22.7
+    },
+    {
+      "symbol": "BAJAJ-AUTO",
+      "price": 11720.0,
+      "trailing": 18.5,
+      "ewma": 20.6,
+      "forecast": 22.7,
+      "change": 10.0
+    },
+    {
+      "symbol": "DABUR",
+      "price": 386.2,
+      "trailing": 17.2,
+      "ewma": 18.3,
+      "forecast": 22.9,
+      "change": 25.2
+    },
+    {
+      "symbol": "JSWSTEEL",
+      "price": 1337.5,
+      "trailing": 19.0,
+      "ewma": 19.0,
+      "forecast": 22.9,
+      "change": 20.0
+    },
+    {
+      "symbol": "DIVISLAB",
+      "price": 9060.0,
+      "trailing": 32.1,
+      "ewma": 29.8,
+      "forecast": 23.0,
+      "change": -22.7
+    },
+    {
+      "symbol": "STARHEALTH",
+      "price": 586.1,
+      "trailing": 17.7,
+      "ewma": 18.8,
+      "forecast": 23.1,
+      "change": 22.5
+    },
+    {
+      "symbol": "BIOCON",
+      "price": 418.4,
+      "trailing": 19.7,
+      "ewma": 21.4,
+      "forecast": 23.2,
+      "change": 8.4
     },
     {
       "symbol": "POLYCAB",
-      "price": 9060.0,
-      "trailing": 20.7,
-      "ewma": 21.7,
-      "forecast": 23.3,
-      "change": 7.2
+      "price": 9079.0,
+      "trailing": 20.5,
+      "ewma": 21.1,
+      "forecast": 23.4,
+      "change": 11.0
+    },
+    {
+      "symbol": "NESTLEIND",
+      "price": 1450.0,
+      "trailing": 16.5,
+      "ewma": 18.8,
+      "forecast": 23.4,
+      "change": 24.4
+    },
+    {
+      "symbol": "GAIL",
+      "price": 172.44,
+      "trailing": 26.2,
+      "ewma": 21.1,
+      "forecast": 23.5,
+      "change": 11.3
     },
     {
       "symbol": "ADANIPORTS",
-      "price": 1691.5,
-      "trailing": 22.1,
-      "ewma": 19.7,
-      "forecast": 23.3,
-      "change": 18.3
-    },
-    {
-      "symbol": "PHOENIXLTD",
-      "price": 1924.1,
-      "trailing": 27.0,
-      "ewma": 22.6,
-      "forecast": 23.4,
-      "change": 3.5
-    },
-    {
-      "symbol": "AUROPHARMA",
-      "price": 1623.0,
-      "trailing": 25.3,
-      "ewma": 22.9,
+      "price": 1714.0,
+      "trailing": 20.1,
+      "ewma": 19.8,
       "forecast": 23.5,
-      "change": 2.2
+      "change": 18.4
     },
     {
-      "symbol": "SHREECEM",
-      "price": 24865.0,
-      "trailing": 23.3,
-      "ewma": 22.6,
+      "symbol": "PNB",
+      "price": 115.4,
+      "trailing": 19.2,
+      "ewma": 20.6,
       "forecast": 23.6,
-      "change": 4.4
+      "change": 14.6
     },
     {
-      "symbol": "GODREJCP",
-      "price": 922.8,
-      "trailing": 44.0,
-      "ewma": 37.9,
+      "symbol": "IDFCFIRSTB",
+      "price": 83.8,
+      "trailing": 14.2,
+      "ewma": 19.1,
       "forecast": 23.6,
-      "change": -37.7
-    },
-    {
-      "symbol": "ESCORTS",
-      "price": 3067.0,
-      "trailing": 16.1,
-      "ewma": 17.0,
-      "forecast": 23.6,
-      "change": 39.2
+      "change": 23.7
     },
     {
       "symbol": "FEDERALBNK",
-      "price": 345.3,
-      "trailing": 23.9,
-      "ewma": 23.8,
+      "price": 344.8,
+      "trailing": 23.8,
+      "ewma": 23.1,
       "forecast": 23.7,
-      "change": -0.7
+      "change": 2.4
     },
     {
-      "symbol": "CHAMBLFERT",
-      "price": 427.55,
-      "trailing": 21.4,
-      "ewma": 19.0,
+      "symbol": "GODREJCP",
+      "price": 923.0,
+      "trailing": 43.7,
+      "ewma": 36.7,
       "forecast": 23.8,
-      "change": 25.4
+      "change": -35.2
+    },
+    {
+      "symbol": "TORNTPHARM",
+      "price": 4999.0,
+      "trailing": 25.0,
+      "ewma": 24.3,
+      "forecast": 23.8,
+      "change": -2.2
+    },
+    {
+      "symbol": "SHREECEM",
+      "price": 24480.0,
+      "trailing": 23.6,
+      "ewma": 22.7,
+      "forecast": 24.1,
+      "change": 6.2
+    },
+    {
+      "symbol": "AUROPHARMA",
+      "price": 1637.0,
+      "trailing": 23.8,
+      "ewma": 22.5,
+      "forecast": 24.1,
+      "change": 7.3
+    },
+    {
+      "symbol": "WAAREEENER",
+      "price": 2624.0,
+      "trailing": 20.6,
+      "ewma": 19.1,
+      "forecast": 24.2,
+      "change": 27.0
+    },
+    {
+      "symbol": "JSWENERGY",
+      "price": 542.1,
+      "trailing": 19.4,
+      "ewma": 19.9,
+      "forecast": 24.3,
+      "change": 22.1
+    },
+    {
+      "symbol": "CANBK",
+      "price": 128.14,
+      "trailing": 18.1,
+      "ewma": 20.5,
+      "forecast": 24.4,
+      "change": 18.7
+    },
+    {
+      "symbol": "BAJFINANCE",
+      "price": 1083.0,
+      "trailing": 38.8,
+      "ewma": 29.8,
+      "forecast": 24.4,
+      "change": -18.3
     },
     {
       "symbol": "BPCL",
       "price": 318.0,
-      "trailing": 20.0,
-      "ewma": 20.8,
-      "forecast": 23.9,
-      "change": 15.1
-    },
-    {
-      "symbol": "DIVISLAB",
-      "price": 9025.0,
-      "trailing": 35.0,
-      "ewma": 30.7,
-      "forecast": 23.9,
-      "change": -22.1
-    },
-    {
-      "symbol": "INDUSINDBK",
-      "price": 1004.0,
-      "trailing": 14.8,
-      "ewma": 21.2,
-      "forecast": 24.0,
-      "change": 13.4
+      "trailing": 19.8,
+      "ewma": 20.1,
+      "forecast": 24.4,
+      "change": 21.2
     },
     {
       "symbol": "HEROMOTOCO",
-      "price": 5595.0,
-      "trailing": 24.4,
-      "ewma": 22.4,
-      "forecast": 24.0,
-      "change": 7.1
-    },
-    {
-      "symbol": "CANBK",
-      "price": 129.45,
-      "trailing": 17.6,
-      "ewma": 20.8,
-      "forecast": 24.1,
-      "change": 15.9
-    },
-    {
-      "symbol": "HAL",
-      "price": 4865.5,
-      "trailing": 25.8,
-      "ewma": 22.7,
-      "forecast": 24.2,
-      "change": 6.4
+      "price": 5550.0,
+      "trailing": 24.8,
+      "ewma": 22.0,
+      "forecast": 24.5,
+      "change": 11.3
     },
     {
       "symbol": "TVSMOTOR",
-      "price": 4464.0,
+      "price": 4409.8,
       "trailing": 22.5,
-      "ewma": 24.5,
-      "forecast": 24.2,
-      "change": -1.0
-    },
-    {
-      "symbol": "HDFCAMC",
-      "price": 2667.9,
-      "trailing": 21.8,
-      "ewma": 26.5,
-      "forecast": 24.4,
-      "change": -8.0
-    },
-    {
-      "symbol": "BAJAJHLDNG",
-      "price": 11540.0,
-      "trailing": 21.7,
-      "ewma": 22.0,
-      "forecast": 24.4,
-      "change": 10.9
-    },
-    {
-      "symbol": "IREDA",
-      "price": 118.8,
-      "trailing": 23.7,
-      "ewma": 24.9,
+      "ewma": 24.2,
       "forecast": 24.5,
-      "change": -1.8
+      "change": 1.1
     },
     {
-      "symbol": "LICHSGFIN",
-      "price": 524.4,
-      "trailing": 27.2,
-      "ewma": 27.2,
+      "symbol": "HAL",
+      "price": 4899.0,
+      "trailing": 25.8,
+      "ewma": 22.2,
       "forecast": 24.5,
-      "change": -9.9
+      "change": 10.5
+    },
+    {
+      "symbol": "CHAMBLFERT",
+      "price": 424.75,
+      "trailing": 18.3,
+      "ewma": 18.6,
+      "forecast": 24.7,
+      "change": 32.8
     },
     {
       "symbol": "NH",
-      "price": 1882.7,
-      "trailing": 26.2,
-      "ewma": 25.1,
-      "forecast": 24.5,
-      "change": -2.5
-    },
-    {
-      "symbol": "IGL",
-      "price": 148.72,
-      "trailing": 19.7,
-      "ewma": 19.5,
-      "forecast": 24.6,
-      "change": 25.8
-    },
-    {
-      "symbol": "DMART",
-      "price": 3826.9,
-      "trailing": 22.2,
-      "ewma": 22.9,
+      "price": 1903.8,
+      "trailing": 26.8,
+      "ewma": 24.7,
       "forecast": 24.7,
-      "change": 7.5
-    },
-    {
-      "symbol": "WAAREEENER",
-      "price": 2635.0,
-      "trailing": 21.4,
-      "ewma": 19.6,
-      "forecast": 24.7,
-      "change": 25.8
-    },
-    {
-      "symbol": "FORTIS",
-      "price": 913.85,
-      "trailing": 25.2,
-      "ewma": 23.1,
-      "forecast": 24.8,
-      "change": 7.4
-    },
-    {
-      "symbol": "SWANCORP",
-      "price": 300.15,
-      "trailing": 12.2,
-      "ewma": 17.7,
-      "forecast": 24.8,
-      "change": 40.0
-    },
-    {
-      "symbol": "SUPREMEIND",
-      "price": 3540.0,
-      "trailing": 18.8,
-      "ewma": 22.0,
-      "forecast": 24.9,
-      "change": 13.2
-    },
-    {
-      "symbol": "AMBUJACEM",
-      "price": 419.2,
-      "trailing": 21.5,
-      "ewma": 21.3,
-      "forecast": 24.9,
-      "change": 17.1
+      "change": -0.1
     },
     {
       "symbol": "ICICIGI",
-      "price": 1596.9,
-      "trailing": 19.5,
-      "ewma": 24.9,
-      "forecast": 24.9,
-      "change": -0.0
+      "price": 1588.1,
+      "trailing": 18.4,
+      "ewma": 24.2,
+      "forecast": 24.7,
+      "change": 1.9
     },
     {
-      "symbol": "CGPOWER",
-      "price": 865.05,
-      "trailing": 36.0,
-      "ewma": 31.9,
-      "forecast": 24.9,
-      "change": -21.8
+      "symbol": "FORTIS",
+      "price": 915.65,
+      "trailing": 25.0,
+      "ewma": 22.4,
+      "forecast": 24.8,
+      "change": 10.5
     },
     {
-      "symbol": "BAJFINANCE",
-      "price": 1085.0,
-      "trailing": 38.8,
-      "ewma": 30.8,
-      "forecast": 25.0,
-      "change": -18.8
-    },
-    {
-      "symbol": "NYKAA",
-      "price": 340.0,
-      "trailing": 24.3,
-      "ewma": 23.2,
-      "forecast": 25.0,
-      "change": 7.9
-    },
-    {
-      "symbol": "M&M",
-      "price": 3398.2,
+      "symbol": "DMART",
+      "price": 3847.4,
       "trailing": 22.3,
-      "ewma": 21.4,
-      "forecast": 25.0,
-      "change": 17.3
+      "ewma": 22.3,
+      "forecast": 24.8,
+      "change": 10.9
     },
     {
-      "symbol": "HINDALCO",
-      "price": 1053.0,
-      "trailing": 27.4,
-      "ewma": 25.0,
-      "forecast": 25.1,
-      "change": 0.2
+      "symbol": "INDUSINDBK",
+      "price": 1002.9,
+      "trailing": 13.0,
+      "ewma": 20.5,
+      "forecast": 24.9,
+      "change": 21.1
     },
     {
-      "symbol": "CHOICEIN",
-      "price": 781.85,
-      "trailing": 18.2,
-      "ewma": 21.2,
-      "forecast": 25.1,
-      "change": 18.1
-    },
-    {
-      "symbol": "INDUSTOWER",
-      "price": 377.7,
-      "trailing": 30.6,
-      "ewma": 28.7,
-      "forecast": 25.1,
-      "change": -12.4
-    },
-    {
-      "symbol": "MANKIND",
-      "price": 2393.7,
-      "trailing": 19.3,
-      "ewma": 20.3,
-      "forecast": 25.2,
-      "change": 23.7
-    },
-    {
-      "symbol": "ADANIPOWER",
-      "price": 207.2,
-      "trailing": 13.5,
-      "ewma": 19.8,
-      "forecast": 25.2,
-      "change": 27.4
-    },
-    {
-      "symbol": "HYUNDAI",
-      "price": 2250.0,
-      "trailing": 31.5,
-      "ewma": 26.1,
-      "forecast": 25.2,
-      "change": -3.3
-    },
-    {
-      "symbol": "NMDC",
-      "price": 88.21,
-      "trailing": 19.8,
-      "ewma": 19.9,
-      "forecast": 25.2,
-      "change": 26.6
-    },
-    {
-      "symbol": "SHAKTIPUMP",
-      "price": 490.35,
-      "trailing": 15.1,
-      "ewma": 23.4,
-      "forecast": 25.3,
-      "change": 7.8
-    },
-    {
-      "symbol": "JINDALSTEL",
-      "price": 1175.4,
-      "trailing": 23.0,
-      "ewma": 23.4,
-      "forecast": 25.3,
-      "change": 8.2
-    },
-    {
-      "symbol": "PRIVISCL",
-      "price": 3458.4,
-      "trailing": 19.5,
-      "ewma": 18.8,
-      "forecast": 25.3,
-      "change": 34.4
-    },
-    {
-      "symbol": "RBLBANK",
-      "price": 382.5,
-      "trailing": 18.2,
-      "ewma": 22.2,
-      "forecast": 25.3,
-      "change": 14.2
+      "symbol": "LICHSGFIN",
+      "price": 535.5,
+      "trailing": 27.8,
+      "ewma": 27.6,
+      "forecast": 24.9,
+      "change": -9.7
     },
     {
       "symbol": "CESC",
-      "price": 153.33,
+      "price": 152.13,
       "trailing": 24.0,
-      "ewma": 24.7,
-      "forecast": 25.4,
-      "change": 2.5
+      "ewma": 24.2,
+      "forecast": 25.1,
+      "change": 3.7
     },
     {
-      "symbol": "JSL",
-      "price": 712.95,
-      "trailing": 17.6,
-      "ewma": 20.0,
-      "forecast": 25.4,
-      "change": 27.0
+      "symbol": "BAJAJHLDNG",
+      "price": 11399.0,
+      "trailing": 22.1,
+      "ewma": 21.9,
+      "forecast": 25.1,
+      "change": 14.8
     },
     {
-      "symbol": "SCHAEFFLER",
-      "price": 4010.2,
-      "trailing": 17.6,
-      "ewma": 17.9,
-      "forecast": 25.4,
-      "change": 42.0
+      "symbol": "RBLBANK",
+      "price": 385.4,
+      "trailing": 17.5,
+      "ewma": 21.7,
+      "forecast": 25.1,
+      "change": 15.8
     },
     {
-      "symbol": "TMPV",
-      "price": 313.1,
-      "trailing": 25.0,
+      "symbol": "AMBUJACEM",
+      "price": 411.05,
+      "trailing": 20.8,
+      "ewma": 22.0,
+      "forecast": 25.2,
+      "change": 14.7
+    },
+    {
+      "symbol": "NYKAA",
+      "price": 338.0,
+      "trailing": 24.3,
+      "ewma": 22.6,
+      "forecast": 25.2,
+      "change": 11.9
+    },
+    {
+      "symbol": "HYUNDAI",
+      "price": 2253.0,
+      "trailing": 31.3,
+      "ewma": 25.3,
+      "forecast": 25.2,
+      "change": -0.2
+    },
+    {
+      "symbol": "IGL",
+      "price": 147.17,
+      "trailing": 19.2,
+      "ewma": 19.4,
+      "forecast": 25.3,
+      "change": 30.4
+    },
+    {
+      "symbol": "LEMONTREE",
+      "price": 107.69,
+      "trailing": 21.0,
+      "ewma": 19.9,
+      "forecast": 25.3,
+      "change": 27.2
+    },
+    {
+      "symbol": "MANKIND",
+      "price": 2417.5,
+      "trailing": 19.8,
+      "ewma": 20.1,
+      "forecast": 25.4,
+      "change": 26.3
+    },
+    {
+      "symbol": "IREDA",
+      "price": 117.4,
+      "trailing": 23.9,
       "ewma": 24.6,
       "forecast": 25.5,
       "change": 3.5
     },
     {
-      "symbol": "MFSL",
-      "price": 1600.0,
-      "trailing": 21.6,
-      "ewma": 22.6,
-      "forecast": 25.6,
-      "change": 13.3
-    },
-    {
-      "symbol": "NBCC",
-      "price": 89.21,
-      "trailing": 18.7,
-      "ewma": 22.3,
-      "forecast": 25.6,
-      "change": 15.1
-    },
-    {
-      "symbol": "HDBFS",
-      "price": 687.5,
-      "trailing": 18.7,
-      "ewma": 21.0,
-      "forecast": 25.7,
-      "change": 22.4
-    },
-    {
-      "symbol": "UNOMINDA",
-      "price": 1260.0,
-      "trailing": 21.2,
-      "ewma": 22.1,
-      "forecast": 25.7,
-      "change": 16.3
-    },
-    {
-      "symbol": "BANKINDIA",
-      "price": 145.95,
-      "trailing": 18.1,
-      "ewma": 23.4,
-      "forecast": 25.7,
-      "change": 9.8
-    },
-    {
-      "symbol": "APOLLOTYRE",
-      "price": 443.05,
-      "trailing": 18.1,
-      "ewma": 21.2,
-      "forecast": 25.8,
+      "symbol": "CHOICEIN",
+      "price": 775.05,
+      "trailing": 18.3,
+      "ewma": 20.9,
+      "forecast": 25.5,
       "change": 21.9
     },
     {
-      "symbol": "ITCHOTELS",
-      "price": 166.67,
-      "trailing": 18.0,
-      "ewma": 24.3,
-      "forecast": 25.9,
-      "change": 6.3
+      "symbol": "SCHAEFFLER",
+      "price": 4051.1,
+      "trailing": 17.9,
+      "ewma": 17.8,
+      "forecast": 25.5,
+      "change": 43.3
     },
     {
-      "symbol": "MAXHEALTH",
-      "price": 1005.0,
-      "trailing": 22.2,
-      "ewma": 23.9,
-      "forecast": 25.9,
-      "change": 8.4
+      "symbol": "PHOENIXLTD",
+      "price": 1901.7,
+      "trailing": 19.2,
+      "ewma": 22.4,
+      "forecast": 25.5,
+      "change": 13.9
     },
     {
-      "symbol": "SOUTHBANK",
-      "price": 46.32,
-      "trailing": 16.0,
-      "ewma": 23.6,
-      "forecast": 25.9,
-      "change": 9.6
-    },
-    {
-      "symbol": "ZYDUSLIFE",
-      "price": 1150.0,
-      "trailing": 32.5,
-      "ewma": 28.9,
-      "forecast": 25.9,
-      "change": -10.4
-    },
-    {
-      "symbol": "RADICO",
-      "price": 4614.0,
-      "trailing": 20.7,
-      "ewma": 21.5,
-      "forecast": 25.9,
-      "change": 20.3
-    },
-    {
-      "symbol": "CONCOR",
-      "price": 517.0,
-      "trailing": 20.7,
-      "ewma": 26.9,
-      "forecast": 26.0,
-      "change": -3.4
-    },
-    {
-      "symbol": "JIOFIN",
-      "price": 241.0,
-      "trailing": 30.3,
-      "ewma": 25.3,
-      "forecast": 26.0,
-      "change": 3.0
-    },
-    {
-      "symbol": "COLPAL",
-      "price": 1860.0,
-      "trailing": 22.0,
+      "symbol": "JINDALSTEL",
+      "price": 1170.0,
+      "trailing": 21.0,
       "ewma": 22.7,
-      "forecast": 26.1,
-      "change": 15.1
+      "forecast": 25.6,
+      "change": 12.8
     },
     {
-      "symbol": "TCS",
-      "price": 2270.0,
-      "trailing": 31.1,
-      "ewma": 29.9,
-      "forecast": 26.1,
-      "change": -12.7
+      "symbol": "LUPIN",
+      "price": 2158.1,
+      "trailing": 13.0,
+      "ewma": 18.5,
+      "forecast": 25.7,
+      "change": 38.9
     },
     {
-      "symbol": "INFY",
-      "price": 1120.0,
-      "trailing": 29.5,
-      "ewma": 28.6,
-      "forecast": 26.1,
-      "change": -8.8
+      "symbol": "MFSL",
+      "price": 1568.0,
+      "trailing": 23.0,
+      "ewma": 23.3,
+      "forecast": 25.7,
+      "change": 10.5
     },
     {
-      "symbol": "SBICARD",
-      "price": 660.1,
-      "trailing": 25.4,
-      "ewma": 28.4,
-      "forecast": 26.1,
-      "change": -8.0
-    },
-    {
-      "symbol": "APLAPOLLO",
-      "price": 2159.0,
-      "trailing": 31.7,
-      "ewma": 25.6,
-      "forecast": 26.2,
-      "change": 2.3
-    },
-    {
-      "symbol": "ICICIPRULI",
-      "price": 515.05,
-      "trailing": 17.3,
-      "ewma": 21.8,
-      "forecast": 26.2,
-      "change": 20.3
-    },
-    {
-      "symbol": "SUNDARMFIN",
-      "price": 4539.6,
-      "trailing": 28.4,
-      "ewma": 24.9,
-      "forecast": 26.2,
-      "change": 5.0
-    },
-    {
-      "symbol": "HUDCO",
-      "price": 186.95,
-      "trailing": 17.8,
-      "ewma": 20.7,
-      "forecast": 26.2,
-      "change": 26.5
-    },
-    {
-      "symbol": "DLF",
-      "price": 672.5,
-      "trailing": 24.3,
-      "ewma": 25.8,
-      "forecast": 26.2,
-      "change": 1.6
-    },
-    {
-      "symbol": "ASTRAL",
-      "price": 1526.1,
-      "trailing": 35.8,
-      "ewma": 33.8,
-      "forecast": 26.2,
-      "change": -22.4
-    },
-    {
-      "symbol": "DELHIVERY",
-      "price": 449.0,
-      "trailing": 23.1,
-      "ewma": 23.6,
-      "forecast": 26.2,
-      "change": 11.1
-    },
-    {
-      "symbol": "IRB",
-      "price": 19.46,
-      "trailing": 19.3,
-      "ewma": 21.3,
-      "forecast": 26.2,
-      "change": 23.1
-    },
-    {
-      "symbol": "LAURUSLABS",
-      "price": 1887.0,
-      "trailing": 22.8,
-      "ewma": 29.0,
-      "forecast": 26.3,
-      "change": -9.5
-    },
-    {
-      "symbol": "RVNL",
-      "price": 221.39,
-      "trailing": 22.8,
+      "symbol": "SUPREMEIND",
+      "price": 3585.0,
+      "trailing": 17.4,
       "ewma": 21.9,
-      "forecast": 26.3,
-      "change": 20.0
+      "forecast": 25.7,
+      "change": 17.4
     },
     {
-      "symbol": "TATAINVEST",
-      "price": 644.45,
-      "trailing": 22.0,
-      "ewma": 20.9,
-      "forecast": 26.3,
-      "change": 25.5
+      "symbol": "BANKINDIA",
+      "price": 144.6,
+      "trailing": 18.5,
+      "ewma": 23.0,
+      "forecast": 25.7,
+      "change": 11.8
     },
     {
-      "symbol": "AUBANK",
-      "price": 1113.5,
-      "trailing": 21.2,
-      "ewma": 24.5,
-      "forecast": 26.3,
-      "change": 7.5
-    },
-    {
-      "symbol": "TATACAP",
-      "price": 370.65,
-      "trailing": 23.3,
-      "ewma": 22.8,
-      "forecast": 26.3,
-      "change": 15.4
-    },
-    {
-      "symbol": "INDIANB",
-      "price": 889.0,
-      "trailing": 17.8,
-      "ewma": 24.5,
-      "forecast": 26.3,
-      "change": 7.7
+      "symbol": "TMPV",
+      "price": 316.0,
+      "trailing": 24.5,
+      "ewma": 24.1,
+      "forecast": 25.7,
+      "change": 6.6
     },
     {
       "symbol": "INDIGO",
-      "price": 5250.5,
-      "trailing": 21.4,
-      "ewma": 25.3,
+      "price": 5189.0,
+      "trailing": 21.8,
+      "ewma": 24.9,
+      "forecast": 25.8,
+      "change": 3.5
+    },
+    {
+      "symbol": "HDBFS",
+      "price": 685.15,
+      "trailing": 18.7,
+      "ewma": 20.4,
+      "forecast": 25.9,
+      "change": 26.8
+    },
+    {
+      "symbol": "PRIVISCL",
+      "price": 3456.6,
+      "trailing": 17.6,
+      "ewma": 18.3,
+      "forecast": 25.9,
+      "change": 41.7
+    },
+    {
+      "symbol": "RADICO",
+      "price": 4606.0,
+      "trailing": 19.9,
+      "ewma": 20.9,
+      "forecast": 26.0,
+      "change": 24.2
+    },
+    {
+      "symbol": "NMDC",
+      "price": 85.72,
+      "trailing": 21.0,
+      "ewma": 22.2,
+      "forecast": 26.0,
+      "change": 16.7
+    },
+    {
+      "symbol": "TATAINVEST",
+      "price": 642.1,
+      "trailing": 18.4,
+      "ewma": 20.4,
+      "forecast": 26.0,
+      "change": 27.6
+    },
+    {
+      "symbol": "M&M",
+      "price": 3330.0,
+      "trailing": 22.8,
+      "ewma": 22.1,
+      "forecast": 26.1,
+      "change": 17.8
+    },
+    {
+      "symbol": "APOLLOTYRE",
+      "price": 443.25,
+      "trailing": 18.1,
+      "ewma": 20.6,
+      "forecast": 26.1,
+      "change": 27.2
+    },
+    {
+      "symbol": "HINDALCO",
+      "price": 1024.0,
+      "trailing": 28.4,
+      "ewma": 26.5,
+      "forecast": 26.1,
+      "change": -1.5
+    },
+    {
+      "symbol": "INDUSTOWER",
+      "price": 379.95,
+      "trailing": 30.3,
+      "ewma": 27.9,
+      "forecast": 26.2,
+      "change": -6.3
+    },
+    {
+      "symbol": "MAXHEALTH",
+      "price": 1009.0,
+      "trailing": 22.1,
+      "ewma": 23.2,
+      "forecast": 26.3,
+      "change": 13.2
+    },
+    {
+      "symbol": "UNOMINDA",
+      "price": 1280.0,
+      "trailing": 21.6,
+      "ewma": 22.3,
+      "forecast": 26.3,
+      "change": 17.9
+    },
+    {
+      "symbol": "NBCC",
+      "price": 88.6,
+      "trailing": 18.7,
+      "ewma": 21.8,
+      "forecast": 26.3,
+      "change": 21.1
+    },
+    {
+      "symbol": "ESCORTS",
+      "price": 2974.1,
+      "trailing": 19.4,
+      "ewma": 20.2,
       "forecast": 26.4,
-      "change": 4.2
+      "change": 30.4
+    },
+    {
+      "symbol": "SBICARD",
+      "price": 645.0,
+      "trailing": 26.5,
+      "ewma": 28.9,
+      "forecast": 26.4,
+      "change": -8.7
+    },
+    {
+      "symbol": "JIOFIN",
+      "price": 238.1,
+      "trailing": 24.1,
+      "ewma": 24.9,
+      "forecast": 26.5,
+      "change": 6.1
+    },
+    {
+      "symbol": "JSL",
+      "price": 705.0,
+      "trailing": 17.8,
+      "ewma": 19.9,
+      "forecast": 26.5,
+      "change": 33.2
+    },
+    {
+      "symbol": "TATACAP",
+      "price": 376.0,
+      "trailing": 22.9,
+      "ewma": 22.8,
+      "forecast": 26.5,
+      "change": 16.2
+    },
+    {
+      "symbol": "360ONE",
+      "price": 1204.0,
+      "trailing": 20.5,
+      "ewma": 23.2,
+      "forecast": 26.6,
+      "change": 14.5
     },
     {
       "symbol": "UPL",
-      "price": 589.3,
+      "price": 578.1,
       "trailing": 28.1,
-      "ewma": 25.8,
-      "forecast": 26.4,
-      "change": 2.3
+      "ewma": 26.1,
+      "forecast": 26.6,
+      "change": 1.8
     },
     {
-      "symbol": "PFC",
-      "price": 364.1,
-      "trailing": 31.2,
-      "ewma": 27.9,
-      "forecast": 26.4,
-      "change": -5.4
+      "symbol": "GRANULES",
+      "price": 832.3,
+      "trailing": 26.1,
+      "ewma": 24.0,
+      "forecast": 26.7,
+      "change": 11.1
+    },
+    {
+      "symbol": "ASTRAL",
+      "price": 1529.2,
+      "trailing": 35.8,
+      "ewma": 32.8,
+      "forecast": 26.7,
+      "change": -18.6
+    },
+    {
+      "symbol": "COLPAL",
+      "price": 1845.0,
+      "trailing": 20.8,
+      "ewma": 22.2,
+      "forecast": 26.7,
+      "change": 20.4
+    },
+    {
+      "symbol": "ICICIPRULI",
+      "price": 510.0,
+      "trailing": 17.7,
+      "ewma": 21.4,
+      "forecast": 26.7,
+      "change": 24.6
+    },
+    {
+      "symbol": "SOUTHBANK",
+      "price": 45.73,
+      "trailing": 15.9,
+      "ewma": 23.4,
+      "forecast": 26.7,
+      "change": 14.0
     },
     {
       "symbol": "CUMMINSIND",
-      "price": 5200.0,
-      "trailing": 20.7,
-      "ewma": 22.7,
-      "forecast": 26.4,
-      "change": 16.4
+      "price": 5190.0,
+      "trailing": 20.3,
+      "ewma": 22.0,
+      "forecast": 26.8,
+      "change": 21.4
+    },
+    {
+      "symbol": "DLF",
+      "price": 676.15,
+      "trailing": 24.1,
+      "ewma": 25.1,
+      "forecast": 26.8,
+      "change": 6.8
+    },
+    {
+      "symbol": "CDSL",
+      "price": 1410.8,
+      "trailing": 20.1,
+      "ewma": 24.7,
+      "forecast": 26.8,
+      "change": 8.6
+    },
+    {
+      "symbol": "PAGEIND",
+      "price": 35800.0,
+      "trailing": 27.9,
+      "ewma": 26.9,
+      "forecast": 26.8,
+      "change": -0.2
+    },
+    {
+      "symbol": "BOSCHLTD",
+      "price": 48780.0,
+      "trailing": 27.2,
+      "ewma": 25.3,
+      "forecast": 26.9,
+      "change": 6.2
+    },
+    {
+      "symbol": "INFY",
+      "price": 1110.8,
+      "trailing": 24.8,
+      "ewma": 28.0,
+      "forecast": 26.9,
+      "change": -3.8
+    },
+    {
+      "symbol": "ZYDUSLIFE",
+      "price": 1189.2,
+      "trailing": 33.7,
+      "ewma": 31.0,
+      "forecast": 26.9,
+      "change": -13.2
+    },
+    {
+      "symbol": "ITCHOTELS",
+      "price": 164.16,
+      "trailing": 18.4,
+      "ewma": 24.3,
+      "forecast": 27.0,
+      "change": 10.9
+    },
+    {
+      "symbol": "ICICIAMC",
+      "price": 3093.6,
+      "trailing": 31.1,
+      "ewma": 31.2,
+      "forecast": 27.0,
+      "change": -13.5
+    },
+    {
+      "symbol": "GLENMARK",
+      "price": 2460.0,
+      "trailing": 26.1,
+      "ewma": 26.5,
+      "forecast": 27.1,
+      "change": 2.2
+    },
+    {
+      "symbol": "ADANIENT",
+      "price": 3169.0,
+      "trailing": 19.7,
+      "ewma": 23.7,
+      "forecast": 27.1,
+      "change": 14.4
+    },
+    {
+      "symbol": "IRB",
+      "price": 19.32,
+      "trailing": 16.7,
+      "ewma": 20.9,
+      "forecast": 27.1,
+      "change": 29.8
+    },
+    {
+      "symbol": "ZFCVINDIA",
+      "price": 2570.5,
+      "trailing": 23.5,
+      "ewma": 24.6,
+      "forecast": 27.1,
+      "change": 10.1
+    },
+    {
+      "symbol": "INDIANB",
+      "price": 884.4,
+      "trailing": 17.6,
+      "ewma": 23.8,
+      "forecast": 27.1,
+      "change": 13.9
+    },
+    {
+      "symbol": "APLAPOLLO",
+      "price": 2188.0,
+      "trailing": 31.7,
+      "ewma": 25.3,
+      "forecast": 27.2,
+      "change": 7.2
+    },
+    {
+      "symbol": "TCS",
+      "price": 2248.4,
+      "trailing": 30.1,
+      "ewma": 29.2,
+      "forecast": 27.2,
+      "change": -7.0
+    },
+    {
+      "symbol": "LAURUSLABS",
+      "price": 1929.4,
+      "trailing": 23.5,
+      "ewma": 29.5,
+      "forecast": 27.2,
+      "change": -7.7
+    },
+    {
+      "symbol": "CCL",
+      "price": 1111.5,
+      "trailing": 19.6,
+      "ewma": 20.6,
+      "forecast": 27.2,
+      "change": 32.2
+    },
+    {
+      "symbol": "SWANCORP",
+      "price": 303.8,
+      "trailing": 13.0,
+      "ewma": 17.8,
+      "forecast": 27.2,
+      "change": 52.7
+    },
+    {
+      "symbol": "GMRAIRPORT",
+      "price": 98.68,
+      "trailing": 17.5,
+      "ewma": 18.7,
+      "forecast": 27.2,
+      "change": 45.3
+    },
+    {
+      "symbol": "CGPOWER",
+      "price": 897.9,
+      "trailing": 37.4,
+      "ewma": 34.3,
+      "forecast": 27.2,
+      "change": -20.5
+    },
+    {
+      "symbol": "OBEROIRLTY",
+      "price": 1872.9,
+      "trailing": 31.6,
+      "ewma": 28.0,
+      "forecast": 27.3,
+      "change": -2.6
+    },
+    {
+      "symbol": "TRANSRAILL",
+      "price": 458.5,
+      "trailing": 23.8,
+      "ewma": 24.2,
+      "forecast": 27.3,
+      "change": 12.9
+    },
+    {
+      "symbol": "RECLTD",
+      "price": 320.9,
+      "trailing": 27.2,
+      "ewma": 25.8,
+      "forecast": 27.3,
+      "change": 5.7
+    },
+    {
+      "symbol": "PETRONET",
+      "price": 290.95,
+      "trailing": 15.9,
+      "ewma": 18.6,
+      "forecast": 27.3,
+      "change": 46.8
+    },
+    {
+      "symbol": "RVNL",
+      "price": 216.0,
+      "trailing": 23.6,
+      "ewma": 23.2,
+      "forecast": 27.3,
+      "change": 17.6
+    },
+    {
+      "symbol": "SHAKTIPUMP",
+      "price": 497.4,
+      "trailing": 15.7,
+      "ewma": 23.4,
+      "forecast": 27.4,
+      "change": 17.0
+    },
+    {
+      "symbol": "TECHM",
+      "price": 1585.0,
+      "trailing": 13.6,
+      "ewma": 20.5,
+      "forecast": 27.4,
+      "change": 33.4
+    },
+    {
+      "symbol": "KAJARIACER",
+      "price": 1200.4,
+      "trailing": 21.7,
+      "ewma": 19.2,
+      "forecast": 27.4,
+      "change": 42.6
+    },
+    {
+      "symbol": "HUDCO",
+      "price": 182.63,
+      "trailing": 19.1,
+      "ewma": 22.0,
+      "forecast": 27.4,
+      "change": 24.6
     },
     {
       "symbol": "SHYAMMETL",
-      "price": 1040.5,
-      "trailing": 20.5,
-      "ewma": 24.6,
-      "forecast": 26.4,
-      "change": 7.6
+      "price": 1042.4,
+      "trailing": 20.4,
+      "ewma": 23.8,
+      "forecast": 27.5,
+      "change": 15.3
+    },
+    {
+      "symbol": "PREMIERENE",
+      "price": 1000.0,
+      "trailing": 33.1,
+      "ewma": 29.9,
+      "forecast": 27.6,
+      "change": -7.9
+    },
+    {
+      "symbol": "IPCALAB",
+      "price": 1959.8,
+      "trailing": 41.7,
+      "ewma": 36.5,
+      "forecast": 27.6,
+      "change": -24.4
+    },
+    {
+      "symbol": "TATAELXSI",
+      "price": 3633.2,
+      "trailing": 19.2,
+      "ewma": 24.4,
+      "forecast": 27.7,
+      "change": 13.5
+    },
+    {
+      "symbol": "ABB",
+      "price": 7490.0,
+      "trailing": 22.1,
+      "ewma": 24.0,
+      "forecast": 27.7,
+      "change": 15.6
+    },
+    {
+      "symbol": "PFC",
+      "price": 355.85,
+      "trailing": 30.4,
+      "ewma": 28.5,
+      "forecast": 27.7,
+      "change": -2.7
+    },
+    {
+      "symbol": "CAMS",
+      "price": 740.9,
+      "trailing": 16.7,
+      "ewma": 20.6,
+      "forecast": 27.8,
+      "change": 35.0
+    },
+    {
+      "symbol": "AUBANK",
+      "price": 1091.0,
+      "trailing": 22.5,
+      "ewma": 25.0,
+      "forecast": 27.8,
+      "change": 11.3
     },
     {
       "symbol": "IEX",
       "price": 122.0,
-      "trailing": 17.8,
-      "ewma": 22.3,
-      "forecast": 26.5,
-      "change": 18.6
-    },
-    {
-      "symbol": "GRANULES",
-      "price": 828.2,
-      "trailing": 26.0,
-      "ewma": 24.7,
-      "forecast": 26.6,
-      "change": 7.8
-    },
-    {
-      "symbol": "PETRONET",
-      "price": 289.0,
-      "trailing": 15.9,
-      "ewma": 19.0,
-      "forecast": 26.7,
-      "change": 40.2
-    },
-    {
-      "symbol": "TECHM",
-      "price": 1571.0,
-      "trailing": 13.4,
-      "ewma": 20.9,
-      "forecast": 26.7,
-      "change": 27.9
-    },
-    {
-      "symbol": "TORNTPOWER",
-      "price": 1258.4,
-      "trailing": 20.9,
-      "ewma": 22.3,
-      "forecast": 26.7,
-      "change": 19.5
-    },
-    {
-      "symbol": "TRANSRAILL",
-      "price": 462.25,
-      "trailing": 27.2,
-      "ewma": 24.7,
-      "forecast": 26.7,
-      "change": 8.0
-    },
-    {
-      "symbol": "JKCEMENT",
-      "price": 5277.0,
-      "trailing": 16.7,
-      "ewma": 20.4,
-      "forecast": 26.7,
-      "change": 30.9
-    },
-    {
-      "symbol": "360ONE",
-      "price": 1197.2,
-      "trailing": 22.6,
-      "ewma": 23.8,
-      "forecast": 26.7,
-      "change": 12.2
-    },
-    {
-      "symbol": "CDSL",
-      "price": 1434.0,
-      "trailing": 19.0,
-      "ewma": 24.6,
-      "forecast": 26.7,
-      "change": 8.6
-    },
-    {
-      "symbol": "OIL",
-      "price": 469.15,
-      "trailing": 24.5,
-      "ewma": 26.0,
-      "forecast": 26.8,
-      "change": 3.1
-    },
-    {
-      "symbol": "ZFCVINDIA",
-      "price": 2588.4,
-      "trailing": 23.2,
-      "ewma": 25.2,
-      "forecast": 26.8,
-      "change": 6.4
-    },
-    {
-      "symbol": "PAGEIND",
-      "price": 35155.0,
-      "trailing": 26.6,
-      "ewma": 26.7,
-      "forecast": 26.9,
-      "change": 0.5
-    },
-    {
-      "symbol": "KAJARIACER",
-      "price": 1209.5,
-      "trailing": 21.6,
-      "ewma": 19.6,
-      "forecast": 26.9,
-      "change": 37.4
-    },
-    {
-      "symbol": "CAMS",
-      "price": 746.0,
-      "trailing": 16.8,
-      "ewma": 21.0,
-      "forecast": 26.9,
-      "change": 28.0
-    },
-    {
-      "symbol": "PATANJALI",
-      "price": 348.15,
-      "trailing": 20.0,
-      "ewma": 27.7,
-      "forecast": 27.0,
-      "change": -2.7
-    },
-    {
-      "symbol": "OBEROIRLTY",
-      "price": 1870.0,
-      "trailing": 31.6,
-      "ewma": 28.9,
-      "forecast": 27.0,
-      "change": -6.4
-    },
-    {
-      "symbol": "IRCON",
-      "price": 124.05,
-      "trailing": 24.7,
-      "ewma": 22.8,
-      "forecast": 27.1,
-      "change": 18.8
-    },
-    {
-      "symbol": "CCL",
-      "price": 1095.2,
-      "trailing": 19.0,
-      "ewma": 20.4,
-      "forecast": 27.1,
-      "change": 33.4
-    },
-    {
-      "symbol": "HCLTECH",
-      "price": 1298.5,
-      "trailing": 21.7,
-      "ewma": 26.0,
-      "forecast": 27.2,
-      "change": 4.8
-    },
-    {
-      "symbol": "TATAELXSI",
-      "price": 3650.0,
-      "trailing": 21.1,
-      "ewma": 25.1,
-      "forecast": 27.4,
-      "change": 9.5
-    },
-    {
-      "symbol": "ADANIENT",
-      "price": 3112.0,
-      "trailing": 18.9,
-      "ewma": 23.3,
-      "forecast": 27.5,
-      "change": 18.3
-    },
-    {
-      "symbol": "GLENMARK",
-      "price": 2438.3,
-      "trailing": 28.3,
-      "ewma": 27.1,
-      "forecast": 27.6,
-      "change": 1.8
-    },
-    {
-      "symbol": "IPCALAB",
-      "price": 1952.4,
-      "trailing": 41.9,
-      "ewma": 37.6,
-      "forecast": 27.6,
-      "change": -26.8
-    },
-    {
-      "symbol": "AVANTEL",
-      "price": 156.94,
-      "trailing": 18.3,
-      "ewma": 24.2,
-      "forecast": 27.6,
-      "change": 14.1
-    },
-    {
-      "symbol": "PREMIERENE",
-      "price": 1005.0,
-      "trailing": 33.8,
-      "ewma": 30.8,
-      "forecast": 27.6,
-      "change": -10.5
-    },
-    {
-      "symbol": "VBL",
-      "price": 421.25,
-      "trailing": 28.2,
-      "ewma": 31.0,
-      "forecast": 27.6,
-      "change": -11.0
-    },
-    {
-      "symbol": "BOSCHLTD",
-      "price": 48895.0,
-      "trailing": 27.4,
-      "ewma": 26.1,
-      "forecast": 27.6,
-      "change": 5.8
-    },
-    {
-      "symbol": "PIIND",
-      "price": 2508.3,
-      "trailing": 35.0,
-      "ewma": 31.6,
-      "forecast": 27.6,
-      "change": -12.6
-    },
-    {
-      "symbol": "ATGL",
-      "price": 643.7,
-      "trailing": 18.3,
-      "ewma": 23.3,
-      "forecast": 27.7,
-      "change": 18.8
-    },
-    {
-      "symbol": "CROMPTON",
-      "price": 238.25,
-      "trailing": 41.3,
-      "ewma": 32.6,
-      "forecast": 27.7,
-      "change": -15.0
-    },
-    {
-      "symbol": "ICICIAMC",
-      "price": 3222.8,
-      "trailing": 27.5,
-      "ewma": 27.9,
-      "forecast": 27.7,
-      "change": -0.6
-    },
-    {
-      "symbol": "RECLTD",
-      "price": 322.2,
-      "trailing": 28.3,
-      "ewma": 26.6,
-      "forecast": 27.7,
-      "change": 4.1
-    },
-    {
-      "symbol": "DALBHARAT",
-      "price": 1898.0,
-      "trailing": 22.3,
-      "ewma": 25.4,
-      "forecast": 27.8,
-      "change": 9.3
-    },
-    {
-      "symbol": "KIMS",
-      "price": 756.1,
-      "trailing": 20.6,
-      "ewma": 21.7,
+      "trailing": 16.4,
+      "ewma": 21.6,
       "forecast": 27.9,
-      "change": 28.8
+      "change": 28.7
     },
     {
       "symbol": "ABCAPITAL",
       "price": 410.0,
-      "trailing": 28.9,
-      "ewma": 27.7,
-      "forecast": 28.0,
-      "change": 0.9
-    },
-    {
-      "symbol": "AJANTPHARM",
-      "price": 3551.8,
-      "trailing": 18.3,
-      "ewma": 21.5,
-      "forecast": 28.0,
-      "change": 30.2
-    },
-    {
-      "symbol": "SONACOMS",
-      "price": 795.0,
-      "trailing": 32.4,
-      "ewma": 27.5,
-      "forecast": 28.1,
-      "change": 2.0
-    },
-    {
-      "symbol": "SHRIRAMFIN",
-      "price": 1117.5,
-      "trailing": 27.8,
-      "ewma": 28.0,
-      "forecast": 28.2,
-      "change": 0.7
-    },
-    {
-      "symbol": "COROMANDEL",
-      "price": 1949.7,
-      "trailing": 20.7,
-      "ewma": 24.2,
-      "forecast": 28.2,
-      "change": 16.5
-    },
-    {
-      "symbol": "RAILTEL",
-      "price": 280.9,
-      "trailing": 27.1,
-      "ewma": 26.0,
-      "forecast": 28.3,
-      "change": 8.8
-    },
-    {
-      "symbol": "GMRAIRPORT",
-      "price": 98.85,
-      "trailing": 17.6,
-      "ewma": 19.3,
-      "forecast": 28.4,
-      "change": 47.1
-    },
-    {
-      "symbol": "ENDURANCE",
-      "price": 2986.0,
-      "trailing": 23.6,
-      "ewma": 24.1,
-      "forecast": 28.4,
-      "change": 17.8
-    },
-    {
-      "symbol": "VMM",
-      "price": 109.62,
-      "trailing": 41.4,
-      "ewma": 42.3,
-      "forecast": 28.5,
-      "change": -32.6
-    },
-    {
-      "symbol": "EMCURE",
-      "price": 1862.3,
-      "trailing": 23.1,
-      "ewma": 24.2,
-      "forecast": 28.5,
-      "change": 17.8
-    },
-    {
-      "symbol": "ABB",
-      "price": 7609.0,
-      "trailing": 21.3,
-      "ewma": 23.9,
-      "forecast": 28.5,
-      "change": 19.1
-    },
-    {
-      "symbol": "ASTERDM",
-      "price": 762.1,
-      "trailing": 27.0,
-      "ewma": 27.1,
-      "forecast": 28.5,
-      "change": 5.1
-    },
-    {
-      "symbol": "CHOLAFIN",
-      "price": 1868.1,
-      "trailing": 30.7,
-      "ewma": 28.1,
-      "forecast": 28.5,
-      "change": 1.6
-    },
-    {
-      "symbol": "TATACHEM",
-      "price": 637.65,
-      "trailing": 16.1,
-      "ewma": 20.5,
-      "forecast": 28.5,
-      "change": 39.2
-    },
-    {
-      "symbol": "BHARATFORG",
-      "price": 2005.0,
-      "trailing": 32.5,
-      "ewma": 28.8,
-      "forecast": 28.5,
-      "change": -0.9
-    },
-    {
-      "symbol": "KEC",
-      "price": 430.15,
-      "trailing": 28.0,
-      "ewma": 27.5,
-      "forecast": 28.6,
+      "trailing": 28.4,
+      "ewma": 26.9,
+      "forecast": 27.9,
       "change": 3.8
     },
     {
-      "symbol": "PNBHOUSING",
-      "price": 1185.0,
-      "trailing": 25.8,
-      "ewma": 23.6,
-      "forecast": 28.6,
-      "change": 21.3
+      "symbol": "HDFCAMC",
+      "price": 2575.0,
+      "trailing": 25.4,
+      "ewma": 29.0,
+      "forecast": 27.9,
+      "change": -3.9
     },
     {
-      "symbol": "LGEINDIA",
-      "price": 1675.4,
-      "trailing": 44.1,
-      "ewma": 38.4,
-      "forecast": 28.6,
-      "change": -25.5
+      "symbol": "JKCEMENT",
+      "price": 5233.5,
+      "trailing": 16.8,
+      "ewma": 20.1,
+      "forecast": 28.0,
+      "change": 39.6
     },
     {
-      "symbol": "SIEMENS",
-      "price": 4043.0,
-      "trailing": 28.3,
-      "ewma": 27.4,
-      "forecast": 28.6,
-      "change": 4.4
+      "symbol": "OIL",
+      "price": 469.85,
+      "trailing": 24.5,
+      "ewma": 25.2,
+      "forecast": 28.0,
+      "change": 11.3
     },
     {
-      "symbol": "NCC",
-      "price": 147.2,
-      "trailing": 31.6,
-      "ewma": 32.4,
-      "forecast": 28.6,
-      "change": -11.5
+      "symbol": "KIMS",
+      "price": 768.45,
+      "trailing": 21.6,
+      "ewma": 22.0,
+      "forecast": 28.1,
+      "change": 28.0
     },
     {
-      "symbol": "MPHASIS",
-      "price": 2400.0,
-      "trailing": 26.9,
-      "ewma": 28.3,
-      "forecast": 28.7,
-      "change": 1.6
+      "symbol": "VMM",
+      "price": 108.0,
+      "trailing": 41.5,
+      "ewma": 41.4,
+      "forecast": 28.2,
+      "change": -31.9
     },
     {
-      "symbol": "LALPATHLAB",
-      "price": 1937.3,
-      "trailing": 23.2,
-      "ewma": 24.4,
-      "forecast": 28.8,
-      "change": 17.9
-    },
-    {
-      "symbol": "ETERNAL",
-      "price": 327.0,
-      "trailing": 22.8,
-      "ewma": 27.3,
-      "forecast": 28.8,
-      "change": 5.7
-    },
-    {
-      "symbol": "POLICYBZR",
-      "price": 1840.0,
-      "trailing": 30.1,
-      "ewma": 29.6,
-      "forecast": 29.0,
-      "change": -1.9
-    },
-    {
-      "symbol": "PVRINOX",
-      "price": 1255.3,
-      "trailing": 23.2,
-      "ewma": 26.9,
-      "forecast": 29.1,
-      "change": 8.2
-    },
-    {
-      "symbol": "BSE",
-      "price": 3325.6,
-      "trailing": 32.4,
-      "ewma": 29.1,
-      "forecast": 29.1,
-      "change": -0.1
-    },
-    {
-      "symbol": "CEATLTD",
-      "price": 3584.3,
-      "trailing": 23.9,
-      "ewma": 28.0,
-      "forecast": 29.1,
-      "change": 4.2
-    },
-    {
-      "symbol": "JWL",
-      "price": 246.85,
-      "trailing": 25.8,
-      "ewma": 21.3,
-      "forecast": 29.2,
-      "change": 37.2
-    },
-    {
-      "symbol": "BHARATCOAL",
-      "price": 34.43,
-      "trailing": 20.1,
-      "ewma": 29.2,
-      "forecast": 29.2,
-      "change": 0.0
-    },
-    {
-      "symbol": "ANTHEM",
-      "price": 923.05,
-      "trailing": 30.6,
-      "ewma": 32.0,
-      "forecast": 29.4,
-      "change": -8.3
-    },
-    {
-      "symbol": "DEEPAKNTR",
-      "price": 1776.7,
-      "trailing": 26.7,
-      "ewma": 26.3,
-      "forecast": 29.4,
-      "change": 11.7
-    },
-    {
-      "symbol": "BHEL",
-      "price": 415.5,
-      "trailing": 24.7,
-      "ewma": 28.4,
-      "forecast": 29.4,
-      "change": 3.4
-    },
-    {
-      "symbol": "GODREJPROP",
-      "price": 2035.1,
-      "trailing": 28.2,
-      "ewma": 29.2,
-      "forecast": 29.4,
-      "change": 0.6
-    },
-    {
-      "symbol": "SYNGENE",
-      "price": 411.15,
-      "trailing": 31.6,
-      "ewma": 27.2,
-      "forecast": 29.4,
-      "change": 8.2
-    },
-    {
-      "symbol": "COCHINSHIP",
-      "price": 1547.0,
-      "trailing": 24.4,
-      "ewma": 26.1,
-      "forecast": 29.4,
+      "symbol": "DALBHARAT",
+      "price": 1876.2,
+      "trailing": 22.7,
+      "ewma": 25.0,
+      "forecast": 28.2,
       "change": 12.8
     },
     {
-      "symbol": "AWL",
-      "price": 201.9,
-      "trailing": 22.6,
-      "ewma": 24.9,
-      "forecast": 29.5,
-      "change": 18.3
-    },
-    {
-      "symbol": "PIRAMALFIN",
-      "price": 2221.4,
-      "trailing": 24.0,
-      "ewma": 25.7,
-      "forecast": 29.5,
-      "change": 14.8
-    },
-    {
-      "symbol": "MAZDOCK",
-      "price": 2625.0,
-      "trailing": 26.6,
-      "ewma": 25.2,
-      "forecast": 29.5,
-      "change": 16.9
-    },
-    {
-      "symbol": "LENSKART",
-      "price": 647.15,
-      "trailing": 21.6,
-      "ewma": 24.9,
-      "forecast": 29.6,
-      "change": 18.7
-    },
-    {
-      "symbol": "UNIONBANK",
-      "price": 187.52,
-      "trailing": 20.9,
-      "ewma": 25.7,
-      "forecast": 29.6,
-      "change": 15.2
-    },
-    {
-      "symbol": "INTELLECT",
-      "price": 684.0,
-      "trailing": 25.8,
-      "ewma": 25.1,
-      "forecast": 29.6,
-      "change": 17.8
-    },
-    {
-      "symbol": "BANDHANBNK",
-      "price": 173.5,
-      "trailing": 21.8,
-      "ewma": 40.2,
-      "forecast": 29.6,
-      "change": -26.3
-    },
-    {
-      "symbol": "VOLTAS",
-      "price": 1217.0,
-      "trailing": 24.5,
-      "ewma": 26.1,
-      "forecast": 29.7,
-      "change": 13.6
-    },
-    {
-      "symbol": "POONAWALLA",
-      "price": 472.65,
-      "trailing": 29.9,
-      "ewma": 28.2,
-      "forecast": 29.7,
-      "change": 5.4
-    },
-    {
-      "symbol": "TATACOMM",
-      "price": 1649.3,
-      "trailing": 21.2,
-      "ewma": 25.0,
-      "forecast": 29.7,
-      "change": 18.8
-    },
-    {
-      "symbol": "SIGNATURE",
-      "price": 773.65,
-      "trailing": 22.8,
-      "ewma": 27.5,
-      "forecast": 29.8,
-      "change": 8.2
-    },
-    {
-      "symbol": "SBC",
-      "price": 40.13,
-      "trailing": 21.5,
-      "ewma": 23.0,
-      "forecast": 29.8,
-      "change": 29.8
-    },
-    {
-      "symbol": "LTM",
-      "price": 4460.0,
-      "trailing": 37.5,
-      "ewma": 32.5,
-      "forecast": 29.8,
-      "change": -8.2
-    },
-    {
-      "symbol": "BLUESTARCO",
-      "price": 1485.0,
-      "trailing": 30.2,
-      "ewma": 27.0,
-      "forecast": 29.9,
-      "change": 10.6
-    },
-    {
-      "symbol": "MSUMI",
-      "price": 37.67,
-      "trailing": 26.7,
-      "ewma": 28.4,
-      "forecast": 29.9,
-      "change": 5.4
-    },
-    {
-      "symbol": "ABSLAMC",
-      "price": 1033.5,
-      "trailing": 22.0,
-      "ewma": 29.9,
-      "forecast": 29.9,
-      "change": 0.0
-    },
-    {
-      "symbol": "NLCINDIA",
-      "price": 271.4,
-      "trailing": 29.9,
-      "ewma": 29.6,
-      "forecast": 30.0,
-      "change": 1.2
-    },
-    {
-      "symbol": "ARE&M",
-      "price": 920.75,
-      "trailing": 37.3,
-      "ewma": 31.8,
-      "forecast": 30.1,
-      "change": -5.4
-    },
-    {
-      "symbol": "TRENT",
-      "price": 2908.2,
-      "trailing": 20.5,
-      "ewma": 33.3,
-      "forecast": 30.1,
-      "change": -9.6
-    },
-    {
-      "symbol": "MOSCHIP",
-      "price": 205.54,
-      "trailing": 24.9,
-      "ewma": 35.6,
-      "forecast": 30.1,
-      "change": -15.3
-    },
-    {
-      "symbol": "AMBER",
-      "price": 7466.0,
-      "trailing": 24.9,
-      "ewma": 25.5,
-      "forecast": 30.2,
-      "change": 18.3
-    },
-    {
-      "symbol": "SAILIFE",
-      "price": 1461.0,
-      "trailing": 30.0,
-      "ewma": 30.1,
-      "forecast": 30.2,
-      "change": 0.2
-    },
-    {
-      "symbol": "KARURVYSYA",
-      "price": 354.35,
-      "trailing": 18.9,
-      "ewma": 32.2,
-      "forecast": 30.2,
-      "change": -6.2
-    },
-    {
-      "symbol": "SUZLON",
-      "price": 46.94,
-      "trailing": 21.0,
-      "ewma": 29.8,
-      "forecast": 30.2,
-      "change": 1.6
-    },
-    {
-      "symbol": "KEI",
-      "price": 5540.0,
-      "trailing": 41.2,
-      "ewma": 34.1,
-      "forecast": 30.3,
-      "change": -11.1
-    },
-    {
-      "symbol": "HONASA",
-      "price": 475.5,
-      "trailing": 31.4,
-      "ewma": 30.6,
-      "forecast": 30.3,
-      "change": -0.9
-    },
-    {
-      "symbol": "NAM-INDIA",
-      "price": 1223.0,
-      "trailing": 28.2,
-      "ewma": 30.6,
-      "forecast": 30.3,
-      "change": -1.0
-    },
-    {
-      "symbol": "JKTYRE",
-      "price": 383.55,
-      "trailing": 25.1,
-      "ewma": 26.9,
-      "forecast": 30.3,
-      "change": 12.7
-    },
-    {
-      "symbol": "MAHABANK",
-      "price": 85.6,
-      "trailing": 25.6,
-      "ewma": 30.4,
-      "forecast": 30.4,
-      "change": 0.0
-    },
-    {
-      "symbol": "JBMA",
-      "price": 653.4,
-      "trailing": 36.7,
-      "ewma": 36.9,
-      "forecast": 30.4,
-      "change": -17.8
-    },
-    {
-      "symbol": "TIINDIA",
-      "price": 2860.0,
-      "trailing": 36.9,
-      "ewma": 34.7,
-      "forecast": 30.4,
-      "change": -12.4
-    },
-    {
-      "symbol": "MGL",
-      "price": 1115.3,
-      "trailing": 21.1,
-      "ewma": 23.3,
-      "forecast": 30.5,
-      "change": 30.7
-    },
-    {
-      "symbol": "MOTHERSON",
-      "price": 165.0,
-      "trailing": 36.6,
-      "ewma": 30.4,
-      "forecast": 30.5,
-      "change": 0.3
-    },
-    {
-      "symbol": "PRESTIGE",
-      "price": 1615.1,
-      "trailing": 29.9,
-      "ewma": 29.0,
-      "forecast": 30.5,
-      "change": 5.1
-    },
-    {
-      "symbol": "NAUKRI",
-      "price": 1323.5,
-      "trailing": 33.7,
-      "ewma": 34.6,
-      "forecast": 30.6,
-      "change": -11.8
-    },
-    {
-      "symbol": "BALKRISIND",
-      "price": 2328.6,
-      "trailing": 50.7,
-      "ewma": 37.7,
-      "forecast": 30.6,
-      "change": -18.7
-    },
-    {
-      "symbol": "SOLARINDS",
-      "price": 20097.0,
-      "trailing": 34.5,
-      "ewma": 33.4,
-      "forecast": 30.7,
-      "change": -8.1
-    },
-    {
-      "symbol": "MUTHOOTFIN",
-      "price": 3206.9,
-      "trailing": 40.6,
-      "ewma": 37.4,
-      "forecast": 30.7,
-      "change": -17.9
-    },
-    {
-      "symbol": "MANAPPURAM",
-      "price": 365.4,
-      "trailing": 26.3,
-      "ewma": 28.4,
-      "forecast": 30.7,
-      "change": 8.2
-    },
-    {
-      "symbol": "GRSE",
-      "price": 2630.3,
-      "trailing": 22.5,
-      "ewma": 23.6,
-      "forecast": 30.8,
-      "change": 30.1
-    },
-    {
-      "symbol": "HBLENGINE",
-      "price": 683.9,
-      "trailing": 34.7,
-      "ewma": 33.5,
-      "forecast": 30.9,
-      "change": -8.0
-    },
-    {
-      "symbol": "APTUS",
-      "price": 258.5,
-      "trailing": 28.6,
-      "ewma": 27.0,
-      "forecast": 30.9,
-      "change": 14.6
-    },
-    {
-      "symbol": "JSWINFRA",
-      "price": 344.95,
-      "trailing": 28.2,
-      "ewma": 29.3,
-      "forecast": 31.2,
-      "change": 6.4
-    },
-    {
-      "symbol": "NAVINFLUOR",
-      "price": 8553.0,
-      "trailing": 55.2,
-      "ewma": 44.9,
-      "forecast": 31.2,
-      "change": -30.5
-    },
-    {
-      "symbol": "TITAGARH",
-      "price": 825.4,
-      "trailing": 27.4,
-      "ewma": 26.8,
-      "forecast": 31.3,
-      "change": 16.8
-    },
-    {
-      "symbol": "ABFRL",
-      "price": 54.52,
-      "trailing": 31.6,
-      "ewma": 27.9,
-      "forecast": 31.3,
-      "change": 12.2
-    },
-    {
-      "symbol": "FLUOROCHEM",
-      "price": 4732.1,
-      "trailing": 31.5,
-      "ewma": 30.6,
-      "forecast": 31.3,
-      "change": 2.5
-    },
-    {
-      "symbol": "EXIDEIND",
-      "price": 444.0,
-      "trailing": 29.9,
-      "ewma": 28.2,
-      "forecast": 31.3,
-      "change": 11.2
-    },
-    {
-      "symbol": "GPIL",
-      "price": 245.83,
-      "trailing": 41.8,
-      "ewma": 37.5,
-      "forecast": 31.4,
-      "change": -16.3
-    },
-    {
-      "symbol": "SWSOLAR",
-      "price": 200.12,
-      "trailing": 23.7,
-      "ewma": 29.5,
-      "forecast": 31.4,
-      "change": 6.6
-    },
-    {
-      "symbol": "COFORGE",
-      "price": 1880.0,
-      "trailing": 24.5,
-      "ewma": 35.8,
-      "forecast": 31.5,
-      "change": -12.0
-    },
-    {
-      "symbol": "TMCV",
-      "price": 483.75,
-      "trailing": 28.9,
-      "ewma": 27.4,
-      "forecast": 31.5,
-      "change": 15.2
-    },
-    {
-      "symbol": "ASHOKLEY",
-      "price": 179.05,
-      "trailing": 33.0,
-      "ewma": 31.2,
-      "forecast": 31.5,
-      "change": 1.2
-    },
-    {
-      "symbol": "OFSS",
-      "price": 11800.0,
-      "trailing": 24.9,
-      "ewma": 29.4,
-      "forecast": 31.6,
-      "change": 7.6
-    },
-    {
-      "symbol": "TENNIND",
-      "price": 539.6,
-      "trailing": 31.9,
-      "ewma": 30.5,
-      "forecast": 31.7,
-      "change": 3.9
-    },
-    {
-      "symbol": "LTF",
-      "price": 322.2,
-      "trailing": 27.0,
-      "ewma": 29.0,
-      "forecast": 31.7,
-      "change": 9.3
-    },
-    {
-      "symbol": "NATIONALUM",
-      "price": 399.3,
-      "trailing": 47.6,
-      "ewma": 43.9,
-      "forecast": 31.7,
-      "change": -27.6
-    },
-    {
-      "symbol": "BELRISE",
-      "price": 229.66,
-      "trailing": 34.7,
-      "ewma": 34.0,
-      "forecast": 31.8,
-      "change": -6.6
-    },
-    {
-      "symbol": "CRAFTSMAN",
-      "price": 10539.0,
-      "trailing": 38.0,
-      "ewma": 31.2,
-      "forecast": 31.8,
-      "change": 1.7
-    },
-    {
-      "symbol": "INOXWIND",
-      "price": 73.2,
-      "trailing": 38.3,
-      "ewma": 35.6,
-      "forecast": 31.8,
-      "change": -10.7
-    },
-    {
-      "symbol": "LTTS",
-      "price": 3543.2,
-      "trailing": 21.6,
-      "ewma": 26.8,
-      "forecast": 31.8,
-      "change": 18.8
-    },
-    {
-      "symbol": "LLOYDSME",
-      "price": 1845.7,
-      "trailing": 30.7,
-      "ewma": 29.9,
-      "forecast": 31.8,
-      "change": 6.5
-    },
-    {
-      "symbol": "NATCOPHARM",
-      "price": 863.4,
-      "trailing": 27.3,
-      "ewma": 28.5,
-      "forecast": 31.9,
-      "change": 11.7
-    },
-    {
-      "symbol": "RELIGARE",
-      "price": 227.85,
-      "trailing": 40.6,
-      "ewma": 34.9,
-      "forecast": 31.9,
-      "change": -8.8
-    },
-    {
-      "symbol": "SAGILITY",
-      "price": 44.0,
-      "trailing": 29.6,
-      "ewma": 28.7,
-      "forecast": 31.9,
-      "change": 11.0
-    },
-    {
-      "symbol": "GROWW",
-      "price": 196.24,
-      "trailing": 27.1,
-      "ewma": 32.9,
-      "forecast": 31.9,
-      "change": -2.8
-    },
-    {
-      "symbol": "BDL",
-      "price": 1363.0,
-      "trailing": 30.5,
-      "ewma": 29.9,
-      "forecast": 32.0,
-      "change": 7.0
-    },
-    {
-      "symbol": "ADANIENSOL",
-      "price": 1570.5,
-      "trailing": 22.3,
-      "ewma": 26.2,
-      "forecast": 32.1,
-      "change": 22.3
-    },
-    {
-      "symbol": "HINDZINC",
-      "price": 626.5,
-      "trailing": 38.9,
-      "ewma": 38.7,
-      "forecast": 32.3,
-      "change": -16.5
-    },
-    {
-      "symbol": "POWERINDIA",
-      "price": 33125.0,
-      "trailing": 47.0,
-      "ewma": 43.0,
-      "forecast": 32.3,
-      "change": -24.8
-    },
-    {
-      "symbol": "IKS",
-      "price": 1741.4,
-      "trailing": 34.8,
-      "ewma": 32.8,
-      "forecast": 32.4,
-      "change": -1.1
-    },
-    {
-      "symbol": "CHOLAHLDNG",
-      "price": 1559.4,
-      "trailing": 28.3,
-      "ewma": 25.2,
-      "forecast": 32.5,
-      "change": 28.8
-    },
-    {
-      "symbol": "PERSISTENT",
-      "price": 5590.5,
-      "trailing": 18.4,
-      "ewma": 28.2,
-      "forecast": 32.5,
-      "change": 15.5
-    },
-    {
-      "symbol": "ACE",
-      "price": 1159.0,
-      "trailing": 38.0,
-      "ewma": 38.2,
-      "forecast": 32.6,
-      "change": -14.8
-    },
-    {
-      "symbol": "GLAND",
-      "price": 2903.2,
-      "trailing": 43.4,
-      "ewma": 39.3,
-      "forecast": 32.6,
-      "change": -16.9
-    },
-    {
-      "symbol": "KPITTECH",
-      "price": 590.0,
-      "trailing": 41.3,
-      "ewma": 38.3,
-      "forecast": 32.7,
-      "change": -14.7
-    },
-    {
-      "symbol": "ADANIGREEN",
-      "price": 1303.2,
-      "trailing": 20.3,
-      "ewma": 27.9,
-      "forecast": 32.7,
+      "symbol": "ADANIPOWER",
+      "price": 215.0,
+      "trailing": 18.7,
+      "ewma": 24.1,
+      "forecast": 28.3,
       "change": 17.1
     },
     {
-      "symbol": "VEDL",
-      "price": 286.5,
+      "symbol": "HCLTECH",
+      "price": 1282.0,
+      "trailing": 20.8,
+      "ewma": 25.7,
+      "forecast": 28.4,
+      "change": 10.6
+    },
+    {
+      "symbol": "SUNDARMFIN",
+      "price": 4636.9,
+      "trailing": 29.0,
+      "ewma": 25.6,
+      "forecast": 28.4,
+      "change": 11.1
+    },
+    {
+      "symbol": "CHOLAFIN",
+      "price": 1875.4,
+      "trailing": 29.3,
+      "ewma": 27.3,
+      "forecast": 28.5,
+      "change": 4.5
+    },
+    {
+      "symbol": "AJANTPHARM",
+      "price": 3543.6,
+      "trailing": 17.8,
+      "ewma": 20.9,
+      "forecast": 28.5,
+      "change": 36.8
+    },
+    {
+      "symbol": "DELHIVERY",
+      "price": 466.0,
+      "trailing": 26.9,
+      "ewma": 27.2,
+      "forecast": 28.5,
+      "change": 4.8
+    },
+    {
+      "symbol": "PIIND",
+      "price": 2467.0,
+      "trailing": 34.4,
+      "ewma": 31.3,
+      "forecast": 28.5,
+      "change": -8.9
+    },
+    {
+      "symbol": "VBL",
+      "price": 418.75,
+      "trailing": 24.0,
+      "ewma": 30.2,
+      "forecast": 28.6,
+      "change": -5.2
+    },
+    {
+      "symbol": "ENDURANCE",
+      "price": 2944.8,
+      "trailing": 22.8,
+      "ewma": 24.0,
+      "forecast": 28.6,
+      "change": 19.1
+    },
+    {
+      "symbol": "BHARATFORG",
+      "price": 2050.0,
+      "trailing": 33.7,
+      "ewma": 29.3,
+      "forecast": 28.6,
+      "change": -2.2
+    },
+    {
+      "symbol": "SONACOMS",
+      "price": 819.0,
+      "trailing": 33.4,
+      "ewma": 29.2,
+      "forecast": 28.7,
+      "change": -1.6
+    },
+    {
+      "symbol": "PATANJALI",
+      "price": 348.25,
+      "trailing": 13.5,
+      "ewma": 26.9,
+      "forecast": 28.8,
+      "change": 7.2
+    },
+    {
+      "symbol": "TORNTPOWER",
+      "price": 1230.1,
+      "trailing": 21.5,
+      "ewma": 23.4,
+      "forecast": 28.9,
+      "change": 23.5
+    },
+    {
+      "symbol": "IRCON",
+      "price": 123.04,
+      "trailing": 24.0,
+      "ewma": 22.3,
+      "forecast": 28.9,
+      "change": 29.4
+    },
+    {
+      "symbol": "TATACHEM",
+      "price": 644.15,
+      "trailing": 16.3,
+      "ewma": 20.3,
+      "forecast": 29.0,
+      "change": 42.8
+    },
+    {
+      "symbol": "EMCURE",
+      "price": 1878.4,
+      "trailing": 23.2,
+      "ewma": 23.7,
+      "forecast": 29.0,
+      "change": 22.5
+    },
+    {
+      "symbol": "COROMANDEL",
+      "price": 1928.4,
+      "trailing": 20.8,
+      "ewma": 23.8,
+      "forecast": 29.0,
+      "change": 21.8
+    },
+    {
+      "symbol": "PVRINOX",
+      "price": 1236.3,
+      "trailing": 23.7,
+      "ewma": 26.7,
+      "forecast": 29.1,
+      "change": 8.8
+    },
+    {
+      "symbol": "ATGL",
+      "price": 645.35,
+      "trailing": 17.4,
+      "ewma": 22.6,
+      "forecast": 29.1,
+      "change": 29.0
+    },
+    {
+      "symbol": "BSE",
+      "price": 3328.0,
       "trailing": 31.1,
-      "ewma": 33.6,
-      "forecast": 32.7,
-      "change": -2.6
+      "ewma": 28.2,
+      "forecast": 29.2,
+      "change": 3.3
     },
     {
-      "symbol": "SCI",
-      "price": 288.5,
-      "trailing": 29.9,
-      "ewma": 29.0,
-      "forecast": 32.7,
-      "change": 12.8
+      "symbol": "CONCOR",
+      "price": 493.05,
+      "trailing": 25.9,
+      "ewma": 31.7,
+      "forecast": 29.2,
+      "change": -8.0
     },
     {
-      "symbol": "NAZARA",
-      "price": 356.35,
-      "trailing": 38.9,
-      "ewma": 31.2,
-      "forecast": 32.8,
-      "change": 5.0
+      "symbol": "AVANTEL",
+      "price": 158.05,
+      "trailing": 18.1,
+      "ewma": 23.6,
+      "forecast": 29.3,
+      "change": 24.1
     },
     {
-      "symbol": "KTKBANK",
-      "price": 337.7,
-      "trailing": 31.0,
-      "ewma": 32.1,
-      "forecast": 32.9,
-      "change": 2.4
-    },
-    {
-      "symbol": "KFINTECH",
-      "price": 976.5,
-      "trailing": 22.9,
-      "ewma": 32.4,
-      "forecast": 32.9,
-      "change": 1.4
-    },
-    {
-      "symbol": "KPRMILL",
-      "price": 1136.0,
-      "trailing": 25.0,
+      "symbol": "CROMPTON",
+      "price": 237.9,
+      "trailing": 32.7,
       "ewma": 31.6,
-      "forecast": 33.0,
+      "forecast": 29.3,
+      "change": -7.3
+    },
+    {
+      "symbol": "PIRAMALFIN",
+      "price": 2228.7,
+      "trailing": 23.5,
+      "ewma": 24.9,
+      "forecast": 29.3,
+      "change": 17.5
+    },
+    {
+      "symbol": "ETERNAL",
+      "price": 328.5,
+      "trailing": 22.6,
+      "ewma": 26.5,
+      "forecast": 29.3,
+      "change": 10.5
+    },
+    {
+      "symbol": "MPHASIS",
+      "price": 2413.6,
+      "trailing": 25.8,
+      "ewma": 27.5,
+      "forecast": 29.3,
+      "change": 6.7
+    },
+    {
+      "symbol": "LGEINDIA",
+      "price": 1700.4,
+      "trailing": 44.2,
+      "ewma": 37.7,
+      "forecast": 29.4,
+      "change": -22.1
+    },
+    {
+      "symbol": "SHRIRAMFIN",
+      "price": 1101.0,
+      "trailing": 28.5,
+      "ewma": 27.7,
+      "forecast": 29.4,
+      "change": 6.1
+    },
+    {
+      "symbol": "LALPATHLAB",
+      "price": 1936.4,
+      "trailing": 18.3,
+      "ewma": 23.7,
+      "forecast": 29.4,
+      "change": 24.2
+    },
+    {
+      "symbol": "MSUMI",
+      "price": 37.92,
+      "trailing": 27.0,
+      "ewma": 27.6,
+      "forecast": 29.4,
+      "change": 6.4
+    },
+    {
+      "symbol": "SIEMENS",
+      "price": 4095.0,
+      "trailing": 28.0,
+      "ewma": 27.1,
+      "forecast": 29.4,
+      "change": 8.7
+    },
+    {
+      "symbol": "RAILTEL",
+      "price": 279.05,
+      "trailing": 25.5,
+      "ewma": 25.4,
+      "forecast": 29.5,
+      "change": 16.1
+    },
+    {
+      "symbol": "SUZLON",
+      "price": 46.81,
+      "trailing": 20.7,
+      "ewma": 28.9,
+      "forecast": 29.5,
+      "change": 2.1
+    },
+    {
+      "symbol": "JWL",
+      "price": 247.0,
+      "trailing": 16.2,
+      "ewma": 20.6,
+      "forecast": 29.5,
+      "change": 43.0
+    },
+    {
+      "symbol": "BANDHANBNK",
+      "price": 169.7,
+      "trailing": 21.0,
+      "ewma": 39.9,
+      "forecast": 29.5,
+      "change": -25.9
+    },
+    {
+      "symbol": "POLICYBZR",
+      "price": 1837.9,
+      "trailing": 30.0,
+      "ewma": 28.7,
+      "forecast": 29.5,
+      "change": 3.0
+    },
+    {
+      "symbol": "MAZDOCK",
+      "price": 2588.0,
+      "trailing": 27.5,
+      "ewma": 25.1,
+      "forecast": 29.5,
+      "change": 17.8
+    },
+    {
+      "symbol": "DEEPAKNTR",
+      "price": 1752.8,
+      "trailing": 27.1,
+      "ewma": 26.0,
+      "forecast": 29.6,
+      "change": 13.8
+    },
+    {
+      "symbol": "SYNGENE",
+      "price": 413.8,
+      "trailing": 31.4,
+      "ewma": 26.5,
+      "forecast": 29.6,
+      "change": 11.8
+    },
+    {
+      "symbol": "AWL",
+      "price": 199.74,
+      "trailing": 22.3,
+      "ewma": 24.5,
+      "forecast": 29.7,
+      "change": 21.0
+    },
+    {
+      "symbol": "NCC",
+      "price": 150.29,
+      "trailing": 30.5,
+      "ewma": 32.4,
+      "forecast": 29.7,
+      "change": -8.5
+    },
+    {
+      "symbol": "BHARATCOAL",
+      "price": 34.17,
+      "trailing": 20.3,
+      "ewma": 28.5,
+      "forecast": 29.7,
+      "change": 4.2
+    },
+    {
+      "symbol": "COCHINSHIP",
+      "price": 1543.0,
+      "trailing": 24.3,
+      "ewma": 25.3,
+      "forecast": 29.7,
+      "change": 17.4
+    },
+    {
+      "symbol": "PNBHOUSING",
+      "price": 1178.0,
+      "trailing": 25.3,
+      "ewma": 23.0,
+      "forecast": 29.8,
+      "change": 29.6
+    },
+    {
+      "symbol": "LENSKART",
+      "price": 640.6,
+      "trailing": 22.4,
+      "ewma": 24.5,
+      "forecast": 29.8,
+      "change": 21.7
+    },
+    {
+      "symbol": "ASTERDM",
+      "price": 754.8,
+      "trailing": 26.9,
+      "ewma": 26.6,
+      "forecast": 29.8,
+      "change": 12.3
+    },
+    {
+      "symbol": "ANTHEM",
+      "price": 924.6,
+      "trailing": 30.7,
+      "ewma": 31.0,
+      "forecast": 29.9,
+      "change": -3.6
+    },
+    {
+      "symbol": "INTELLECT",
+      "price": 678.3,
+      "trailing": 25.9,
+      "ewma": 24.6,
+      "forecast": 30.0,
+      "change": 21.9
+    },
+    {
+      "symbol": "POONAWALLA",
+      "price": 482.35,
+      "trailing": 28.4,
+      "ewma": 28.5,
+      "forecast": 30.0,
+      "change": 5.3
+    },
+    {
+      "symbol": "SIGNATURE",
+      "price": 783.5,
+      "trailing": 21.5,
+      "ewma": 27.2,
+      "forecast": 30.0,
+      "change": 10.6
+    },
+    {
+      "symbol": "KEI",
+      "price": 5536.0,
+      "trailing": 41.2,
+      "ewma": 33.0,
+      "forecast": 30.0,
+      "change": -9.1
+    },
+    {
+      "symbol": "VOLTAS",
+      "price": 1217.5,
+      "trailing": 24.5,
+      "ewma": 25.3,
+      "forecast": 30.0,
+      "change": 18.5
+    },
+    {
+      "symbol": "LTM",
+      "price": 4464.0,
+      "trailing": 36.5,
+      "ewma": 31.5,
+      "forecast": 30.1,
+      "change": -4.6
+    },
+    {
+      "symbol": "PRESTIGE",
+      "price": 1623.0,
+      "trailing": 30.0,
+      "ewma": 28.2,
+      "forecast": 30.3,
+      "change": 7.3
+    },
+    {
+      "symbol": "JBMA",
+      "price": 645.25,
+      "trailing": 35.6,
+      "ewma": 36.1,
+      "forecast": 30.3,
+      "change": -16.2
+    },
+    {
+      "symbol": "GODREJPROP",
+      "price": 2069.4,
+      "trailing": 28.7,
+      "ewma": 29.1,
+      "forecast": 30.3,
       "change": 4.1
     },
     {
-      "symbol": "JUBLFOOD",
-      "price": 499.5,
-      "trailing": 37.9,
-      "ewma": 34.1,
+      "symbol": "NAVINFLUOR",
+      "price": 8567.5,
+      "trailing": 55.2,
+      "ewma": 43.5,
+      "forecast": 30.4,
+      "change": -30.2
+    },
+    {
+      "symbol": "GRSE",
+      "price": 2643.0,
+      "trailing": 22.4,
+      "ewma": 23.0,
+      "forecast": 30.4,
+      "change": 32.2
+    },
+    {
+      "symbol": "UNIONBANK",
+      "price": 184.5,
+      "trailing": 21.7,
+      "ewma": 25.7,
+      "forecast": 30.4,
+      "change": 18.6
+    },
+    {
+      "symbol": "KEC",
+      "price": 421.4,
+      "trailing": 26.6,
+      "ewma": 27.8,
+      "forecast": 30.6,
+      "change": 9.9
+    },
+    {
+      "symbol": "MOTHERSON",
+      "price": 166.0,
+      "trailing": 36.0,
+      "ewma": 29.6,
+      "forecast": 30.6,
+      "change": 3.5
+    },
+    {
+      "symbol": "TATACOMM",
+      "price": 1689.6,
+      "trailing": 22.9,
+      "ewma": 26.1,
+      "forecast": 30.6,
+      "change": 17.4
+    },
+    {
+      "symbol": "BLUESTARCO",
+      "price": 1497.0,
+      "trailing": 29.1,
+      "ewma": 26.4,
+      "forecast": 30.6,
+      "change": 16.1
+    },
+    {
+      "symbol": "OFSS",
+      "price": 11855.0,
+      "trailing": 24.8,
+      "ewma": 28.5,
+      "forecast": 30.8,
+      "change": 7.8
+    },
+    {
+      "symbol": "ARE&M",
+      "price": 911.9,
+      "trailing": 36.7,
+      "ewma": 31.1,
+      "forecast": 30.9,
+      "change": -0.6
+    },
+    {
+      "symbol": "ABSLAMC",
+      "price": 1046.5,
+      "trailing": 21.5,
+      "ewma": 29.4,
+      "forecast": 30.9,
+      "change": 5.0
+    },
+    {
+      "symbol": "CEATLTD",
+      "price": 3510.6,
+      "trailing": 25.0,
+      "ewma": 28.3,
+      "forecast": 30.9,
+      "change": 9.3
+    },
+    {
+      "symbol": "BALKRISIND",
+      "price": 2352.1,
+      "trailing": 49.8,
+      "ewma": 36.7,
+      "forecast": 31.0,
+      "change": -15.7
+    },
+    {
+      "symbol": "SAILIFE",
+      "price": 1488.2,
+      "trailing": 30.2,
+      "ewma": 30.1,
+      "forecast": 31.0,
+      "change": 3.1
+    },
+    {
+      "symbol": "HONASA",
+      "price": 484.85,
+      "trailing": 31.7,
+      "ewma": 30.6,
+      "forecast": 31.1,
+      "change": 1.5
+    },
+    {
+      "symbol": "ASHOKLEY",
+      "price": 177.4,
+      "trailing": 33.5,
+      "ewma": 30.4,
+      "forecast": 31.1,
+      "change": 2.1
+    },
+    {
+      "symbol": "NLCINDIA",
+      "price": 268.8,
+      "trailing": 30.0,
+      "ewma": 28.9,
+      "forecast": 31.1,
+      "change": 7.5
+    },
+    {
+      "symbol": "LTF",
+      "price": 321.9,
+      "trailing": 26.9,
+      "ewma": 28.1,
+      "forecast": 31.1,
+      "change": 10.6
+    },
+    {
+      "symbol": "NAUKRI",
+      "price": 1330.0,
+      "trailing": 33.7,
+      "ewma": 33.6,
+      "forecast": 31.1,
+      "change": -7.4
+    },
+    {
+      "symbol": "JKTYRE",
+      "price": 378.75,
+      "trailing": 25.3,
+      "ewma": 26.5,
+      "forecast": 31.2,
+      "change": 17.7
+    },
+    {
+      "symbol": "APTUS",
+      "price": 256.45,
+      "trailing": 28.6,
+      "ewma": 26.3,
+      "forecast": 31.2,
+      "change": 18.6
+    },
+    {
+      "symbol": "TITAGARH",
+      "price": 831.15,
+      "trailing": 25.6,
+      "ewma": 26.1,
+      "forecast": 31.3,
+      "change": 19.9
+    },
+    {
+      "symbol": "SBC",
+      "price": 41.45,
+      "trailing": 24.7,
+      "ewma": 25.7,
+      "forecast": 31.3,
+      "change": 21.9
+    },
+    {
+      "symbol": "MAHABANK",
+      "price": 84.69,
+      "trailing": 26.0,
+      "ewma": 29.7,
+      "forecast": 31.4,
+      "change": 5.5
+    },
+    {
+      "symbol": "TENNIND",
+      "price": 541.4,
+      "trailing": 31.0,
+      "ewma": 29.6,
+      "forecast": 31.4,
+      "change": 6.2
+    },
+    {
+      "symbol": "COFORGE",
+      "price": 1901.8,
+      "trailing": 24.2,
+      "ewma": 35.0,
+      "forecast": 31.5,
+      "change": -9.9
+    },
+    {
+      "symbol": "LTTS",
+      "price": 3537.9,
+      "trailing": 21.6,
+      "ewma": 26.0,
+      "forecast": 31.5,
+      "change": 21.4
+    },
+    {
+      "symbol": "MGL",
+      "price": 1092.8,
+      "trailing": 20.7,
+      "ewma": 23.9,
+      "forecast": 31.6,
+      "change": 32.1
+    },
+    {
+      "symbol": "TIINDIA",
+      "price": 2870.0,
+      "trailing": 36.5,
+      "ewma": 33.7,
+      "forecast": 31.6,
+      "change": -6.2
+    },
+    {
+      "symbol": "FLUOROCHEM",
+      "price": 4672.1,
+      "trailing": 31.2,
+      "ewma": 30.0,
+      "forecast": 31.6,
+      "change": 5.2
+    },
+    {
+      "symbol": "EXIDEIND",
+      "price": 437.75,
+      "trailing": 28.8,
+      "ewma": 27.9,
+      "forecast": 31.7,
+      "change": 13.7
+    },
+    {
+      "symbol": "SOLARINDS",
+      "price": 20580.0,
+      "trailing": 34.7,
+      "ewma": 33.7,
+      "forecast": 31.8,
+      "change": -5.4
+    },
+    {
+      "symbol": "BHEL",
+      "price": 433.95,
+      "trailing": 28.8,
+      "ewma": 32.5,
+      "forecast": 31.9,
+      "change": -1.8
+    },
+    {
+      "symbol": "MUTHOOTFIN",
+      "price": 3085.0,
+      "trailing": 43.0,
+      "ewma": 39.1,
+      "forecast": 32.0,
+      "change": -18.3
+    },
+    {
+      "symbol": "BELRISE",
+      "price": 229.22,
+      "trailing": 34.6,
+      "ewma": 33.0,
+      "forecast": 32.0,
+      "change": -3.0
+    },
+    {
+      "symbol": "ADANIGREEN",
+      "price": 1328.5,
+      "trailing": 21.7,
+      "ewma": 28.1,
+      "forecast": 32.0,
+      "change": 13.7
+    },
+    {
+      "symbol": "JSWINFRA",
+      "price": 337.95,
+      "trailing": 29.2,
+      "ewma": 29.5,
+      "forecast": 32.0,
+      "change": 8.5
+    },
+    {
+      "symbol": "KARURVYSYA",
+      "price": 346.3,
+      "trailing": 20.7,
+      "ewma": 32.4,
+      "forecast": 32.0,
+      "change": -1.3
+    },
+    {
+      "symbol": "NAM-INDIA",
+      "price": 1204.0,
+      "trailing": 28.5,
+      "ewma": 30.3,
+      "forecast": 32.1,
+      "change": 5.8
+    },
+    {
+      "symbol": "HINDZINC",
+      "price": 610.1,
+      "trailing": 40.5,
+      "ewma": 38.9,
+      "forecast": 32.1,
+      "change": -17.4
+    },
+    {
+      "symbol": "POWERINDIA",
+      "price": 33880.0,
+      "trailing": 47.2,
+      "ewma": 42.6,
+      "forecast": 32.2,
+      "change": -24.5
+    },
+    {
+      "symbol": "TRENT",
+      "price": 2878.5,
+      "trailing": 18.5,
+      "ewma": 32.5,
+      "forecast": 32.4,
+      "change": -0.4
+    },
+    {
+      "symbol": "SWSOLAR",
+      "price": 199.15,
+      "trailing": 23.0,
+      "ewma": 28.6,
+      "forecast": 32.4,
+      "change": 13.2
+    },
+    {
+      "symbol": "GROWW",
+      "price": 196.84,
+      "trailing": 26.9,
+      "ewma": 31.9,
+      "forecast": 32.5,
+      "change": 1.9
+    },
+    {
+      "symbol": "AMBER",
+      "price": 7701.0,
+      "trailing": 25.3,
+      "ewma": 27.6,
+      "forecast": 32.5,
+      "change": 17.7
+    },
+    {
+      "symbol": "ABFRL",
+      "price": 53.64,
+      "trailing": 30.6,
+      "ewma": 27.8,
+      "forecast": 32.6,
+      "change": 17.1
+    },
+    {
+      "symbol": "BDL",
+      "price": 1348.6,
+      "trailing": 30.7,
+      "ewma": 29.3,
+      "forecast": 32.6,
+      "change": 11.1
+    },
+    {
+      "symbol": "MANAPPURAM",
+      "price": 348.0,
+      "trailing": 29.7,
+      "ewma": 33.1,
+      "forecast": 32.6,
+      "change": -1.7
+    },
+    {
+      "symbol": "TMCV",
+      "price": 473.1,
+      "trailing": 29.8,
+      "ewma": 27.9,
+      "forecast": 32.6,
+      "change": 17.0
+    },
+    {
+      "symbol": "NAZARA",
+      "price": 354.5,
+      "trailing": 39.0,
+      "ewma": 30.3,
+      "forecast": 32.7,
+      "change": 7.8
+    },
+    {
+      "symbol": "PERSISTENT",
+      "price": 5654.0,
+      "trailing": 18.5,
+      "ewma": 27.6,
+      "forecast": 32.7,
+      "change": 18.3
+    },
+    {
+      "symbol": "IKS",
+      "price": 1750.6,
+      "trailing": 34.9,
+      "ewma": 31.8,
+      "forecast": 32.8,
+      "change": 3.0
+    },
+    {
+      "symbol": "GLAND",
+      "price": 2873.5,
+      "trailing": 41.5,
+      "ewma": 38.3,
+      "forecast": 32.9,
+      "change": -14.1
+    },
+    {
+      "symbol": "GPIL",
+      "price": 240.33,
+      "trailing": 41.4,
+      "ewma": 37.4,
+      "forecast": 32.9,
+      "change": -12.0
+    },
+    {
+      "symbol": "ADANIENSOL",
+      "price": 1617.0,
+      "trailing": 24.5,
+      "ewma": 27.9,
+      "forecast": 32.9,
+      "change": 18.0
+    },
+    {
+      "symbol": "RELIGARE",
+      "price": 234.2,
+      "trailing": 42.1,
+      "ewma": 35.6,
       "forecast": 33.0,
-      "change": -3.3
+      "change": -7.2
+    },
+    {
+      "symbol": "NATIONALUM",
+      "price": 389.3,
+      "trailing": 48.3,
+      "ewma": 43.6,
+      "forecast": 33.0,
+      "change": -24.4
+    },
+    {
+      "symbol": "VEDL",
+      "price": 281.0,
+      "trailing": 31.7,
+      "ewma": 33.4,
+      "forecast": 33.0,
+      "change": -1.2
+    },
+    {
+      "symbol": "ABREL",
+      "price": 1393.4,
+      "trailing": 25.7,
+      "ewma": 27.5,
+      "forecast": 33.1,
+      "change": 20.1
     },
     {
       "symbol": "SANDUMA",
-      "price": 209.67,
-      "trailing": 28.1,
-      "ewma": 27.1,
-      "forecast": 33.0,
-      "change": 21.5
+      "price": 206.95,
+      "trailing": 25.8,
+      "ewma": 26.8,
+      "forecast": 33.1,
+      "change": 23.5
+    },
+    {
+      "symbol": "INOXWIND",
+      "price": 72.0,
+      "trailing": 38.5,
+      "ewma": 35.1,
+      "forecast": 33.1,
+      "change": -5.7
+    },
+    {
+      "symbol": "KPITTECH",
+      "price": 588.0,
+      "trailing": 34.8,
+      "ewma": 37.2,
+      "forecast": 33.2,
+      "change": -10.6
+    },
+    {
+      "symbol": "SAGILITY",
+      "price": 44.27,
+      "trailing": 26.2,
+      "ewma": 27.9,
+      "forecast": 33.2,
+      "change": 18.9
+    },
+    {
+      "symbol": "JUBLFOOD",
+      "price": 504.0,
+      "trailing": 37.7,
+      "ewma": 33.2,
+      "forecast": 33.2,
+      "change": 0.0
     },
     {
       "symbol": "IIFL",
-      "price": 654.05,
-      "trailing": 34.9,
-      "ewma": 39.8,
-      "forecast": 33.0,
+      "price": 635.65,
+      "trailing": 36.3,
+      "ewma": 40.1,
+      "forecast": 33.3,
       "change": -17.0
     },
     {
       "symbol": "ANGELONE",
-      "price": 298.85,
-      "trailing": 28.0,
-      "ewma": 30.2,
-      "forecast": 33.1,
-      "change": 9.5
+      "price": 295.9,
+      "trailing": 28.2,
+      "ewma": 29.5,
+      "forecast": 33.3,
+      "change": 12.9
+    },
+    {
+      "symbol": "ACE",
+      "price": 1136.0,
+      "trailing": 37.6,
+      "ewma": 37.9,
+      "forecast": 33.4,
+      "change": -11.7
     },
     {
       "symbol": "MCX",
-      "price": 3350.0,
-      "trailing": 37.8,
-      "ewma": 39.6,
-      "forecast": 33.2,
-      "change": -16.1
-    },
-    {
-      "symbol": "JMFINANCIL",
-      "price": 132.84,
-      "trailing": 25.5,
-      "ewma": 27.5,
-      "forecast": 33.2,
-      "change": 20.9
-    },
-    {
-      "symbol": "UJJIVANSFB",
-      "price": 68.99,
-      "trailing": 25.7,
-      "ewma": 29.6,
-      "forecast": 33.3,
-      "change": 12.5
+      "price": 3273.0,
+      "trailing": 39.5,
+      "ewma": 39.4,
+      "forecast": 33.5,
+      "change": -15.1
     },
     {
       "symbol": "GRAVITA",
-      "price": 1840.3,
-      "trailing": 24.6,
-      "ewma": 30.7,
-      "forecast": 33.3,
-      "change": 8.6
-    },
-    {
-      "symbol": "TRITURBINE",
-      "price": 574.4,
-      "trailing": 31.5,
-      "ewma": 32.7,
-      "forecast": 33.4,
-      "change": 2.2
-    },
-    {
-      "symbol": "GOKEX",
-      "price": 787.1,
-      "trailing": 25.7,
-      "ewma": 29.2,
-      "forecast": 33.4,
-      "change": 14.5
-    },
-    {
-      "symbol": "NEULANDLAB",
-      "price": 23545.0,
-      "trailing": 47.3,
-      "ewma": 39.9,
-      "forecast": 33.6,
-      "change": -15.9
-    },
-    {
-      "symbol": "NUVAMA",
-      "price": 1779.3,
-      "trailing": 29.8,
-      "ewma": 32.3,
-      "forecast": 33.7,
-      "change": 4.4
-    },
-    {
-      "symbol": "BSOFT",
-      "price": 293.55,
-      "trailing": 32.6,
-      "ewma": 31.1,
-      "forecast": 33.7,
-      "change": 8.4
-    },
-    {
-      "symbol": "SAMMAANCAP",
-      "price": 149.45,
-      "trailing": 30.5,
-      "ewma": 31.5,
-      "forecast": 33.8,
-      "change": 7.1
-    },
-    {
-      "symbol": "FORCEMOT",
-      "price": 17450.0,
-      "trailing": 30.8,
-      "ewma": 31.2,
-      "forecast": 33.8,
-      "change": 8.1
-    },
-    {
-      "symbol": "SWIGGY",
-      "price": 286.55,
-      "trailing": 34.7,
-      "ewma": 34.0,
-      "forecast": 33.8,
-      "change": -0.5
-    },
-    {
-      "symbol": "GODFRYPHLP",
-      "price": 2153.3,
-      "trailing": 31.6,
-      "ewma": 32.7,
-      "forecast": 33.9,
-      "change": 3.7
-    },
-    {
-      "symbol": "GMDCLTD",
-      "price": 578.95,
-      "trailing": 33.0,
-      "ewma": 29.3,
-      "forecast": 33.9,
-      "change": 15.6
-    },
-    {
-      "symbol": "HEXT",
-      "price": 554.95,
-      "trailing": 41.5,
-      "ewma": 38.7,
-      "forecast": 34.0,
-      "change": -12.1
-    },
-    {
-      "symbol": "BEML",
-      "price": 1937.7,
-      "trailing": 32.3,
-      "ewma": 30.5,
-      "forecast": 34.1,
-      "change": 11.6
-    },
-    {
-      "symbol": "GESHIP",
-      "price": 1332.2,
-      "trailing": 28.6,
-      "ewma": 28.2,
-      "forecast": 34.1,
-      "change": 21.0
-    },
-    {
-      "symbol": "DIXON",
-      "price": 14735.0,
-      "trailing": 25.6,
-      "ewma": 30.4,
-      "forecast": 34.1,
-      "change": 12.4
-    },
-    {
-      "symbol": "GRAPHITE",
-      "price": 689.1,
-      "trailing": 36.6,
-      "ewma": 34.2,
-      "forecast": 34.2,
-      "change": 0.0
-    },
-    {
-      "symbol": "ONESOURCE",
-      "price": 1483.6,
-      "trailing": 29.9,
-      "ewma": 27.9,
-      "forecast": 34.2,
-      "change": 22.4
-    },
-    {
-      "symbol": "LODHA",
-      "price": 1265.0,
-      "trailing": 27.3,
-      "ewma": 35.5,
-      "forecast": 34.2,
-      "change": -3.7
-    },
-    {
-      "symbol": "RKFORGE",
-      "price": 732.0,
-      "trailing": 32.2,
-      "ewma": 33.0,
-      "forecast": 34.2,
-      "change": 3.7
-    },
-    {
-      "symbol": "PGEL",
-      "price": 587.15,
-      "trailing": 27.7,
-      "ewma": 28.5,
-      "forecast": 34.3,
-      "change": 20.1
-    },
-    {
-      "symbol": "ENRIN",
-      "price": 3325.9,
-      "trailing": 50.3,
-      "ewma": 44.0,
-      "forecast": 34.4,
-      "change": -22.0
-    },
-    {
-      "symbol": "CREDITACC",
-      "price": 1440.2,
-      "trailing": 23.1,
-      "ewma": 29.7,
-      "forecast": 34.4,
-      "change": 15.9
-    },
-    {
-      "symbol": "JPPOWER",
-      "price": 16.98,
-      "trailing": 26.9,
-      "ewma": 27.5,
-      "forecast": 34.5,
-      "change": 25.2
-    },
-    {
-      "symbol": "ABREL",
-      "price": 1392.3,
-      "trailing": 25.9,
-      "ewma": 28.4,
-      "forecast": 34.5,
-      "change": 21.4
-    },
-    {
-      "symbol": "AFFLE",
-      "price": 1686.8,
-      "trailing": 36.3,
-      "ewma": 37.0,
-      "forecast": 34.5,
-      "change": -6.9
-    },
-    {
-      "symbol": "JAMNAAUTO",
-      "price": 120.96,
-      "trailing": 51.9,
-      "ewma": 43.0,
-      "forecast": 34.5,
-      "change": -19.8
-    },
-    {
-      "symbol": "TEJASNET",
-      "price": 505.05,
-      "trailing": 31.3,
-      "ewma": 32.8,
-      "forecast": 34.5,
-      "change": 5.1
-    },
-    {
-      "symbol": "OLECTRA",
-      "price": 1326.4,
-      "trailing": 30.3,
-      "ewma": 31.4,
-      "forecast": 34.6,
-      "change": 10.2
-    },
-    {
-      "symbol": "RPOWER",
-      "price": 22.7,
-      "trailing": 29.8,
-      "ewma": 33.9,
-      "forecast": 34.7,
-      "change": 2.2
-    },
-    {
-      "symbol": "ZENSARTECH",
-      "price": 471.85,
-      "trailing": 21.2,
-      "ewma": 38.1,
-      "forecast": 34.7,
-      "change": -9.0
-    },
-    {
-      "symbol": "IDEA",
-      "price": 15.06,
-      "trailing": 39.4,
-      "ewma": 41.3,
-      "forecast": 34.7,
-      "change": -16.0
-    },
-    {
-      "symbol": "WOCKPHARMA",
-      "price": 1882.1,
-      "trailing": 35.2,
-      "ewma": 33.5,
-      "forecast": 34.8,
-      "change": 3.7
-    },
-    {
-      "symbol": "BORORENEW",
-      "price": 527.0,
-      "trailing": 21.5,
-      "ewma": 28.2,
-      "forecast": 34.8,
-      "change": 23.5
-    },
-    {
-      "symbol": "ANANTRAJ",
-      "price": 606.35,
-      "trailing": 18.5,
-      "ewma": 26.9,
-      "forecast": 34.8,
-      "change": 29.7
-    },
-    {
-      "symbol": "ZENTEC",
-      "price": 1873.4,
-      "trailing": 36.0,
-      "ewma": 38.2,
-      "forecast": 34.8,
-      "change": -8.7
-    },
-    {
-      "symbol": "ENGINERSIN",
-      "price": 250.36,
-      "trailing": 37.9,
-      "ewma": 36.1,
-      "forecast": 34.8,
-      "change": -3.5
-    },
-    {
-      "symbol": "YATHARTH",
-      "price": 965.3,
-      "trailing": 34.9,
-      "ewma": 37.0,
-      "forecast": 34.9,
-      "change": -5.6
-    },
-    {
-      "symbol": "GUJENERGY",
-      "price": 253.95,
-      "trailing": 29.6,
-      "ewma": 29.8,
-      "forecast": 34.9,
-      "change": 17.1
-    },
-    {
-      "symbol": "BLACKBUCK",
-      "price": 605.3,
-      "trailing": 37.2,
-      "ewma": 35.5,
-      "forecast": 34.9,
-      "change": -1.7
-    },
-    {
-      "symbol": "FIVESTAR",
-      "price": 515.05,
-      "trailing": 27.2,
-      "ewma": 31.8,
-      "forecast": 34.9,
-      "change": 9.7
-    },
-    {
-      "symbol": "AARTIIND",
-      "price": 542.95,
-      "trailing": 26.9,
-      "ewma": 30.6,
-      "forecast": 34.9,
-      "change": 14.1
-    },
-    {
-      "symbol": "TATATECH",
-      "price": 793.5,
-      "trailing": 46.5,
-      "ewma": 41.7,
-      "forecast": 35.0,
-      "change": -16.1
-    },
-    {
-      "symbol": "APOLLO",
-      "price": 388.0,
-      "trailing": 25.2,
-      "ewma": 32.1,
-      "forecast": 35.0,
-      "change": 9.1
-    },
-    {
-      "symbol": "INOXINDIA",
-      "price": 1926.7,
-      "trailing": 19.0,
-      "ewma": 32.8,
-      "forecast": 35.1,
-      "change": 7.0
-    },
-    {
-      "symbol": "RRKABEL",
-      "price": 2810.6,
-      "trailing": 30.7,
-      "ewma": 35.5,
-      "forecast": 35.3,
-      "change": -0.7
-    },
-    {
-      "symbol": "ACMESOLAR",
-      "price": 395.95,
-      "trailing": 30.9,
-      "ewma": 32.3,
-      "forecast": 35.3,
-      "change": 9.5
-    },
-    {
-      "symbol": "M&MFIN",
-      "price": 385.35,
-      "trailing": 37.9,
-      "ewma": 38.6,
-      "forecast": 35.4,
-      "change": -8.4
-    },
-    {
-      "symbol": "POCL",
-      "price": 512.45,
-      "trailing": 35.4,
-      "ewma": 31.9,
-      "forecast": 35.4,
-      "change": 10.9
-    },
-    {
-      "symbol": "MOTILALOFS",
-      "price": 1040.0,
-      "trailing": 28.8,
-      "ewma": 35.8,
-      "forecast": 35.4,
-      "change": -0.9
-    },
-    {
-      "symbol": "EMMVEE",
-      "price": 332.95,
-      "trailing": 29.6,
-      "ewma": 34.2,
-      "forecast": 35.5,
-      "change": 3.8
-    },
-    {
-      "symbol": "PRAJIND",
-      "price": 350.25,
-      "trailing": 31.5,
-      "ewma": 35.2,
-      "forecast": 35.6,
-      "change": 1.3
-    },
-    {
-      "symbol": "TARIL",
-      "price": 304.0,
-      "trailing": 25.1,
-      "ewma": 34.1,
-      "forecast": 35.7,
-      "change": 4.4
-    },
-    {
-      "symbol": "FIRSTCRY",
-      "price": 191.96,
-      "trailing": 22.1,
-      "ewma": 25.2,
-      "forecast": 35.8,
-      "change": 42.2
-    },
-    {
-      "symbol": "HEG",
-      "price": 713.55,
-      "trailing": 33.2,
-      "ewma": 35.9,
-      "forecast": 35.9,
-      "change": -0.1
-    },
-    {
-      "symbol": "KALYANKJIL",
-      "price": 610.6,
-      "trailing": 33.5,
-      "ewma": 46.8,
-      "forecast": 36.0,
-      "change": -23.1
-    },
-    {
-      "symbol": "EDELWEISS",
-      "price": 127.47,
-      "trailing": 30.2,
-      "ewma": 33.1,
-      "forecast": 36.2,
-      "change": 9.4
-    },
-    {
-      "symbol": "PPLPHARMA",
-      "price": 211.29,
-      "trailing": 26.4,
-      "ewma": 32.5,
-      "forecast": 36.3,
+      "price": 1824.5,
+      "trailing": 24.1,
+      "ewma": 29.9,
+      "forecast": 33.5,
       "change": 11.8
     },
     {
-      "symbol": "CUB",
-      "price": 226.8,
-      "trailing": 42.7,
-      "ewma": 43.8,
-      "forecast": 36.4,
-      "change": -16.9
-    },
-    {
-      "symbol": "SYRMA",
-      "price": 1474.1,
-      "trailing": 34.8,
-      "ewma": 35.7,
-      "forecast": 36.5,
-      "change": 2.2
-    },
-    {
-      "symbol": "SANSERA",
-      "price": 3836.6,
-      "trailing": 41.2,
-      "ewma": 38.3,
-      "forecast": 36.5,
-      "change": -4.8
-    },
-    {
-      "symbol": "ARVIND",
-      "price": 541.95,
-      "trailing": 38.7,
-      "ewma": 37.7,
-      "forecast": 36.5,
-      "change": -3.1
-    },
-    {
-      "symbol": "ASHAPURMIN",
-      "price": 592.45,
-      "trailing": 55.6,
-      "ewma": 49.9,
-      "forecast": 36.6,
-      "change": -26.7
-    },
-    {
-      "symbol": "PARADEEP",
-      "price": 163.84,
-      "trailing": 54.9,
-      "ewma": 44.7,
-      "forecast": 36.6,
-      "change": -18.1
-    },
-    {
-      "symbol": "PCBL",
-      "price": 325.65,
-      "trailing": 69.4,
-      "ewma": 47.8,
-      "forecast": 36.8,
-      "change": -23.0
-    },
-    {
-      "symbol": "ASTRAMICRO",
-      "price": 1698.7,
-      "trailing": 48.1,
-      "ewma": 41.9,
-      "forecast": 36.8,
-      "change": -12.2
-    },
-    {
-      "symbol": "PTCIL",
-      "price": 20919.0,
-      "trailing": 45.7,
-      "ewma": 45.7,
-      "forecast": 36.9,
-      "change": -19.3
-    },
-    {
-      "symbol": "RAYMOND",
-      "price": 621.05,
-      "trailing": 35.5,
-      "ewma": 35.0,
-      "forecast": 36.9,
-      "change": 5.4
-    },
-    {
-      "symbol": "PAISALO",
-      "price": 68.04,
-      "trailing": 21.7,
-      "ewma": 32.5,
-      "forecast": 36.9,
-      "change": 13.4
-    },
-    {
-      "symbol": "VINCOFE",
-      "price": 164.09,
-      "trailing": 40.5,
-      "ewma": 38.1,
-      "forecast": 36.9,
-      "change": -3.1
-    },
-    {
-      "symbol": "GABRIEL",
-      "price": 1342.6,
-      "trailing": 39.8,
-      "ewma": 42.6,
-      "forecast": 37.0,
-      "change": -13.3
-    },
-    {
-      "symbol": "SKIPPER",
-      "price": 547.25,
-      "trailing": 39.1,
-      "ewma": 37.8,
-      "forecast": 37.0,
-      "change": -2.1
-    },
-    {
-      "symbol": "AETHER",
-      "price": 1655.0,
-      "trailing": 29.3,
-      "ewma": 32.4,
-      "forecast": 37.0,
-      "change": 14.1
-    },
-    {
-      "symbol": "TIMETECHNO",
-      "price": 185.3,
-      "trailing": 30.2,
-      "ewma": 34.0,
-      "forecast": 37.0,
-      "change": 8.7
-    },
-    {
-      "symbol": "MEESHO",
-      "price": 208.14,
-      "trailing": 33.4,
-      "ewma": 34.7,
-      "forecast": 37.2,
-      "change": 7.2
-    },
-    {
-      "symbol": "DEEPAKFERT",
-      "price": 1479.3,
-      "trailing": 30.9,
-      "ewma": 29.4,
-      "forecast": 37.3,
-      "change": 26.7
-    },
-    {
-      "symbol": "GENUSPOWER",
-      "price": 341.1,
-      "trailing": 34.6,
-      "ewma": 38.3,
-      "forecast": 37.4,
-      "change": -2.2
-    },
-    {
-      "symbol": "GRWRHITECH",
-      "price": 7115.5,
-      "trailing": 29.2,
-      "ewma": 28.5,
-      "forecast": 37.6,
-      "change": 31.8
-    },
-    {
-      "symbol": "BLUEJET",
-      "price": 590.1,
-      "trailing": 34.9,
-      "ewma": 32.6,
-      "forecast": 37.6,
-      "change": 15.5
-    },
-    {
-      "symbol": "BLS",
-      "price": 237.76,
-      "trailing": 50.5,
-      "ewma": 49.2,
-      "forecast": 37.9,
-      "change": -22.9
-    },
-    {
-      "symbol": "PAYTM",
-      "price": 1716.0,
-      "trailing": 45.0,
-      "ewma": 45.5,
-      "forecast": 37.9,
-      "change": -16.6
-    },
-    {
-      "symbol": "VIYASH",
-      "price": 263.4,
-      "trailing": 46.7,
-      "ewma": 46.7,
-      "forecast": 38.0,
-      "change": -18.6
-    },
-    {
-      "symbol": "GVT&D",
-      "price": 4340.0,
-      "trailing": 28.7,
-      "ewma": 35.8,
-      "forecast": 38.2,
-      "change": 6.5
-    },
-    {
-      "symbol": "SHREEJISPG",
-      "price": 639.0,
-      "trailing": 49.4,
-      "ewma": 47.2,
-      "forecast": 38.3,
-      "change": -18.8
-    },
-    {
-      "symbol": "EIEL",
-      "price": 200.69,
-      "trailing": 31.8,
-      "ewma": 36.7,
-      "forecast": 38.4,
-      "change": 4.7
-    },
-    {
-      "symbol": "BRIGADE",
-      "price": 655.1,
-      "trailing": 31.9,
-      "ewma": 43.0,
-      "forecast": 38.4,
-      "change": -10.6
-    },
-    {
-      "symbol": "SAIL",
-      "price": 194.9,
-      "trailing": 37.7,
-      "ewma": 38.0,
-      "forecast": 38.5,
-      "change": 1.2
-    },
-    {
-      "symbol": "AXISCADES",
-      "price": 1606.7,
-      "trailing": 37.8,
-      "ewma": 38.0,
-      "forecast": 38.6,
-      "change": 1.6
-    },
-    {
-      "symbol": "ATHERENERG",
-      "price": 1494.6,
-      "trailing": 56.5,
-      "ewma": 48.8,
-      "forecast": 38.6,
-      "change": -20.8
-    },
-    {
-      "symbol": "NEWGEN",
-      "price": 524.35,
-      "trailing": 33.6,
-      "ewma": 40.6,
-      "forecast": 38.7,
-      "change": -4.8
-    },
-    {
-      "symbol": "GRMOVER",
-      "price": 88.84,
-      "trailing": 36.8,
-      "ewma": 38.7,
-      "forecast": 38.7,
+      "symbol": "KTKBANK",
+      "price": 327.15,
+      "trailing": 34.1,
+      "ewma": 33.4,
+      "forecast": 33.5,
       "change": 0.1
     },
     {
-      "symbol": "SENORES",
-      "price": 1494.7,
-      "trailing": 36.7,
-      "ewma": 38.1,
-      "forecast": 38.7,
-      "change": 1.7
-    },
-    {
-      "symbol": "FRACTAL",
-      "price": 829.55,
-      "trailing": 30.6,
-      "ewma": 37.4,
-      "forecast": 38.7,
-      "change": 3.6
-    },
-    {
-      "symbol": "SHAILY",
-      "price": 3238.3,
-      "trailing": 42.2,
-      "ewma": 36.6,
-      "forecast": 39.0,
-      "change": 6.4
-    },
-    {
-      "symbol": "AVANTIFEED",
-      "price": 839.6,
-      "trailing": 24.8,
-      "ewma": 29.3,
-      "forecast": 39.0,
-      "change": 33.1
-    },
-    {
-      "symbol": "WELSPUNLIV",
-      "price": 190.63,
-      "trailing": 38.8,
-      "ewma": 40.2,
-      "forecast": 39.0,
-      "change": -2.9
-    },
-    {
-      "symbol": "CYIENT",
-      "price": 1047.7,
-      "trailing": 44.2,
-      "ewma": 48.8,
-      "forecast": 39.0,
-      "change": -19.9
-    },
-    {
-      "symbol": "KPIGREEN",
-      "price": 322.0,
-      "trailing": 35.2,
-      "ewma": 33.5,
-      "forecast": 39.1,
-      "change": 16.6
-    },
-    {
-      "symbol": "IFCI",
-      "price": 85.44,
-      "trailing": 33.5,
-      "ewma": 39.6,
-      "forecast": 39.1,
-      "change": -1.3
-    },
-    {
-      "symbol": "VOLTAMP",
-      "price": 10978.5,
-      "trailing": 39.0,
-      "ewma": 38.2,
-      "forecast": 39.1,
-      "change": 2.3
-    },
-    {
-      "symbol": "CPPLUS",
-      "price": 3530.3,
-      "trailing": 48.6,
-      "ewma": 46.5,
-      "forecast": 39.2,
-      "change": -15.7
-    },
-    {
-      "symbol": "JSFB",
-      "price": 547.1,
-      "trailing": 51.3,
-      "ewma": 47.5,
-      "forecast": 39.4,
-      "change": -17.0
-    },
-    {
-      "symbol": "WABAG",
-      "price": 2155.3,
-      "trailing": 41.0,
-      "ewma": 47.9,
-      "forecast": 39.5,
-      "change": -17.6
-    },
-    {
-      "symbol": "DEVYANI",
-      "price": 149.36,
-      "trailing": 50.0,
-      "ewma": 44.4,
-      "forecast": 39.6,
-      "change": -10.8
-    },
-    {
-      "symbol": "VIKRAMSOLR",
-      "price": 171.85,
-      "trailing": 64.9,
-      "ewma": 58.4,
-      "forecast": 39.7,
-      "change": -32.0
-    },
-    {
-      "symbol": "APARINDS",
-      "price": 17063.0,
-      "trailing": 46.6,
-      "ewma": 46.2,
-      "forecast": 39.7,
-      "change": -14.0
-    },
-    {
-      "symbol": "IDBI",
-      "price": 94.75,
-      "trailing": 36.6,
-      "ewma": 44.8,
-      "forecast": 39.7,
-      "change": -11.3
-    },
-    {
-      "symbol": "SPARC",
-      "price": 194.36,
-      "trailing": 32.0,
-      "ewma": 38.6,
-      "forecast": 39.8,
-      "change": 3.1
-    },
-    {
-      "symbol": "MIDHANI",
-      "price": 424.45,
-      "trailing": 50.9,
-      "ewma": 45.4,
-      "forecast": 39.9,
-      "change": -12.3
-    },
-    {
-      "symbol": "THERMAX",
-      "price": 3968.5,
-      "trailing": 27.4,
-      "ewma": 31.2,
-      "forecast": 39.9,
-      "change": 28.0
-    },
-    {
-      "symbol": "J&KBANK",
-      "price": 152.04,
-      "trailing": 51.8,
-      "ewma": 45.9,
-      "forecast": 40.0,
-      "change": -13.0
-    },
-    {
-      "symbol": "ACUTAAS",
-      "price": 3257.8,
-      "trailing": 43.6,
-      "ewma": 45.2,
-      "forecast": 40.0,
-      "change": -11.5
-    },
-    {
-      "symbol": "INOXGREEN",
-      "price": 174.48,
-      "trailing": 36.5,
-      "ewma": 36.1,
-      "forecast": 40.1,
-      "change": 11.1
-    },
-    {
-      "symbol": "LLOYDSENT",
-      "price": 74.36,
-      "trailing": 36.5,
-      "ewma": 39.9,
-      "forecast": 40.2,
-      "change": 0.7
-    },
-    {
-      "symbol": "OSWALPUMPS",
-      "price": 295.35,
-      "trailing": 33.6,
-      "ewma": 40.2,
-      "forecast": 40.2,
-      "change": 0.1
-    },
-    {
-      "symbol": "JAYNECOIND",
-      "price": 102.23,
-      "trailing": 39.6,
-      "ewma": 45.4,
-      "forecast": 40.4,
-      "change": -10.9
-    },
-    {
-      "symbol": "JSLL",
-      "price": 514.25,
-      "trailing": 47.6,
-      "ewma": 46.6,
-      "forecast": 40.4,
-      "change": -13.4
-    },
-    {
-      "symbol": "CGCL",
-      "price": 256.35,
-      "trailing": 45.2,
-      "ewma": 46.3,
-      "forecast": 40.5,
-      "change": -12.5
-    },
-    {
-      "symbol": "OLAELEC",
-      "price": 38.0,
-      "trailing": 44.2,
-      "ewma": 43.4,
-      "forecast": 40.6,
-      "change": -6.6
-    },
-    {
-      "symbol": "PINELABS",
-      "price": 166.88,
-      "trailing": 54.5,
-      "ewma": 45.6,
-      "forecast": 40.6,
-      "change": -10.9
-    },
-    {
-      "symbol": "HINDCOPPER",
-      "price": 556.05,
-      "trailing": 55.9,
-      "ewma": 51.9,
-      "forecast": 40.8,
-      "change": -21.4
-    },
-    {
-      "symbol": "RATEGAIN",
-      "price": 934.05,
-      "trailing": 47.8,
-      "ewma": 43.9,
-      "forecast": 41.0,
-      "change": -6.7
-    },
-    {
-      "symbol": "AGIIL",
-      "price": 287.9,
-      "trailing": 18.8,
-      "ewma": 25.6,
-      "forecast": 41.0,
-      "change": 60.2
-    },
-    {
-      "symbol": "THANGAMAYL",
-      "price": 5495.5,
-      "trailing": 71.6,
-      "ewma": 57.9,
-      "forecast": 41.1,
-      "change": -29.0
-    },
-    {
-      "symbol": "ZEEL",
-      "price": 104.42,
-      "trailing": 70.9,
-      "ewma": 57.3,
-      "forecast": 41.2,
-      "change": -28.0
-    },
-    {
-      "symbol": "BALRAMCHIN",
-      "price": 674.35,
-      "trailing": 85.3,
-      "ewma": 78.4,
-      "forecast": 41.2,
-      "change": -47.4
-    },
-    {
-      "symbol": "DATAPATTNS",
-      "price": 4779.4,
-      "trailing": 41.1,
-      "ewma": 50.5,
-      "forecast": 41.3,
-      "change": -18.2
-    },
-    {
-      "symbol": "BBOX",
-      "price": 754.8,
-      "trailing": 44.2,
-      "ewma": 43.6,
-      "forecast": 41.3,
-      "change": -5.4
-    },
-    {
-      "symbol": "FSL",
-      "price": 270.05,
-      "trailing": 74.2,
-      "ewma": 55.1,
-      "forecast": 41.3,
-      "change": -24.9
-    },
-    {
-      "symbol": "GOLDIAM",
-      "price": 357.05,
-      "trailing": 36.3,
-      "ewma": 37.7,
-      "forecast": 41.4,
-      "change": 9.8
-    },
-    {
-      "symbol": "SEDEMAC",
-      "price": 3065.0,
-      "trailing": 36.0,
-      "ewma": 38.6,
-      "forecast": 41.5,
-      "change": 7.4
-    },
-    {
-      "symbol": "WALCHANNAG",
-      "price": 220.94,
-      "trailing": 25.6,
-      "ewma": 34.9,
-      "forecast": 41.8,
-      "change": 19.7
-    },
-    {
-      "symbol": "HSCL",
-      "price": 663.85,
-      "trailing": 40.7,
-      "ewma": 46.2,
-      "forecast": 41.8,
-      "change": -9.4
-    },
-    {
-      "symbol": "KIRLOSENG",
-      "price": 2036.6,
-      "trailing": 31.0,
-      "ewma": 40.0,
-      "forecast": 42.1,
-      "change": 5.2
-    },
-    {
-      "symbol": "LUMAXTECH",
-      "price": 1927.8,
-      "trailing": 73.2,
-      "ewma": 62.0,
-      "forecast": 42.1,
-      "change": -32.1
-    },
-    {
-      "symbol": "JINDALSAW",
-      "price": 302.45,
-      "trailing": 42.9,
-      "ewma": 48.8,
-      "forecast": 42.3,
-      "change": -13.3
-    },
-    {
-      "symbol": "SENCO",
-      "price": 367.15,
-      "trailing": 62.4,
-      "ewma": 59.3,
-      "forecast": 42.3,
-      "change": -28.7
-    },
-    {
-      "symbol": "LLOYDSENGG",
-      "price": 88.51,
-      "trailing": 50.1,
-      "ewma": 48.9,
-      "forecast": 42.4,
-      "change": -13.5
-    },
-    {
-      "symbol": "KAYNES",
-      "price": 4032.0,
-      "trailing": 55.0,
-      "ewma": 45.7,
-      "forecast": 42.4,
-      "change": -7.1
-    },
-    {
-      "symbol": "AZAD",
-      "price": 2825.5,
-      "trailing": 47.3,
-      "ewma": 46.6,
-      "forecast": 42.4,
-      "change": -9.0
-    },
-    {
-      "symbol": "TFCILTD",
-      "price": 140.99,
-      "trailing": 38.0,
-      "ewma": 50.5,
-      "forecast": 42.5,
-      "change": -15.9
-    },
-    {
-      "symbol": "HCC",
-      "price": 23.88,
-      "trailing": 47.3,
-      "ewma": 50.9,
-      "forecast": 42.5,
-      "change": -16.5
-    },
-    {
-      "symbol": "MRPL",
-      "price": 173.61,
-      "trailing": 49.7,
-      "ewma": 48.5,
-      "forecast": 42.5,
-      "change": -12.3
-    },
-    {
-      "symbol": "RUBICON",
-      "price": 1818.8,
-      "trailing": 54.4,
-      "ewma": 57.0,
-      "forecast": 42.6,
-      "change": -25.4
-    },
-    {
-      "symbol": "HFCL",
-      "price": 235.89,
-      "trailing": 46.5,
-      "ewma": 48.6,
-      "forecast": 42.6,
-      "change": -12.3
-    },
-    {
-      "symbol": "PWL",
-      "price": 126.13,
-      "trailing": 34.6,
-      "ewma": 39.7,
-      "forecast": 42.6,
-      "change": 7.5
-    },
-    {
-      "symbol": "HAPPSTMNDS",
-      "price": 447.85,
-      "trailing": 40.5,
-      "ewma": 43.6,
-      "forecast": 42.9,
-      "change": -1.6
-    },
-    {
-      "symbol": "COHANCE",
-      "price": 462.35,
-      "trailing": 39.5,
-      "ewma": 42.7,
-      "forecast": 43.1,
-      "change": 0.9
-    },
-    {
-      "symbol": "CLEANMAX",
-      "price": 1182.3,
-      "trailing": 32.0,
-      "ewma": 43.0,
-      "forecast": 43.3,
-      "change": 0.6
-    },
-    {
-      "symbol": "BAJAJCON",
-      "price": 463.5,
-      "trailing": 37.5,
-      "ewma": 43.4,
-      "forecast": 43.3,
-      "change": -0.2
-    },
-    {
-      "symbol": "CEMPRO",
-      "price": 1287.1,
-      "trailing": 38.7,
-      "ewma": 42.7,
-      "forecast": 43.6,
-      "change": 2.0
-    },
-    {
-      "symbol": "AEQUS",
-      "price": 251.66,
-      "trailing": 36.5,
-      "ewma": 41.7,
-      "forecast": 43.8,
-      "change": 5.1
-    },
-    {
-      "symbol": "JYOTICNC",
-      "price": 1012.7,
-      "trailing": 53.9,
-      "ewma": 50.0,
-      "forecast": 43.9,
-      "change": -12.1
-    },
-    {
-      "symbol": "SKYGOLD",
-      "price": 848.1,
-      "trailing": 58.0,
-      "ewma": 54.9,
-      "forecast": 44.2,
-      "change": -19.5
-    },
-    {
-      "symbol": "WELCORP",
-      "price": 2306.7,
-      "trailing": 58.1,
-      "ewma": 64.9,
-      "forecast": 44.2,
-      "change": -31.9
-    },
-    {
-      "symbol": "SHILPAMED",
-      "price": 860.75,
-      "trailing": 49.0,
-      "ewma": 48.1,
-      "forecast": 44.3,
-      "change": -7.9
-    },
-    {
-      "symbol": "CARTRADE",
-      "price": 3142.2,
-      "trailing": 36.5,
-      "ewma": 46.4,
-      "forecast": 44.4,
-      "change": -4.4
-    },
-    {
-      "symbol": "FINCABLES",
-      "price": 1286.35,
-      "trailing": 60.6,
-      "ewma": 56.5,
-      "forecast": 44.6,
-      "change": -21.1
-    },
-    {
-      "symbol": "REDINGTON",
-      "price": 354.2,
-      "trailing": 52.5,
-      "ewma": 47.5,
-      "forecast": 44.6,
-      "change": -6.2
-    },
-    {
-      "symbol": "URBANCO",
-      "price": 167.53,
-      "trailing": 60.8,
-      "ewma": 55.0,
-      "forecast": 44.7,
-      "change": -18.8
-    },
-    {
-      "symbol": "SMLMAH",
-      "price": 5190.5,
-      "trailing": 108.9,
-      "ewma": 73.3,
-      "forecast": 44.8,
-      "change": -38.8
-    },
-    {
-      "symbol": "TANLA",
-      "price": 526.05,
-      "trailing": 35.2,
-      "ewma": 41.5,
-      "forecast": 44.8,
+      "symbol": "NATCOPHARM",
+      "price": 857.6,
+      "trailing": 26.8,
+      "ewma": 27.8,
+      "forecast": 33.5,
+      "change": 20.6
+    },
+    {
+      "symbol": "FORCEMOT",
+      "price": 17375.0,
+      "trailing": 30.8,
+      "ewma": 30.3,
+      "forecast": 33.6,
+      "change": 10.9
+    },
+    {
+      "symbol": "JMFINANCIL",
+      "price": 130.45,
+      "trailing": 26.6,
+      "ewma": 27.6,
+      "forecast": 33.7,
+      "change": 22.3
+    },
+    {
+      "symbol": "HBLENGINE",
+      "price": 665.75,
+      "trailing": 35.1,
+      "ewma": 34.1,
+      "forecast": 33.7,
+      "change": -1.1
+    },
+    {
+      "symbol": "NUVAMA",
+      "price": 1784.0,
+      "trailing": 29.6,
+      "ewma": 31.3,
+      "forecast": 33.8,
       "change": 8.0
     },
     {
-      "symbol": "MARKSANS",
-      "price": 331.05,
-      "trailing": 57.6,
-      "ewma": 58.0,
-      "forecast": 45.0,
-      "change": -22.5
+      "symbol": "SCI",
+      "price": 292.55,
+      "trailing": 30.2,
+      "ewma": 28.6,
+      "forecast": 33.8,
+      "change": 18.2
     },
     {
-      "symbol": "CHENNPETRO",
-      "price": 1375.0,
-      "trailing": 64.9,
-      "ewma": 58.8,
-      "forecast": 45.2,
-      "change": -23.2
+      "symbol": "BEML",
+      "price": 1920.6,
+      "trailing": 32.5,
+      "ewma": 29.8,
+      "forecast": 33.8,
+      "change": 13.6
     },
     {
-      "symbol": "JAINREC",
-      "price": 289.1,
-      "trailing": 39.1,
-      "ewma": 40.2,
-      "forecast": 45.2,
-      "change": 12.6
+      "symbol": "GESHIP",
+      "price": 1317.2,
+      "trailing": 28.8,
+      "ewma": 27.7,
+      "forecast": 33.9,
+      "change": 22.4
     },
     {
-      "symbol": "ZAGGLE",
-      "price": 190.76,
-      "trailing": 89.6,
-      "ewma": 83.0,
-      "forecast": 45.3,
-      "change": -45.4
+      "symbol": "KFINTECH",
+      "price": 957.0,
+      "trailing": 22.1,
+      "ewma": 32.4,
+      "forecast": 33.9,
+      "change": 4.6
     },
     {
-      "symbol": "PCJEWELLER",
-      "price": 11.23,
-      "trailing": 43.2,
-      "ewma": 52.5,
-      "forecast": 45.4,
-      "change": -13.5
+      "symbol": "CHOLAHLDNG",
+      "price": 1517.2,
+      "trailing": 30.0,
+      "ewma": 26.6,
+      "forecast": 34.0,
+      "change": 27.5
     },
     {
-      "symbol": "NETWEB",
-      "price": 5271.9,
-      "trailing": 60.1,
-      "ewma": 57.4,
-      "forecast": 45.5,
-      "change": -20.8
+      "symbol": "NEULANDLAB",
+      "price": 23496.0,
+      "trailing": 45.9,
+      "ewma": 38.7,
+      "forecast": 34.0,
+      "change": -12.2
     },
     {
-      "symbol": "ECLERX",
-      "price": 1944.0,
-      "trailing": 40.9,
-      "ewma": 46.9,
-      "forecast": 45.6,
-      "change": -2.9
+      "symbol": "CRAFTSMAN",
+      "price": 10898.0,
+      "trailing": 32.7,
+      "ewma": 33.1,
+      "forecast": 34.1,
+      "change": 3.2
     },
     {
-      "symbol": "SHADOWFAX",
-      "price": 246.14,
-      "trailing": 48.2,
-      "ewma": 45.4,
-      "forecast": 45.8,
+      "symbol": "SAMMAANCAP",
+      "price": 147.34,
+      "trailing": 30.7,
+      "ewma": 31.1,
+      "forecast": 34.1,
+      "change": 10.0
+    },
+    {
+      "symbol": "GODFRYPHLP",
+      "price": 2115.0,
+      "trailing": 31.6,
+      "ewma": 32.4,
+      "forecast": 34.2,
+      "change": 5.4
+    },
+    {
+      "symbol": "J&KBANK",
+      "price": 152.17,
+      "trailing": 27.2,
+      "ewma": 44.6,
+      "forecast": 34.2,
+      "change": -23.3
+    },
+    {
+      "symbol": "BSOFT",
+      "price": 287.95,
+      "trailing": 30.0,
+      "ewma": 31.0,
+      "forecast": 34.2,
+      "change": 10.3
+    },
+    {
+      "symbol": "GMDCLTD",
+      "price": 567.25,
+      "trailing": 31.4,
+      "ewma": 29.5,
+      "forecast": 34.3,
+      "change": 16.2
+    },
+    {
+      "symbol": "RKFORGE",
+      "price": 716.65,
+      "trailing": 33.4,
+      "ewma": 33.0,
+      "forecast": 34.3,
+      "change": 4.0
+    },
+    {
+      "symbol": "ENRIN",
+      "price": 3256.4,
+      "trailing": 51.0,
+      "ewma": 43.5,
+      "forecast": 34.4,
+      "change": -20.9
+    },
+    {
+      "symbol": "UJJIVANSFB",
+      "price": 68.57,
+      "trailing": 25.7,
+      "ewma": 28.8,
+      "forecast": 34.4,
+      "change": 19.4
+    },
+    {
+      "symbol": "OLECTRA",
+      "price": 1326.3,
+      "trailing": 30.0,
+      "ewma": 30.4,
+      "forecast": 34.4,
+      "change": 13.1
+    },
+    {
+      "symbol": "GRAPHITE",
+      "price": 683.0,
+      "trailing": 35.7,
+      "ewma": 33.3,
+      "forecast": 34.4,
+      "change": 3.5
+    },
+    {
+      "symbol": "ANANTRAJ",
+      "price": 605.25,
+      "trailing": 18.3,
+      "ewma": 26.0,
+      "forecast": 34.5,
+      "change": 32.5
+    },
+    {
+      "symbol": "JPPOWER",
+      "price": 16.92,
+      "trailing": 26.8,
+      "ewma": 26.7,
+      "forecast": 34.6,
+      "change": 29.4
+    },
+    {
+      "symbol": "DIXON",
+      "price": 14711.0,
+      "trailing": 24.1,
+      "ewma": 29.5,
+      "forecast": 34.6,
+      "change": 17.4
+    },
+    {
+      "symbol": "MOSCHIP",
+      "price": 219.36,
+      "trailing": 31.1,
+      "ewma": 43.3,
+      "forecast": 34.6,
+      "change": -20.0
+    },
+    {
+      "symbol": "AFFLE",
+      "price": 1650.3,
+      "trailing": 36.9,
+      "ewma": 36.9,
+      "forecast": 34.6,
+      "change": -6.1
+    },
+    {
+      "symbol": "KPRMILL",
+      "price": 1126.5,
+      "trailing": 25.0,
+      "ewma": 30.8,
+      "forecast": 34.7,
+      "change": 12.5
+    },
+    {
+      "symbol": "LODHA",
+      "price": 1246.3,
+      "trailing": 27.3,
+      "ewma": 34.9,
+      "forecast": 34.7,
+      "change": -0.6
+    },
+    {
+      "symbol": "ONESOURCE",
+      "price": 1517.5,
+      "trailing": 31.0,
+      "ewma": 28.5,
+      "forecast": 34.8,
+      "change": 22.1
+    },
+    {
+      "symbol": "AARTIIND",
+      "price": 538.9,
+      "trailing": 26.9,
+      "ewma": 29.8,
+      "forecast": 34.8,
+      "change": 16.7
+    },
+    {
+      "symbol": "JAMNAAUTO",
+      "price": 119.88,
+      "trailing": 51.9,
+      "ewma": 41.8,
+      "forecast": 34.8,
+      "change": -16.7
+    },
+    {
+      "symbol": "FIVESTAR",
+      "price": 533.75,
+      "trailing": 30.1,
+      "ewma": 33.9,
+      "forecast": 34.9,
+      "change": 3.0
+    },
+    {
+      "symbol": "TATATECH",
+      "price": 799.35,
+      "trailing": 46.5,
+      "ewma": 40.5,
+      "forecast": 35.0,
+      "change": -13.6
+    },
+    {
+      "symbol": "MOTILALOFS",
+      "price": 1038.1,
+      "trailing": 28.9,
+      "ewma": 34.7,
+      "forecast": 35.1,
       "change": 1.0
     },
     {
-      "symbol": "AEGISLOG",
-      "price": 1331.7,
-      "trailing": 55.1,
-      "ewma": 57.5,
-      "forecast": 45.9,
-      "change": -20.1
+      "symbol": "BLACKBUCK",
+      "price": 588.2,
+      "trailing": 36.1,
+      "ewma": 36.1,
+      "forecast": 35.1,
+      "change": -2.9
     },
     {
-      "symbol": "MANINDS",
-      "price": 703.1,
-      "trailing": 45.4,
-      "ewma": 48.7,
-      "forecast": 46.1,
+      "symbol": "IDEA",
+      "price": 14.97,
+      "trailing": 39.7,
+      "ewma": 40.1,
+      "forecast": 35.1,
+      "change": -12.5
+    },
+    {
+      "symbol": "ENGINERSIN",
+      "price": 246.96,
+      "trailing": 38.3,
+      "ewma": 35.4,
+      "forecast": 35.2,
+      "change": -0.5
+    },
+    {
+      "symbol": "HEXT",
+      "price": 556.6,
+      "trailing": 38.3,
+      "ewma": 37.5,
+      "forecast": 35.2,
+      "change": -6.1
+    },
+    {
+      "symbol": "RPOWER",
+      "price": 22.71,
+      "trailing": 29.8,
+      "ewma": 32.9,
+      "forecast": 35.2,
+      "change": 7.1
+    },
+    {
+      "symbol": "APOLLO",
+      "price": 386.35,
+      "trailing": 24.9,
+      "ewma": 31.2,
+      "forecast": 35.3,
+      "change": 13.1
+    },
+    {
+      "symbol": "YATHARTH",
+      "price": 973.05,
+      "trailing": 34.8,
+      "ewma": 36.0,
+      "forecast": 35.3,
+      "change": -1.8
+    },
+    {
+      "symbol": "EMMVEE",
+      "price": 327.3,
+      "trailing": 27.1,
+      "ewma": 33.8,
+      "forecast": 35.5,
+      "change": 5.1
+    },
+    {
+      "symbol": "ARVIND",
+      "price": 540.95,
+      "trailing": 38.6,
+      "ewma": 36.5,
+      "forecast": 35.6,
+      "change": -2.5
+    },
+    {
+      "symbol": "PACEDIGITK",
+      "price": 179.15,
+      "trailing": 35.5,
+      "ewma": 34.1,
+      "forecast": 35.7,
+      "change": 4.6
+    },
+    {
+      "symbol": "RRKABEL",
+      "price": 2830.1,
+      "trailing": 30.4,
+      "ewma": 34.6,
+      "forecast": 35.7,
+      "change": 3.3
+    },
+    {
+      "symbol": "GOKEX",
+      "price": 774.9,
+      "trailing": 25.5,
+      "ewma": 28.9,
+      "forecast": 35.7,
+      "change": 23.4
+    },
+    {
+      "symbol": "TEJASNET",
+      "price": 511.15,
+      "trailing": 25.7,
+      "ewma": 32.2,
+      "forecast": 35.8,
+      "change": 11.1
+    },
+    {
+      "symbol": "TRITURBINE",
+      "price": 583.45,
+      "trailing": 31.8,
+      "ewma": 32.3,
+      "forecast": 35.8,
+      "change": 11.0
+    },
+    {
+      "symbol": "ZENTEC",
+      "price": 1825.6,
+      "trailing": 37.7,
+      "ewma": 38.3,
+      "forecast": 35.8,
+      "change": -6.4
+    },
+    {
+      "symbol": "PRAJIND",
+      "price": 354.4,
+      "trailing": 30.8,
+      "ewma": 34.4,
+      "forecast": 35.9,
+      "change": 4.2
+    },
+    {
+      "symbol": "EDELWEISS",
+      "price": 124.61,
+      "trailing": 31.3,
+      "ewma": 33.2,
+      "forecast": 35.9,
+      "change": 8.1
+    },
+    {
+      "symbol": "M&MFIN",
+      "price": 383.35,
+      "trailing": 32.8,
+      "ewma": 37.5,
+      "forecast": 36.0,
+      "change": -4.0
+    },
+    {
+      "symbol": "PGEL",
+      "price": 596.0,
+      "trailing": 23.0,
+      "ewma": 28.3,
+      "forecast": 36.0,
+      "change": 27.4
+    },
+    {
+      "symbol": "POCL",
+      "price": 511.3,
+      "trailing": 33.8,
+      "ewma": 31.0,
+      "forecast": 36.2,
+      "change": 16.9
+    },
+    {
+      "symbol": "HEG",
+      "price": 710.2,
+      "trailing": 31.7,
+      "ewma": 34.9,
+      "forecast": 36.2,
+      "change": 3.8
+    },
+    {
+      "symbol": "SWIGGY",
+      "price": 284.7,
+      "trailing": 24.9,
+      "ewma": 33.1,
+      "forecast": 36.3,
+      "change": 9.8
+    },
+    {
+      "symbol": "ACMESOLAR",
+      "price": 386.3,
+      "trailing": 31.0,
+      "ewma": 32.7,
+      "forecast": 36.4,
+      "change": 11.2
+    },
+    {
+      "symbol": "CREDITACC",
+      "price": 1425.9,
+      "trailing": 22.7,
+      "ewma": 29.0,
+      "forecast": 36.4,
+      "change": 25.4
+    },
+    {
+      "symbol": "TARIL",
+      "price": 304.15,
+      "trailing": 25.0,
+      "ewma": 33.1,
+      "forecast": 36.5,
+      "change": 10.4
+    },
+    {
+      "symbol": "SYRMA",
+      "price": 1493.5,
+      "trailing": 33.9,
+      "ewma": 35.0,
+      "forecast": 36.7,
+      "change": 5.0
+    },
+    {
+      "symbol": "GUJENERGY",
+      "price": 250.35,
+      "trailing": 28.9,
+      "ewma": 29.4,
+      "forecast": 36.9,
+      "change": 25.6
+    },
+    {
+      "symbol": "SANSERA",
+      "price": 3842.8,
+      "trailing": 41.2,
+      "ewma": 37.2,
+      "forecast": 36.9,
+      "change": -0.7
+    },
+    {
+      "symbol": "PTCIL",
+      "price": 20622.0,
+      "trailing": 46.3,
+      "ewma": 44.6,
+      "forecast": 36.9,
+      "change": -17.2
+    },
+    {
+      "symbol": "WELSPUNLIV",
+      "price": 192.29,
+      "trailing": 38.7,
+      "ewma": 39.1,
+      "forecast": 36.9,
       "change": -5.5
     },
     {
-      "symbol": "RAIN",
-      "price": 195.78,
-      "trailing": 55.1,
-      "ewma": 52.4,
-      "forecast": 46.3,
-      "change": -11.6
+      "symbol": "CUB",
+      "price": 229.23,
+      "trailing": 40.7,
+      "ewma": 42.7,
+      "forecast": 37.0,
+      "change": -13.3
     },
     {
-      "symbol": "PARAS",
-      "price": 1492.7,
-      "trailing": 48.3,
-      "ewma": 55.8,
-      "forecast": 47.1,
-      "change": -15.5
+      "symbol": "LLOYDSME",
+      "price": 1798.5,
+      "trailing": 28.0,
+      "ewma": 30.7,
+      "forecast": 37.1,
+      "change": 20.9
     },
     {
-      "symbol": "CUPID",
-      "price": 283.99,
-      "trailing": 53.3,
-      "ewma": 54.5,
-      "forecast": 48.6,
-      "change": -10.9
+      "symbol": "PARADEEP",
+      "price": 160.55,
+      "trailing": 35.9,
+      "ewma": 44.1,
+      "forecast": 37.1,
+      "change": -15.9
     },
     {
-      "symbol": "BALAMINES",
-      "price": 2437.2,
-      "trailing": 51.2,
-      "ewma": 56.7,
-      "forecast": 48.7,
-      "change": -14.1
+      "symbol": "SAIL",
+      "price": 193.0,
+      "trailing": 37.2,
+      "ewma": 37.1,
+      "forecast": 37.1,
+      "change": 0.1
     },
     {
-      "symbol": "WEBELSOLAR",
-      "price": 78.27,
-      "trailing": 41.7,
-      "ewma": 42.4,
-      "forecast": 48.9,
-      "change": 15.2
+      "symbol": "RAYMOND",
+      "price": 614.0,
+      "trailing": 35.3,
+      "ewma": 34.2,
+      "forecast": 37.1,
+      "change": 8.5
     },
     {
-      "symbol": "AVALON",
-      "price": 2226.4,
-      "trailing": 58.7,
-      "ewma": 57.8,
-      "forecast": 50.2,
+      "symbol": "KALYANKJIL",
+      "price": 629.3,
+      "trailing": 33.2,
+      "ewma": 46.9,
+      "forecast": 37.2,
+      "change": -20.6
+    },
+    {
+      "symbol": "ASTRAMICRO",
+      "price": 1687.5,
+      "trailing": 45.8,
+      "ewma": 40.7,
+      "forecast": 37.4,
+      "change": -8.3
+    },
+    {
+      "symbol": "PAYTM",
+      "price": 1679.0,
+      "trailing": 46.6,
+      "ewma": 44.9,
+      "forecast": 37.4,
+      "change": -16.7
+    },
+    {
+      "symbol": "NEWGEN",
+      "price": 523.0,
+      "trailing": 23.3,
+      "ewma": 39.4,
+      "forecast": 37.4,
+      "change": -5.1
+    },
+    {
+      "symbol": "MEESHO",
+      "price": 207.64,
+      "trailing": 33.0,
+      "ewma": 33.6,
+      "forecast": 37.5,
+      "change": 11.4
+    },
+    {
+      "symbol": "PPLPHARMA",
+      "price": 214.95,
+      "trailing": 26.7,
+      "ewma": 32.2,
+      "forecast": 37.5,
+      "change": 16.4
+    },
+    {
+      "symbol": "DEEPAKFERT",
+      "price": 1455.3,
+      "trailing": 31.0,
+      "ewma": 29.2,
+      "forecast": 37.5,
+      "change": 28.4
+    },
+    {
+      "symbol": "GABRIEL",
+      "price": 1357.2,
+      "trailing": 40.0,
+      "ewma": 41.5,
+      "forecast": 37.6,
+      "change": -9.5
+    },
+    {
+      "symbol": "GRWRHITECH",
+      "price": 7060.5,
+      "trailing": 28.3,
+      "ewma": 27.8,
+      "forecast": 37.6,
+      "change": 35.1
+    },
+    {
+      "symbol": "SKIPPER",
+      "price": 558.1,
+      "trailing": 37.0,
+      "ewma": 37.4,
+      "forecast": 37.6,
+      "change": 0.4
+    },
+    {
+      "symbol": "BRIGADE",
+      "price": 656.75,
+      "trailing": 32.0,
+      "ewma": 41.7,
+      "forecast": 37.7,
+      "change": -9.7
+    },
+    {
+      "symbol": "GENUSPOWER",
+      "price": 332.2,
+      "trailing": 36.2,
+      "ewma": 38.5,
+      "forecast": 37.7,
+      "change": -2.0
+    },
+    {
+      "symbol": "BLS",
+      "price": 238.07,
+      "trailing": 49.7,
+      "ewma": 47.7,
+      "forecast": 37.7,
+      "change": -20.9
+    },
+    {
+      "symbol": "SHREEJISPG",
+      "price": 640.35,
+      "trailing": 49.3,
+      "ewma": 45.7,
+      "forecast": 37.9,
+      "change": -17.1
+    },
+    {
+      "symbol": "VIYASH",
+      "price": 259.5,
+      "trailing": 46.9,
+      "ewma": 45.7,
+      "forecast": 38.0,
+      "change": -16.7
+    },
+    {
+      "symbol": "AETHER",
+      "price": 1677.3,
+      "trailing": 29.1,
+      "ewma": 31.9,
+      "forecast": 38.0,
+      "change": 19.4
+    },
+    {
+      "symbol": "BORORENEW",
+      "price": 517.55,
+      "trailing": 21.9,
+      "ewma": 28.2,
+      "forecast": 38.0,
+      "change": 34.8
+    },
+    {
+      "symbol": "THANGAMAYL",
+      "price": 5502.0,
+      "trailing": 64.1,
+      "ewma": 56.1,
+      "forecast": 38.1,
+      "change": -32.1
+    },
+    {
+      "symbol": "PAISALO",
+      "price": 67.83,
+      "trailing": 21.6,
+      "ewma": 31.6,
+      "forecast": 38.1,
+      "change": 20.7
+    },
+    {
+      "symbol": "ATHERENERG",
+      "price": 1495.3,
+      "trailing": 55.8,
+      "ewma": 47.3,
+      "forecast": 38.2,
+      "change": -19.3
+    },
+    {
+      "symbol": "HINDCOPPER",
+      "price": 536.3,
+      "trailing": 57.7,
+      "ewma": 52.2,
+      "forecast": 38.4,
+      "change": -26.4
+    },
+    {
+      "symbol": "INOXGREEN",
+      "price": 172.18,
+      "trailing": 26.4,
+      "ewma": 35.1,
+      "forecast": 38.5,
+      "change": 9.7
+    },
+    {
+      "symbol": "SHAILY",
+      "price": 3289.0,
+      "trailing": 42.4,
+      "ewma": 36.0,
+      "forecast": 38.7,
+      "change": 7.5
+    },
+    {
+      "symbol": "SENORES",
+      "price": 1474.6,
+      "trailing": 37.1,
+      "ewma": 37.3,
+      "forecast": 38.8,
+      "change": 3.9
+    },
+    {
+      "symbol": "WOCKPHARMA",
+      "price": 1962.0,
+      "trailing": 37.9,
+      "ewma": 36.4,
+      "forecast": 38.8,
+      "change": 6.4
+    },
+    {
+      "symbol": "BLUEJET",
+      "price": 585.6,
+      "trailing": 29.4,
+      "ewma": 31.7,
+      "forecast": 38.8,
+      "change": 22.4
+    },
+    {
+      "symbol": "CYIENT",
+      "price": 1052.7,
+      "trailing": 43.4,
+      "ewma": 47.3,
+      "forecast": 38.8,
+      "change": -17.9
+    },
+    {
+      "symbol": "VIKRAMSOLR",
+      "price": 172.01,
+      "trailing": 64.2,
+      "ewma": 56.5,
+      "forecast": 39.0,
+      "change": -31.1
+    },
+    {
+      "symbol": "FRACTAL",
+      "price": 840.25,
+      "trailing": 30.6,
+      "ewma": 36.6,
+      "forecast": 39.1,
+      "change": 6.9
+    },
+    {
+      "symbol": "BALRAMCHIN",
+      "price": 649.95,
+      "trailing": 86.5,
+      "ewma": 77.3,
+      "forecast": 39.2,
+      "change": -49.3
+    },
+    {
+      "symbol": "FIRSTCRY",
+      "price": 188.26,
+      "trailing": 21.7,
+      "ewma": 25.6,
+      "forecast": 39.3,
+      "change": 53.7
+    },
+    {
+      "symbol": "DEVYANI",
+      "price": 146.11,
+      "trailing": 50.4,
+      "ewma": 43.9,
+      "forecast": 39.3,
+      "change": -10.4
+    },
+    {
+      "symbol": "GVT&D",
+      "price": 4407.8,
+      "trailing": 28.9,
+      "ewma": 35.3,
+      "forecast": 39.3,
+      "change": 11.5
+    },
+    {
+      "symbol": "TIMETECHNO",
+      "price": 185.67,
+      "trailing": 27.9,
+      "ewma": 33.0,
+      "forecast": 39.3,
+      "change": 19.3
+    },
+    {
+      "symbol": "PCBL",
+      "price": 323.0,
+      "trailing": 44.5,
+      "ewma": 46.4,
+      "forecast": 39.4,
+      "change": -15.2
+    },
+    {
+      "symbol": "LUMAXTECH",
+      "price": 1930.6,
+      "trailing": 73.3,
+      "ewma": 60.1,
+      "forecast": 39.4,
+      "change": -34.5
+    },
+    {
+      "symbol": "ZENSARTECH",
+      "price": 463.75,
+      "trailing": 19.6,
+      "ewma": 37.6,
+      "forecast": 39.4,
+      "change": 4.8
+    },
+    {
+      "symbol": "WABAG",
+      "price": 2133.9,
+      "trailing": 41.1,
+      "ewma": 46.6,
+      "forecast": 39.5,
+      "change": -15.4
+    },
+    {
+      "symbol": "AVANTIFEED",
+      "price": 844.45,
+      "trailing": 25.0,
+      "ewma": 28.5,
+      "forecast": 39.5,
+      "change": 38.6
+    },
+    {
+      "symbol": "CGCL",
+      "price": 244.8,
+      "trailing": 48.4,
+      "ewma": 48.2,
+      "forecast": 39.6,
+      "change": -18.0
+    },
+    {
+      "symbol": "AXISCADES",
+      "price": 1612.9,
+      "trailing": 33.8,
+      "ewma": 36.9,
+      "forecast": 39.6,
+      "change": 7.4
+    },
+    {
+      "symbol": "EIEL",
+      "price": 201.04,
+      "trailing": 31.8,
+      "ewma": 35.6,
+      "forecast": 39.6,
+      "change": 11.5
+    },
+    {
+      "symbol": "MIDHANI",
+      "price": 418.3,
+      "trailing": 51.1,
+      "ewma": 44.4,
+      "forecast": 39.7,
+      "change": -10.5
+    },
+    {
+      "symbol": "GRMOVER",
+      "price": 87.76,
+      "trailing": 37.0,
+      "ewma": 37.8,
+      "forecast": 39.8,
+      "change": 5.4
+    },
+    {
+      "symbol": "VOLTAMP",
+      "price": 11228.5,
+      "trailing": 39.2,
+      "ewma": 38.1,
+      "forecast": 39.9,
+      "change": 4.6
+    },
+    {
+      "symbol": "IFCI",
+      "price": 84.27,
+      "trailing": 32.7,
+      "ewma": 38.8,
+      "forecast": 39.9,
+      "change": 3.0
+    },
+    {
+      "symbol": "CPPLUS",
+      "price": 3629.7,
+      "trailing": 49.4,
+      "ewma": 46.3,
+      "forecast": 40.0,
+      "change": -13.8
+    },
+    {
+      "symbol": "AGIIL",
+      "price": 288.8,
+      "trailing": 18.8,
+      "ewma": 24.9,
+      "forecast": 40.0,
+      "change": 60.7
+    },
+    {
+      "symbol": "KPIGREEN",
+      "price": 316.65,
+      "trailing": 34.7,
+      "ewma": 33.1,
+      "forecast": 40.2,
+      "change": 21.2
+    },
+    {
+      "symbol": "JAYNECOIND",
+      "price": 101.09,
+      "trailing": 40.1,
+      "ewma": 44.2,
+      "forecast": 40.2,
+      "change": -8.9
+    },
+    {
+      "symbol": "THERMAX",
+      "price": 3962.7,
+      "trailing": 27.4,
+      "ewma": 30.2,
+      "forecast": 40.4,
+      "change": 33.6
+    },
+    {
+      "symbol": "ACUTAAS",
+      "price": 3329.2,
+      "trailing": 44.2,
+      "ewma": 44.6,
+      "forecast": 40.6,
+      "change": -9.1
+    },
+    {
+      "symbol": "JSFB",
+      "price": 544.55,
+      "trailing": 43.3,
+      "ewma": 46.1,
+      "forecast": 40.7,
+      "change": -11.7
+    },
+    {
+      "symbol": "IDBI",
+      "price": 92.24,
+      "trailing": 37.7,
+      "ewma": 44.6,
+      "forecast": 40.8,
+      "change": -8.6
+    },
+    {
+      "symbol": "BBOX",
+      "price": 739.0,
+      "trailing": 44.8,
+      "ewma": 43.1,
+      "forecast": 40.8,
+      "change": -5.2
+    },
+    {
+      "symbol": "ZEEL",
+      "price": 103.98,
+      "trailing": 70.9,
+      "ewma": 55.6,
+      "forecast": 41.0,
+      "change": -26.2
+    },
+    {
+      "symbol": "CARTRADE",
+      "price": 3080.2,
+      "trailing": 34.6,
+      "ewma": 45.7,
+      "forecast": 41.0,
+      "change": -10.2
+    },
+    {
+      "symbol": "RATEGAIN",
+      "price": 918.25,
+      "trailing": 47.9,
+      "ewma": 43.1,
+      "forecast": 41.4,
+      "change": -3.9
+    },
+    {
+      "symbol": "DATAPATTNS",
+      "price": 4666.7,
+      "trailing": 42.1,
+      "ewma": 49.8,
+      "forecast": 41.5,
+      "change": -16.7
+    },
+    {
+      "symbol": "SENCO",
+      "price": 362.75,
+      "trailing": 62.4,
+      "ewma": 57.7,
+      "forecast": 41.5,
+      "change": -28.1
+    },
+    {
+      "symbol": "PINELABS",
+      "price": 169.67,
+      "trailing": 50.2,
+      "ewma": 44.7,
+      "forecast": 41.5,
+      "change": -7.1
+    },
+    {
+      "symbol": "OSWALPUMPS",
+      "price": 298.4,
+      "trailing": 34.0,
+      "ewma": 39.2,
+      "forecast": 41.6,
+      "change": 6.1
+    },
+    {
+      "symbol": "OLAELEC",
+      "price": 37.63,
+      "trailing": 42.6,
+      "ewma": 42.3,
+      "forecast": 41.7,
+      "change": -1.3
+    },
+    {
+      "symbol": "SEDEMAC",
+      "price": 3026.5,
+      "trailing": 35.6,
+      "ewma": 37.7,
+      "forecast": 41.8,
+      "change": 10.7
+    },
+    {
+      "symbol": "AZAD",
+      "price": 2802.4,
+      "trailing": 47.5,
+      "ewma": 45.3,
+      "forecast": 41.9,
+      "change": -7.5
+    },
+    {
+      "symbol": "WALCHANNAG",
+      "price": 222.26,
+      "trailing": 24.9,
+      "ewma": 33.9,
+      "forecast": 42.2,
+      "change": 24.2
+    },
+    {
+      "symbol": "RUBICON",
+      "price": 1841.0,
+      "trailing": 54.2,
+      "ewma": 55.5,
+      "forecast": 42.2,
+      "change": -24.0
+    },
+    {
+      "symbol": "APARINDS",
+      "price": 17900.0,
+      "trailing": 48.1,
+      "ewma": 48.7,
+      "forecast": 42.2,
       "change": -13.2
     },
     {
-      "symbol": "AEROFLEX",
-      "price": 536.35,
+      "symbol": "KIRLOSENG",
+      "price": 2100.2,
+      "trailing": 33.2,
+      "ewma": 40.6,
+      "forecast": 42.3,
+      "change": 4.0
+    },
+    {
+      "symbol": "KAYNES",
+      "price": 4018.8,
+      "trailing": 35.3,
+      "ewma": 44.3,
+      "forecast": 42.3,
+      "change": -4.4
+    },
+    {
+      "symbol": "HAPPSTMNDS",
+      "price": 420.25,
+      "trailing": 47.1,
+      "ewma": 48.6,
+      "forecast": 42.5,
+      "change": -12.6
+    },
+    {
+      "symbol": "SPARC",
+      "price": 194.98,
+      "trailing": 31.0,
+      "ewma": 37.5,
+      "forecast": 42.5,
+      "change": 13.6
+    },
+    {
+      "symbol": "ASHAPURMIN",
+      "price": 578.05,
+      "trailing": 53.5,
+      "ewma": 49.3,
+      "forecast": 42.6,
+      "change": -13.7
+    },
+    {
+      "symbol": "TFCILTD",
+      "price": 141.84,
+      "trailing": 37.7,
+      "ewma": 49.0,
+      "forecast": 42.6,
+      "change": -13.1
+    },
+    {
+      "symbol": "MRPL",
+      "price": 170.8,
+      "trailing": 49.8,
+      "ewma": 47.5,
+      "forecast": 42.7,
+      "change": -10.1
+    },
+    {
+      "symbol": "JSLL",
+      "price": 501.9,
+      "trailing": 48.1,
+      "ewma": 46.2,
+      "forecast": 42.8,
+      "change": -7.4
+    },
+    {
+      "symbol": "GOLDIAM",
+      "price": 352.75,
+      "trailing": 36.1,
+      "ewma": 36.9,
+      "forecast": 42.8,
+      "change": 16.0
+    },
+    {
+      "symbol": "LLOYDSENT",
+      "price": 72.94,
+      "trailing": 36.8,
+      "ewma": 39.3,
+      "forecast": 42.9,
+      "change": 9.0
+    },
+    {
+      "symbol": "VINCOFE",
+      "price": 174.65,
+      "trailing": 41.2,
+      "ewma": 44.7,
+      "forecast": 43.0,
+      "change": -3.7
+    },
+    {
+      "symbol": "LLOYDSENGG",
+      "price": 87.56,
+      "trailing": 50.0,
+      "ewma": 47.6,
+      "forecast": 43.2,
+      "change": -9.3
+    },
+    {
+      "symbol": "HSCL",
+      "price": 674.35,
+      "trailing": 39.8,
+      "ewma": 45.2,
+      "forecast": 43.3,
+      "change": -4.2
+    },
+    {
+      "symbol": "CLEANMAX",
+      "price": 1274.6,
+      "trailing": 42.9,
+      "ewma": 51.6,
+      "forecast": 43.3,
+      "change": -16.1
+    },
+    {
+      "symbol": "SMLMAH",
+      "price": 5194.0,
+      "trailing": 86.3,
+      "ewma": 71.0,
+      "forecast": 43.5,
+      "change": -38.8
+    },
+    {
+      "symbol": "AEQUS",
+      "price": 246.66,
+      "trailing": 37.5,
+      "ewma": 41.1,
+      "forecast": 43.6,
+      "change": 6.1
+    },
+    {
+      "symbol": "SKYGOLD",
+      "price": 843.05,
+      "trailing": 57.1,
+      "ewma": 53.3,
+      "forecast": 43.7,
+      "change": -18.0
+    },
+    {
+      "symbol": "PWL",
+      "price": 124.09,
+      "trailing": 34.5,
+      "ewma": 39.0,
+      "forecast": 43.9,
+      "change": 12.6
+    },
+    {
+      "symbol": "CHENNPETRO",
+      "price": 1352.4,
+      "trailing": 65.0,
+      "ewma": 57.4,
+      "forecast": 43.9,
+      "change": -23.5
+    },
+    {
+      "symbol": "REDINGTON",
+      "price": 358.4,
+      "trailing": 51.9,
+      "ewma": 46.3,
+      "forecast": 44.0,
+      "change": -4.9
+    },
+    {
+      "symbol": "HFCL",
+      "price": 245.84,
+      "trailing": 47.5,
+      "ewma": 49.9,
+      "forecast": 44.2,
+      "change": -11.4
+    },
+    {
+      "symbol": "JYOTICNC",
+      "price": 1029.8,
+      "trailing": 53.8,
+      "ewma": 48.9,
+      "forecast": 44.2,
+      "change": -9.5
+    },
+    {
+      "symbol": "COHANCE",
+      "price": 454.0,
+      "trailing": 40.1,
+      "ewma": 42.0,
+      "forecast": 44.3,
+      "change": 5.4
+    },
+    {
+      "symbol": "JINDALSAW",
+      "price": 310.25,
+      "trailing": 43.2,
+      "ewma": 48.3,
+      "forecast": 44.5,
+      "change": -8.0
+    },
+    {
+      "symbol": "URBANCO",
+      "price": 167.36,
+      "trailing": 61.0,
+      "ewma": 53.4,
+      "forecast": 44.6,
+      "change": -16.5
+    },
+    {
+      "symbol": "MARKSANS",
+      "price": 326.15,
+      "trailing": 58.3,
+      "ewma": 56.6,
+      "forecast": 45.1,
+      "change": -20.3
+    },
+    {
+      "symbol": "FINCABLES",
+      "price": 1291.15,
       "trailing": 60.7,
-      "ewma": 62.8,
-      "forecast": 50.4,
-      "change": -19.7
+      "ewma": 54.8,
+      "forecast": 45.1,
+      "change": -17.6
     },
     {
-      "symbol": "IOLCP",
-      "price": 186.01,
+      "symbol": "WELCORP",
+      "price": 2405.8,
+      "trailing": 58.6,
+      "ewma": 65.1,
+      "forecast": 45.3,
+      "change": -30.3
+    },
+    {
+      "symbol": "FSL",
+      "price": 268.5,
+      "trailing": 61.6,
+      "ewma": 53.4,
+      "forecast": 45.4,
+      "change": -15.1
+    },
+    {
+      "symbol": "NETWEB",
+      "price": 5272.2,
+      "trailing": 59.9,
+      "ewma": 55.7,
+      "forecast": 45.5,
+      "change": -18.3
+    },
+    {
+      "symbol": "SHILPAMED",
+      "price": 901.85,
+      "trailing": 49.6,
+      "ewma": 50.2,
+      "forecast": 45.8,
+      "change": -8.7
+    },
+    {
+      "symbol": "CEMPRO",
+      "price": 1251.2,
+      "trailing": 39.8,
+      "ewma": 42.8,
+      "forecast": 45.9,
+      "change": 7.3
+    },
+    {
+      "symbol": "ZAGGLE",
+      "price": 189.43,
+      "trailing": 89.3,
+      "ewma": 80.5,
+      "forecast": 46.1,
+      "change": -42.7
+    },
+    {
+      "symbol": "PCJEWELLER",
+      "price": 11.01,
+      "trailing": 43.7,
+      "ewma": 51.5,
+      "forecast": 46.2,
+      "change": -10.2
+    },
+    {
+      "symbol": "SHADOWFAX",
+      "price": 238.6,
       "trailing": 48.5,
-      "ewma": 57.6,
-      "forecast": 51.4,
-      "change": -10.7
+      "ewma": 45.6,
+      "forecast": 46.5,
+      "change": 2.1
     },
     {
-      "symbol": "FCL",
-      "price": 50.58,
-      "trailing": 56.6,
-      "ewma": 60.6,
-      "forecast": 52.2,
-      "change": -13.9
+      "symbol": "BAJAJCON",
+      "price": 450.6,
+      "trailing": 37.7,
+      "ewma": 43.4,
+      "forecast": 46.7,
+      "change": 7.6
     },
     {
-      "symbol": "OMNI",
-      "price": 578.15,
-      "trailing": 102.6,
-      "ewma": 79.4,
-      "forecast": 52.4,
-      "change": -34.0
+      "symbol": "HCC",
+      "price": 25.1,
+      "trailing": 49.7,
+      "ewma": 53.2,
+      "forecast": 46.9,
+      "change": -11.8
+    },
+    {
+      "symbol": "RAIN",
+      "price": 194.38,
+      "trailing": 54.4,
+      "ewma": 50.9,
+      "forecast": 47.2,
+      "change": -7.2
+    },
+    {
+      "symbol": "ECLERX",
+      "price": 1940.9,
+      "trailing": 39.7,
+      "ewma": 45.5,
+      "forecast": 47.3,
+      "change": 3.9
+    },
+    {
+      "symbol": "TANLA",
+      "price": 531.5,
+      "trailing": 34.2,
+      "ewma": 40.4,
+      "forecast": 47.4,
+      "change": 17.2
+    },
+    {
+      "symbol": "AEGISLOG",
+      "price": 1298.0,
+      "trailing": 55.8,
+      "ewma": 56.6,
+      "forecast": 47.5,
+      "change": -16.1
+    },
+    {
+      "symbol": "PARAS",
+      "price": 1454.8,
+      "trailing": 49.7,
+      "ewma": 55.0,
+      "forecast": 47.6,
+      "change": -13.4
+    },
+    {
+      "symbol": "BALAMINES",
+      "price": 2425.8,
+      "trailing": 51.2,
+      "ewma": 55.0,
+      "forecast": 48.5,
+      "change": -11.8
+    },
+    {
+      "symbol": "INOXINDIA",
+      "price": 2177.9,
+      "trailing": 48.5,
+      "ewma": 59.8,
+      "forecast": 48.6,
+      "change": -18.9
+    },
+    {
+      "symbol": "JAINREC",
+      "price": 285.05,
+      "trailing": 39.2,
+      "ewma": 39.3,
+      "forecast": 48.6,
+      "change": 23.7
+    },
+    {
+      "symbol": "AEROFLEX",
+      "price": 522.1,
+      "trailing": 61.9,
+      "ewma": 61.7,
+      "forecast": 48.9,
+      "change": -20.8
+    },
+    {
+      "symbol": "CUPID",
+      "price": 276.65,
+      "trailing": 54.7,
+      "ewma": 53.8,
+      "forecast": 49.7,
+      "change": -7.7
+    },
+    {
+      "symbol": "AVALON",
+      "price": 2256.6,
+      "trailing": 58.6,
+      "ewma": 56.3,
+      "forecast": 50.7,
+      "change": -10.0
+    },
+    {
+      "symbol": "WEBELSOLAR",
+      "price": 77.29,
+      "trailing": 41.7,
+      "ewma": 41.4,
+      "forecast": 51.6,
+      "change": 24.7
+    },
+    {
+      "symbol": "MANINDS",
+      "price": 767.45,
+      "trailing": 52.6,
+      "ewma": 59.2,
+      "forecast": 51.7,
+      "change": -12.7
     },
     {
       "symbol": "BALUFORGE",
-      "price": 638.9,
+      "price": 632.9,
       "trailing": 68.1,
-      "ewma": 72.7,
+      "ewma": 70.6,
+      "forecast": 51.9,
+      "change": -26.4
+    },
+    {
+      "symbol": "OMNI",
+      "price": 575.7,
+      "trailing": 102.6,
+      "ewma": 77.0,
+      "forecast": 52.7,
+      "change": -31.5
+    },
+    {
+      "symbol": "FCL",
+      "price": 48.49,
+      "trailing": 57.3,
+      "ewma": 60.9,
       "forecast": 52.8,
-      "change": -27.4
+      "change": -13.3
     },
     {
-      "symbol": "KERNEX",
-      "price": 1860.4,
-      "trailing": 90.0,
-      "ewma": 82.2,
-      "forecast": 52.9,
-      "change": -35.6
-    },
-    {
-      "symbol": "TDPOWERSYS",
-      "price": 727.8,
-      "trailing": 191.6,
-      "ewma": 192.8,
-      "forecast": 55.4,
-      "change": -71.3
+      "symbol": "IOLCP",
+      "price": 193.07,
+      "trailing": 49.1,
+      "ewma": 57.8,
+      "forecast": 53.3,
+      "change": -7.7
     },
     {
       "symbol": "MOREPENLAB",
-      "price": 96.98,
-      "trailing": 93.1,
-      "ewma": 83.4,
-      "forecast": 56.4,
-      "change": -32.3
+      "price": 96.7,
+      "trailing": 93.5,
+      "ewma": 80.8,
+      "forecast": 53.3,
+      "change": -34.0
+    },
+    {
+      "symbol": "KERNEX",
+      "price": 1801.2,
+      "trailing": 89.8,
+      "ewma": 80.6,
+      "forecast": 53.7,
+      "change": -33.4
     },
     {
       "symbol": "KWIL",
-      "price": 46.48,
-      "trailing": 78.5,
-      "ewma": 80.9,
-      "forecast": 56.6,
-      "change": -30.0
+      "price": 46.35,
+      "trailing": 78.7,
+      "ewma": 78.4,
+      "forecast": 55.0,
+      "change": -29.8
+    },
+    {
+      "symbol": "TDPOWERSYS",
+      "price": 740.6,
+      "trailing": 190.5,
+      "ewma": 187.1,
+      "forecast": 55.9,
+      "change": -70.1
     }
   ],
   "sizing": [
     {
       "symbol": "CASTROLIND",
-      "forecast": 12.1,
+      "forecast": 13.1,
       "equal": 8.33,
-      "risk_weighted": 16.37
+      "risk_weighted": 15.55
     },
     {
-      "symbol": "BANKBARODA",
-      "forecast": 20.4,
+      "symbol": "ABBOTINDIA",
+      "forecast": 20.9,
       "equal": 8.33,
-      "risk_weighted": 9.66
+      "risk_weighted": 9.75
     },
     {
-      "symbol": "GRASIM",
-      "forecast": 21.9,
+      "symbol": "KOTAKBANK",
+      "forecast": 22.3,
       "equal": 8.33,
-      "risk_weighted": 9.0
+      "risk_weighted": 9.14
     },
     {
-      "symbol": "SHREECEM",
-      "forecast": 23.6,
+      "symbol": "JSWENERGY",
+      "forecast": 24.3,
       "equal": 8.33,
-      "risk_weighted": 8.38
+      "risk_weighted": 8.4
     },
     {
-      "symbol": "CGPOWER",
-      "forecast": 24.9,
+      "symbol": "SCHAEFFLER",
+      "forecast": 25.5,
       "equal": 8.33,
-      "risk_weighted": 7.91
+      "risk_weighted": 8.0
     },
     {
-      "symbol": "ITCHOTELS",
-      "forecast": 25.9,
+      "symbol": "TATACAP",
+      "forecast": 26.5,
       "equal": 8.33,
-      "risk_weighted": 7.63
+      "risk_weighted": 7.71
     },
     {
-      "symbol": "INDIGO",
-      "forecast": 26.4,
+      "symbol": "CCL",
+      "forecast": 27.2,
       "equal": 8.33,
-      "risk_weighted": 7.49
+      "risk_weighted": 7.51
     },
     {
-      "symbol": "ADANIENT",
-      "forecast": 27.5,
+      "symbol": "OIL",
+      "forecast": 28.0,
       "equal": 8.33,
-      "risk_weighted": 7.17
+      "risk_weighted": 7.28
     },
     {
-      "symbol": "ASTERDM",
-      "forecast": 28.5,
+      "symbol": "AVANTEL",
+      "forecast": 29.3,
       "equal": 8.33,
-      "risk_weighted": 6.92
+      "risk_weighted": 6.97
     },
     {
-      "symbol": "PIRAMALFIN",
-      "forecast": 29.5,
+      "symbol": "ANTHEM",
+      "forecast": 29.9,
       "equal": 8.33,
-      "risk_weighted": 6.69
+      "risk_weighted": 6.82
     },
     {
-      "symbol": "NAM-INDIA",
-      "forecast": 30.3,
+      "symbol": "NLCINDIA",
+      "forecast": 31.1,
       "equal": 8.33,
-      "risk_weighted": 6.52
+      "risk_weighted": 6.56
     },
     {
-      "symbol": "TMCV",
-      "forecast": 31.5,
+      "symbol": "TRENT",
+      "forecast": 32.4,
       "equal": 8.33,
-      "risk_weighted": 6.26
+      "risk_weighted": 6.3
     }
   ]
 }
