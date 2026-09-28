@@ -142,6 +142,22 @@ HTML = """<title>Volatility Forecasting for NSE Equities</title>
   .bar { height: 7px; border-radius: 3px; background: var(--accent); opacity: .75; }
   .bar.alt { background: var(--base); }
 
+  /* Column explainer under the forecast table. Sits inside the panel on a
+     tinted ground so it reads as help text rather than as more data. */
+  .glossary { border-top: 1px solid var(--rule); background: var(--accent-soft);
+              padding: 20px 22px; display: flex; flex-direction: column; gap: 14px; }
+  .gloss-lead { font-size: .88rem; color: var(--ink-soft); max-width: 62ch; }
+  .gloss-lead strong { color: var(--ink); }
+  .glossary dl { margin: 0; display: grid; gap: 8px 18px; font-size: .88rem;
+                 grid-template-columns: max-content 1fr; align-items: baseline; }
+  .glossary dt { font-weight: 600; color: var(--ink); white-space: nowrap; }
+  .glossary dd { margin: 0; color: var(--ink-soft); }
+  @media (max-width: 560px) {
+    /* Stack the term above its definition rather than squeezing two columns. */
+    .glossary dl { grid-template-columns: 1fr; gap: 2px; }
+    .glossary dd { margin-bottom: 8px; }
+  }
+
   footer { margin-top: 72px; padding-top: 24px; border-top: 1px solid var(--rule);
            font-size: .84rem; color: var(--ink-faint); display: flex;
            flex-direction: column; gap: 10px; max-width: 70ch; }
@@ -375,6 +391,35 @@ HTML = """<title>Volatility Forecasting for NSE Equities</title>
         </table>
       </div>
       <div class="legend"><span id="fcount"></span></div>
+      <div class="glossary">
+        <p class="gloss-lead">
+          <strong>Reading this table.</strong> The three percentages are all the
+          same measure: how far the stock would swing if it kept moving like
+          this for a whole year. That is simply how the industry quotes it.
+        </p>
+        <dl>
+          <dt>Price</dt>
+          <dd>Last closing price, in rupees. Context only &mdash; the forecast
+              does not depend on it.</dd>
+          <dt>Last month</dt>
+          <dd>How much it actually bounced around over the past month.</dd>
+          <dt>Recent average</dt>
+          <dd>The same idea over a longer stretch, weighted towards recent days
+              so it is steadier. This is the baseline the forecast starts from.</dd>
+          <dt>Forecast</dt>
+          <dd>What the model expects over the coming month.</dd>
+          <dt>Change</dt>
+          <dd>Forecast against that baseline &mdash; this is where the model is
+              actually making a call. Negative means it expects the stock to
+              settle down, positive means more movement than usual.</dd>
+        </dl>
+        <p class="gloss-lead">
+          <strong>To make a number concrete, divide it by 16.</strong> That
+          gives roughly the move on an ordinary day. A stock at 16% moves about
+          1% a day; one at 57% moves about 3.5%. So the second is three and a
+          half times the daily ride of the first.
+        </p>
+      </div>
     </div>
   </section>
 
