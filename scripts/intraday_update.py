@@ -35,11 +35,15 @@ DEMO_JSON = DATA_DIR.parent / "reports" / "vol_demo.json"
 # extremes to be useful and a 500-row live table is noise.
 TOP_N = 25
 
+# A quote older than this is not a live view. Four days absorbs a weekend plus a
+# public holiday without tripping.
+STALE_AFTER_DAYS = 4
+
 
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--force", action="store_true",
-                    help="refresh even when the market is closed")
+                    help="deprecated and ignored; every run refreshes now")
     ap.add_argument("--limit", type=int, default=None,
                     help="only fetch the first N symbols (for a quick check)")
     args = ap.parse_args()
@@ -55,10 +59,17 @@ def main() -> int:
 
     now = pd.Timestamp.now(tz=intraday.MARKET_TZ)
     is_open = intraday.market_is_open(now)
-    if not is_open and not args.force:
-        log.info("market closed at %s; leaving the live panel as it stands",
-                 now.strftime("%Y-%m-%d %H:%M %Z"))
-        return 0
+    # Refresh even when the market is closed.
+    #
+    # This used to return early outside trading hours, on the reasoning that
+    # there was nothing new to fetch. The effect was worse than the saving: the
+    # panel kept whatever it last wrote and went on serving it indefinitely, so
+    # after a run of closed-market ticks it was showing a session seven weeks
+    # old under a "market closed" label that made it look current. Outside
+    # trading hours the feed still returns the last completed session, which is
+    # the honest thing to show, and `market_open` says which it is.
+    log.info("market %s at %s", "open" if is_open else "closed",
+             now.strftime("%Y-%m-%d %H:%M %Z"))
 
     symbols = [f["symbol"] for f in forecasts]
     log.info("fetching %d symbols", len(symbols))
@@ -82,15 +93,25 @@ def main() -> int:
         log.info("scored %d symbols; most surprising: %s",
                  len(rows),
                  ", ".join(f"{r['symbol']} {r['surprise']:.1f}x" for r in rows[:3]))
+        last_bar = bars.index[-1]
+        age = intraday.session_age_days(last_bar, now)
         payload = {
             "as_of": now.isoformat(),
-            "last_bar": str(bars.index[-1]),
+            "last_bar": str(last_bar),
+            "session_age_days": age,
             "market_open": is_open,
-            "available": True,
+            # Stated explicitly rather than inferred by the page. A quote from
+            # last week is not a live view, however plausibly a "market closed"
+            # label frames it, so the page hides the panel instead of dressing
+            # stale numbers as the latest session.
+            "available": age <= STALE_AFTER_DAYS,
+            "stale": age > STALE_AFTER_DAYS,
             "scored": len(rows),
             "hot": sum(1 for r in rows if r["surprise"] >= 2.5),
             "rows": rows[:TOP_N],
         }
+        if age > STALE_AFTER_DAYS:
+            log.warning("newest quote is %d days old; marking the panel stale", age)
 
     SITE_DIR.mkdir(parents=True, exist_ok=True)
     out = SITE_DIR / "live.json"

@@ -117,3 +117,27 @@ class TestSurpriseTable:
                             tz=intraday.MARKET_TZ)
         intra = pd.DataFrame({"AAA": [100.0, 101.0]}, index=idx)
         assert intraday.surprise_table(forecasts, intra, pd.Series({"AAA": 0.0})) == []
+
+
+class TestSessionAge:
+    """The live panel's danger is looking current while being old."""
+
+    def test_same_day_is_zero(self):
+        now = pd.Timestamp("2026-09-28 16:00", tz=intraday.MARKET_TZ)
+        bar = pd.Timestamp("2026-09-28 15:25", tz=intraday.MARKET_TZ)
+        assert intraday.session_age_days(bar, now) == 0
+
+    def test_weekend_gap_is_small(self):
+        now = pd.Timestamp("2026-08-08 11:00", tz=intraday.MARKET_TZ)
+        bar = pd.Timestamp("2026-08-07 15:25", tz=intraday.MARKET_TZ)
+        assert intraday.session_age_days(bar, now) == 1
+
+    def test_detects_a_seven_week_gap(self):
+        """The real regression: a panel frozen since early August."""
+        now = pd.Timestamp("2026-09-28 20:00", tz=intraday.MARKET_TZ)
+        bar = pd.Timestamp("2026-08-07 15:25", tz=intraday.MARKET_TZ)
+        assert intraday.session_age_days(bar, now) == 52
+
+    def test_naive_timestamp_is_localised_not_rejected(self):
+        now = pd.Timestamp("2026-09-28 20:00", tz=intraday.MARKET_TZ)
+        assert intraday.session_age_days(pd.Timestamp("2026-09-25 15:25"), now) == 3

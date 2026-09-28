@@ -140,6 +140,21 @@ def expected_abs_move(forecast_vol: float) -> float:
     return forecast_vol / math.sqrt(TRADING_DAYS) * MAD_NORMAL
 
 
+def session_age_days(last_bar: pd.Timestamp, now: pd.Timestamp | None = None) -> int:
+    """Calendar days between the newest quote and now.
+
+    The live panel's failure mode is looking current while being old: a "market
+    closed" label reads as *last session* whatever the date underneath actually
+    is. This lets the page decide whether to present itself as live, rather than
+    trusting that a file exists at all.
+    """
+    now = now or pd.Timestamp.now(tz=MARKET_TZ)
+    last = pd.Timestamp(last_bar)
+    if last.tzinfo is None:
+        last = last.tz_localize(MARKET_TZ)
+    return int((now.tz_convert(MARKET_TZ).normalize() - last.tz_convert(MARKET_TZ).normalize()).days)
+
+
 def surprise_table(
     forecasts: list[dict],
     intraday: pd.DataFrame,

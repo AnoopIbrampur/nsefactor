@@ -1,235 +1,237 @@
 {
-  "as_of": "2026-08-08T11:05:45.824323+05:30",
-  "last_bar": "2026-08-07 15:25:00+05:30",
+  "as_of": "2026-09-29T05:07:33.272779+05:30",
+  "last_bar": "2026-09-28 15:25:00+05:30",
+  "session_age_days": 1,
   "market_open": false,
   "available": true,
-  "scored": 498,
-  "hot": 1,
+  "stale": false,
+  "scored": 499,
+  "hot": 24,
   "rows": [
     {
-      "symbol": "PTCIL",
-      "price": 19076.0,
-      "prev_close": 18221.0,
-      "move": 4.69,
-      "forecast": 32.6,
-      "expected_move": 1.64,
-      "surprise": 2.86
+      "symbol": "PAISALO",
+      "price": 79.6,
+      "prev_close": 89.02,
+      "move": -10.58,
+      "forecast": 50.3,
+      "expected_move": 2.53,
+      "surprise": 4.19
     },
     {
-      "symbol": "GRWRHITECH",
-      "price": 6973.0,
-      "prev_close": 7338.5,
-      "move": -4.98,
-      "forecast": 40.1,
-      "expected_move": 2.02,
-      "surprise": 2.47
+      "symbol": "YESBANK",
+      "price": 21.18,
+      "prev_close": 22.5,
+      "move": -5.87,
+      "forecast": 27.9,
+      "expected_move": 1.4,
+      "surprise": 4.18
     },
     {
-      "symbol": "CHOLAFIN",
-      "price": 1866.2,
-      "prev_close": 1940.0,
-      "move": -3.8,
-      "forecast": 33.0,
-      "expected_move": 1.66,
-      "surprise": 2.29
+      "symbol": "BANKINDIA",
+      "price": 129.99,
+      "prev_close": 137.94,
+      "move": -5.76,
+      "forecast": 28.1,
+      "expected_move": 1.41,
+      "surprise": 4.08
     },
     {
-      "symbol": "TRANSRAILL",
-      "price": 474.3,
-      "prev_close": 490.95,
-      "move": -3.39,
-      "forecast": 29.8,
-      "expected_move": 1.5,
-      "surprise": 2.26
+      "symbol": "MANAPPURAM",
+      "price": 313.0,
+      "prev_close": 334.0,
+      "move": -6.29,
+      "forecast": 31.1,
+      "expected_move": 1.56,
+      "surprise": 4.02
     },
     {
-      "symbol": "AFFLE",
-      "price": 1620.0,
-      "prev_close": 1688.7,
-      "move": -4.07,
-      "forecast": 36.7,
-      "expected_move": 1.84,
-      "surprise": 2.21
-    },
-    {
-      "symbol": "KIRLOSENG",
-      "price": 2161.7,
-      "prev_close": 2248.9,
+      "symbol": "IDFCFIRSTB",
+      "price": 80.55,
+      "prev_close": 83.8,
       "move": -3.88,
-      "forecast": 42.9,
-      "expected_move": 2.16,
-      "surprise": 1.8
+      "forecast": 22.7,
+      "expected_move": 1.14,
+      "surprise": 3.4
     },
     {
-      "symbol": "SKYGOLD",
-      "price": 719.4,
-      "prev_close": 691.15,
-      "move": 4.09,
-      "forecast": 45.2,
-      "expected_move": 2.27,
-      "surprise": 1.8
+      "symbol": "ESCORTS",
+      "price": 2740.7,
+      "prev_close": 2855.7,
+      "move": -4.03,
+      "forecast": 24.1,
+      "expected_move": 1.21,
+      "surprise": 3.32
     },
     {
-      "symbol": "BOSCHLTD",
-      "price": 42950.0,
-      "prev_close": 42000.0,
-      "move": 2.26,
-      "forecast": 27.2,
-      "expected_move": 1.37,
-      "surprise": 1.65
-    },
-    {
-      "symbol": "LTM",
-      "price": 4658.1,
-      "prev_close": 4528.0,
-      "move": 2.87,
-      "forecast": 35.4,
-      "expected_move": 1.78,
-      "surprise": 1.61
-    },
-    {
-      "symbol": "HONASA",
-      "price": 477.0,
-      "prev_close": 465.65,
-      "move": 2.44,
-      "forecast": 30.9,
-      "expected_move": 1.55,
-      "surprise": 1.57
-    },
-    {
-      "symbol": "CHAMBLFERT",
-      "price": 450.7,
-      "prev_close": 459.75,
-      "move": -1.97,
-      "forecast": 25.8,
-      "expected_move": 1.3,
-      "surprise": 1.52
-    },
-    {
-      "symbol": "ACE",
-      "price": 1084.9,
-      "prev_close": 1113.7,
-      "move": -2.59,
-      "forecast": 34.7,
-      "expected_move": 1.74,
-      "surprise": 1.48
-    },
-    {
-      "symbol": "EMCURE",
-      "price": 1978.4,
-      "prev_close": 1936.7,
-      "move": 2.15,
-      "forecast": 29.7,
-      "expected_move": 1.49,
-      "surprise": 1.44
-    },
-    {
-      "symbol": "TRITURBINE",
-      "price": 630.3,
-      "prev_close": 646.35,
-      "move": -2.48,
-      "forecast": 35.4,
-      "expected_move": 1.78,
-      "surprise": 1.4
-    },
-    {
-      "symbol": "IGL",
-      "price": 151.94,
-      "prev_close": 154.33,
-      "move": -1.55,
-      "forecast": 23.1,
-      "expected_move": 1.16,
-      "surprise": 1.33
-    },
-    {
-      "symbol": "WHIRLPOOL",
-      "price": 813.15,
-      "prev_close": 830.45,
-      "move": -2.08,
-      "forecast": 31.5,
-      "expected_move": 1.58,
-      "surprise": 1.32
-    },
-    {
-      "symbol": "EDELWEISS",
-      "price": 118.54,
-      "prev_close": 121.16,
-      "move": -2.16,
-      "forecast": 35.4,
-      "expected_move": 1.78,
-      "surprise": 1.22
-    },
-    {
-      "symbol": "LLOYDSME",
-      "price": 2101.2,
-      "prev_close": 2059.0,
-      "move": 2.05,
+      "symbol": "IDEA",
+      "price": 13.47,
+      "prev_close": 14.26,
+      "move": -5.54,
       "forecast": 34.4,
       "expected_move": 1.73,
-      "surprise": 1.19
+      "surprise": 3.2
     },
     {
-      "symbol": "AEROFLEX",
-      "price": 426.1,
-      "prev_close": 438.5,
+      "symbol": "UNIONBANK",
+      "price": 171.75,
+      "prev_close": 180.2,
+      "move": -4.69,
+      "forecast": 29.3,
+      "expected_move": 1.47,
+      "surprise": 3.18
+    },
+    {
+      "symbol": "NAM-INDIA",
+      "price": 1093.9,
+      "prev_close": 1157.0,
+      "move": -5.45,
+      "forecast": 34.9,
+      "expected_move": 1.75,
+      "surprise": 3.11
+    },
+    {
+      "symbol": "JSFB",
+      "price": 499.2,
+      "prev_close": 535.25,
+      "move": -6.74,
+      "forecast": 43.2,
+      "expected_move": 2.17,
+      "surprise": 3.1
+    },
+    {
+      "symbol": "INDUSTOWER",
+      "price": 360.0,
+      "prev_close": 374.65,
+      "move": -3.91,
+      "forecast": 25.9,
+      "expected_move": 1.3,
+      "surprise": 3.0
+    },
+    {
+      "symbol": "MAHABANK",
+      "price": 80.85,
+      "prev_close": 84.88,
+      "move": -4.75,
+      "forecast": 31.7,
+      "expected_move": 1.59,
+      "surprise": 2.98
+    },
+    {
+      "symbol": "CANBK",
+      "price": 120.65,
+      "prev_close": 124.99,
+      "move": -3.47,
+      "forecast": 23.4,
+      "expected_move": 1.18,
+      "surprise": 2.95
+    },
+    {
+      "symbol": "PNB",
+      "price": 112.6,
+      "prev_close": 116.6,
+      "move": -3.43,
+      "forecast": 23.5,
+      "expected_move": 1.18,
+      "surprise": 2.9
+    },
+    {
+      "symbol": "BANKBARODA",
+      "price": 227.5,
+      "prev_close": 235.26,
+      "move": -3.3,
+      "forecast": 22.9,
+      "expected_move": 1.15,
+      "surprise": 2.87
+    },
+    {
+      "symbol": "POWERGRID",
+      "price": 261.85,
+      "prev_close": 269.5,
+      "move": -2.84,
+      "forecast": 19.9,
+      "expected_move": 1.0,
+      "surprise": 2.84
+    },
+    {
+      "symbol": "ADANIGREEN",
+      "price": 1235.0,
+      "prev_close": 1296.6,
+      "move": -4.75,
+      "forecast": 33.4,
+      "expected_move": 1.68,
+      "surprise": 2.83
+    },
+    {
+      "symbol": "MEDANTA",
+      "price": 1433.1,
+      "prev_close": 1495.4,
+      "move": -4.17,
+      "forecast": 30.5,
+      "expected_move": 1.53,
+      "surprise": 2.72
+    },
+    {
+      "symbol": "RECLTD",
+      "price": 303.25,
+      "prev_close": 312.95,
+      "move": -3.1,
+      "forecast": 23.4,
+      "expected_move": 1.18,
+      "surprise": 2.64
+    },
+    {
+      "symbol": "KTKBANK",
+      "price": 322.0,
+      "prev_close": 335.5,
+      "move": -4.02,
+      "forecast": 30.3,
+      "expected_move": 1.52,
+      "surprise": 2.64
+    },
+    {
+      "symbol": "AEQUS",
+      "price": 260.5,
+      "prev_close": 246.05,
+      "move": 5.87,
+      "forecast": 44.6,
+      "expected_move": 2.24,
+      "surprise": 2.62
+    },
+    {
+      "symbol": "LENSKART",
+      "price": 655.0,
+      "prev_close": 680.25,
+      "move": -3.71,
+      "forecast": 28.3,
+      "expected_move": 1.42,
+      "surprise": 2.61
+    },
+    {
+      "symbol": "LT",
+      "price": 3766.4,
+      "prev_close": 3876.2,
       "move": -2.83,
-      "forecast": 48.4,
-      "expected_move": 2.43,
-      "surprise": 1.16
+      "forecast": 21.8,
+      "expected_move": 1.1,
+      "surprise": 2.59
     },
     {
-      "symbol": "AXISCADES",
-      "price": 1593.9,
-      "prev_close": 1631.4,
-      "move": -2.3,
-      "forecast": 39.6,
-      "expected_move": 1.99,
-      "surprise": 1.15
+      "symbol": "COROMANDEL",
+      "price": 1900.2,
+      "prev_close": 1963.9,
+      "move": -3.24,
+      "forecast": 25.8,
+      "expected_move": 1.3,
+      "surprise": 2.5
     },
     {
-      "symbol": "CRAFTSMAN",
-      "price": 10360.0,
-      "prev_close": 10555.0,
-      "move": -1.85,
-      "forecast": 34.3,
-      "expected_move": 1.72,
-      "surprise": 1.07
-    },
-    {
-      "symbol": "MANKIND",
-      "price": 2456.0,
-      "prev_close": 2420.3,
-      "move": 1.48,
-      "forecast": 27.8,
-      "expected_move": 1.4,
-      "surprise": 1.06
-    },
-    {
-      "symbol": "360ONE",
-      "price": 1168.1,
-      "prev_close": 1186.0,
-      "move": -1.51,
-      "forecast": 28.9,
-      "expected_move": 1.45,
-      "surprise": 1.04
-    },
-    {
-      "symbol": "ACMESOLAR",
-      "price": 368.0,
-      "prev_close": 375.45,
-      "move": -1.98,
-      "forecast": 37.8,
-      "expected_move": 1.9,
-      "surprise": 1.04
-    },
-    {
-      "symbol": "FIVESTAR",
-      "price": 543.25,
-      "prev_close": 553.25,
-      "move": -1.81,
-      "forecast": 35.4,
-      "expected_move": 1.78,
-      "surprise": 1.02
+      "symbol": "KPIGREEN",
+      "price": 357.35,
+      "prev_close": 339.75,
+      "move": 5.18,
+      "forecast": 41.5,
+      "expected_move": 2.09,
+      "surprise": 2.48
     }
   ]
 }
